@@ -86,7 +86,7 @@
                 userAnnotation *pin = [[userAnnotation alloc] init];
                 
                 //Set color
-                pin.pinColor = MKPinAnnotationColorPurple;
+                pin.pinColor = MKPinAnnotationColorGreen;
                 
                 //Set user
                 pin.user = user;
@@ -131,23 +131,23 @@
     }
     
     //Add POI pins to the map
-//    if ([poiArray count])
-//    { //Check that POI array exists
-//        for (PFObject *object in poiArray)
-//        { //For each POI object
-//            userAnnotation *pin = [[userAnnotation alloc] init];
-//            pin.title = [object objectForKey:@"name"]; //Set title
-//            pin.subtitle = [object objectForKey:@"subtitle"]; //Set subtitle
-//            PFFile *picture = [object objectForKey:@"image"]; //Set picture
-//            NSData *data = [picture getData];
-//            pin.image = [UIImage imageWithData:data];
-//            PFGeoPoint *loc = [object objectForKey:@"location"]; //Set location
-//            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([loc latitude], [loc longitude]);
-//            pin.coordinate = coord;
-//            pin.pinColor = MKPinAnnotationColorGreen; //Set color
-//            [mapView addAnnotation:pin];
-//        }
-//    }
+    if ([poiArray count])
+    { //Check that POI array exists
+        for (PFObject *object in poiArray)
+        { //For each POI object
+            userAnnotation *pin = [[userAnnotation alloc] init];
+            pin.title = [object objectForKey:@"name"]; //Set title
+            pin.subtitle = [object objectForKey:@"subtitle"]; //Set subtitle
+            PFFile *picture = [object objectForKey:@"image"]; //Set picture
+            NSData *data = [picture getData];
+            pin.image = [UIImage imageWithData:data];
+            PFGeoPoint *loc = [object objectForKey:@"location"]; //Set location
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([loc latitude], [loc longitude]);
+            pin.coordinate = coord;
+            pin.pinColor = MKPinAnnotationColorRed; //Set color
+            [mapView addAnnotation:pin];
+        }
+    }
 }
 
 -(void)zoomToFitUniversity:(MKMapView *)map
@@ -174,23 +174,21 @@
     if(![[annotation title] isEqualToString:@"Current Location"])
     { 
         //Set up the custom marker
-        MKAnnotationView *markerView = nil;
+        MKPinAnnotationView *markerView = nil;
         
         //Reque annotation view
         static NSString *defaultID = @"com.invasivecode.pin";
-        markerView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultID];
+        markerView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultID];
         if ( markerView == nil )
-            markerView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultID];
+            markerView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultID];
         
         //Configure annotation
         markerView.canShowCallout = YES;
-        UIImage *marker = [UIImage imageNamed:@"Pin-Red.png"];
-        markerView.contentMode = UIViewContentModeScaleAspectFit;
-        markerView.frame = CGRectMake(0, 0, 32, 39);
-        markerView.image = marker;
+        markerView.pinColor = [annotation pinColor];
+        markerView.animatesDrop = YES;
         
         //Set detail disclosure in callout if required
-        if ([annotation pinColor] == MKPinAnnotationColorPurple)
+        if ([annotation pinColor] == MKPinAnnotationColorGreen)
             markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         else
             markerView.rightCalloutAccessoryView = nil;
@@ -242,10 +240,4 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)curlMap:(id)sender {
-    UIViewController *view = [[UIViewController alloc] init];
-    view.modalPresentationStyle = UIModalPresentationCurrentContext;
-    view.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    [self.navigationController presentModalViewController:view animated:YES];
-}
 @end

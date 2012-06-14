@@ -25,6 +25,5 @@
 @property (nonatomic, strong) NSArray *friendArray;
 @property (nonatomic, strong) NSArray *poiArray;
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
-- (IBAction)curlMap:(id)sender;
 
 @end
