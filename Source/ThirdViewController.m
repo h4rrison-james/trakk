@@ -189,7 +189,6 @@
         markerView.frame = CGRectMake(0, 0, 32, 39);
         markerView.image = marker;
         
-        
         //Set detail disclosure in callout if required
         if ([annotation pinColor] == MKPinAnnotationColorPurple)
             markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
