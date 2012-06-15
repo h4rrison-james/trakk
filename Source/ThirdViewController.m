@@ -69,7 +69,7 @@
 }
 
 -(void)addAnnotations
-{ //Adds all annotations to the map
+{ //Adds all marker annotations to the map
     [self zoomToFitUniversity:mapView];
     
     //Add friend pins to the map
@@ -78,8 +78,7 @@
         for (PFUser *user in friendArray)
         { //For each user object
             BOOL online = ![[user objectForKey:@"status"] isEqualToString:@"Offline"];
-            BOOL coordinateExists = [user objectForKey:@"coordinates"] && ![[user objectForKey:@"coordinates"] isKindOfClass:[NSNull class]];
-            if (online && coordinateExists)
+            if (online && [self exists:user withKey:@"coordinates"])
             { //Check that user is online
                 
                 //Add annotation for user to the map
@@ -90,12 +89,9 @@
                 
                 //Set user
                 pin.user = user;
-                BOOL nameExists = [user objectForKey:@"name"] && ![[user objectForKey:@"name"] isKindOfClass:[NSNull class]];
-                BOOL locationExists = [user objectForKey:@"location"] && ![[user objectForKey:@"location"] isKindOfClass:[NSNull class]];
-                BOOL statusExists = [user objectForKey:@"status"] && ![[user objectForKey:@"status"] isKindOfClass:[NSNull class]];
                 
                 //Set name
-                if (nameExists)
+                if ([self exists:user withKey:@"name"])
                 { //Check name exists and set name
                     NSString *name = [NSString stringWithFormat:@"%@ %@", [user objectForKey:@"first_name"], [user objectForKey:@"last_name"]];
                     DLog(@"Making pin for user %@", name);
@@ -105,12 +101,12 @@
                 //Set status text
                 NSString *status;
                 NSString *statusText;
-                if (statusExists)
+                if ([self exists:user withKey:@"status"])
                     status = [user objectForKey:@"status"];
                 else
                     DLog(@"Error: No status is set for user.");
-                if (locationExists && statusExists)
-                { //If location is not null and status is not null or offline, display full string
+                if ([self exists:user withKey:@"location"] && [self exists:user withKey:@"status"])
+                { //If location and status both exist, then display full string
                     NSString *location = [[user objectForKey:@"location"] objectForKey:@"name"];
                     statusText = [NSString stringWithFormat:@"%@ @ %@", status, location];
                 }
@@ -176,7 +172,7 @@
         //Set up the custom marker
         MKPinAnnotationView *markerView = nil;
         
-        //Reque annotation view
+        //Requeue annotation view
         static NSString *defaultID = @"com.invasivecode.pin";
         markerView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultID];
         if ( markerView == nil )
@@ -216,6 +212,11 @@
     [self.navigationController pushViewController:detail animated:YES];
 }
 
+-(BOOL)exists:(PFUser *)user withKey:(NSString *)key
+{ //Helper method for error checking on the PFUser class
+    return ([user objectForKey:key] && ![[user objectForKey:key] isKindOfClass:[NSNull class]]);
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     mapView.showsUserLocation = TRUE;
@@ -234,10 +235,5 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end
