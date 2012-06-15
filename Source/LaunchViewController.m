@@ -228,15 +228,15 @@ BOOL alertShown = FALSE;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([defaults objectForKey:@"firstRun"] && FBFriends)
+    if ([defaults boolForKey:@"notFirstRun"] && FBFriends)
     { //Not first time running, segue when "me" request is processed
         [[PFUser currentUser] saveEventually];
         [self performSegueWithIdentifier:@"homeView" sender:self];
     }
     
-    if (![defaults objectForKey:@"firstRun"] && FBMe && FBPicture && FBFriends)
-    { //Must be first time running, set the run flag and segue
-        [defaults setObject:@"1" forKey:@"firstRun"];
+    if (![defaults boolForKey:@"notFirstRun"] && FBMe && FBPicture && FBFriends)
+    { //Must be first time running, set the run flag and defaults and segue
+        [self firstRun];
         [[PFUser currentUser] saveEventually];
         [self performSegueWithIdentifier:@"homeView" sender:self];
     }
@@ -266,6 +266,15 @@ BOOL alertShown = FALSE;
     { //Other error.
         DLog(@"FB: Failed with error. %@", error);
     }
+}
+
+-(void)firstRun
+{ //Set application default preferences
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:TRUE forKey:@"notFirstRun"];
+    [defaults setBool:TRUE forKey:@"showPeopleOnMap"];
+    [defaults setBool:FALSE forKey:@"showClubsOnMap"];
+    [defaults synchronize];
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

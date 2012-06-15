@@ -71,9 +71,10 @@
 -(void)addAnnotations
 { //Adds all marker annotations to the map
     [self zoomToFitUniversity:mapView];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //Add friend pins to the map
-    if ([friendArray count])
+    if ([friendArray count] && [defaults boolForKey:@"showPeopleOnMap"])
     { //Check that friendArray exists
         for (PFUser *user in friendArray)
         { //For each user object
@@ -127,7 +128,7 @@
     }
     
     //Add POI pins to the map
-    if ([poiArray count])
+    if ([poiArray count] && [defaults boolForKey:@"showClubsOnMap"])
     { //Check that POI array exists
         for (PFObject *object in poiArray)
         { //For each POI object

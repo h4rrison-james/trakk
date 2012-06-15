@@ -33,30 +33,17 @@
     versionLabel.text = versionNum;
     
     //Set people switch
-    if (0)
-    {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if ([defaults objectForKey:@"showPeopleOnMap"])
-        {
-            if ([[defaults objectForKey:@"showPeopleOnMap"] isEqualToString:@"1"])
-                peopleSwitch.on = TRUE;
-            else 
-                peopleSwitch.on = FALSE;
-        }
-        else 
-            peopleSwitch.on = TRUE;
-        
-        //Set club switch
-        if ([defaults objectForKey:@"showClubsOnMap"])
-        {
-            if ([[defaults objectForKey:@"showClubsOnMap"] isEqualToString:@"1"])
-                clubSwitch.on = TRUE;
-            else 
-                clubSwitch.on = FALSE;
-        }
-        else 
-            clubSwitch.on = TRUE;
-    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"showPeopleOnMap"])
+        peopleSwitch.on = TRUE;
+    else 
+        peopleSwitch.on = FALSE;
+    
+    //Set club switch
+    if ([defaults boolForKey:@"showClubsOnMap"])
+        clubSwitch.on = TRUE;
+    else 
+        clubSwitch.on = FALSE;
 }
 
 - (void)viewDidUnload
@@ -95,7 +82,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath section] == 1 && [indexPath row] == 0)
+    if ([indexPath section] == 2 && [indexPath row] == 0)
     { //Feedback cell selected
         if ([MFMailComposeViewController canSendMail])
         { //Check if device has ability to send mail
@@ -111,7 +98,7 @@
             [mailAlert show];
         }
     }
-    else if ([indexPath section] == 1 && [indexPath row] == 1)
+    else if ([indexPath section] == 2 && [indexPath row] == 1)
     { //App Store rating cell selected
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=510960845"]];
     }
@@ -120,12 +107,16 @@
 - (CGFloat)tableView:(UITableView *)tableView
 heightForFooterInSection:(NSInteger)section
 {
+    if (section == 0)
+        return 0;
+    if (section == 2)
+        return 70;
     return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
-    if(footerView == nil && section == 1) {
+    if(footerView == nil && section == 2) {
         //Allocate the view if it doesn't exist yet
         footerView  = [[UIView alloc] init];
         
@@ -166,18 +157,24 @@ heightForFooterInSection:(NSInteger)section
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (peopleSwitch.on)
-        [defaults setObject:@"1" forKey:@"showPeopleOnMap"];
+        [defaults setBool:TRUE forKey:@"showPeopleOnMap"];
     else
-        [defaults setObject:@"0" forKey:@"showPeopleOnMap"];
+        [defaults setBool:FALSE forKey:@"showPeopleOnMap"];
+    
+    [defaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNotification" object:nil];
 }
 
 - (IBAction)clubSwitchChanged:(id)sender forEvent:(UIEvent *)event
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (clubSwitch.on)
-        [defaults setObject:@"1" forKey:@"showClubsOnMap"];
+        [defaults setBool:TRUE forKey:@"showClubsOnMap"];
     else
-        [defaults setObject:@"0" forKey:@"showClubsOnMap"];
+        [defaults setBool:FALSE forKey:@"showClubsOnMap"];
+    
+    [defaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNotification" object:nil];
 }
 
 - (void)logoutButtonPressed
