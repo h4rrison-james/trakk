@@ -3,7 +3,7 @@
 //  Trakk
 //
 //  Created by Harrison Sweeney on 10/03/12.
-//  Copyright (c) 2012 UWA. All rights reserved.
+//  Copyright (c) 2012 Harrison J Sweeney. All rights reserved.
 //
 
 #ifndef Trakk_Constants_h

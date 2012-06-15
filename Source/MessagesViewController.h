@@ -1,9 +1,9 @@
 //
 //  UserViewController.h
-//  utrak
+//  Trakk
 //
 //  Created by Harrison Sweeney on 22/07/11.
-//  Copyright 2011 UWA. All rights reserved.
+//  Copyright 2011 Harrison J Sweeney. All rights reserved.
 //
 
 //Import Framework Headers

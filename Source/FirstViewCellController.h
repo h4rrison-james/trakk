@@ -3,7 +3,7 @@
 //  Trakk
 //
 //  Created by Harrison Sweeney on 30/12/11.
-//  Copyright (c) 2011 UWA. All rights reserved.
+//  Copyright (c) 2011 Harrison J Sweeney. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
