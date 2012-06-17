@@ -221,14 +221,14 @@
     }
     
     //Set custom background
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell-Design.png"]];
+    //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell-Design.png"]];
     
     //Set boolean values based on PFUser values
-    BOOL nameExists = [object objectForKey:@"name"] && ![[object objectForKey:@"name"] isKindOfClass:[NSNull class]];
-    BOOL locationExists = [object objectForKey:@"location"] && ![[object objectForKey:@"location"] isKindOfClass:[NSNull class]];
-    BOOL statusExists = [object objectForKey:@"status"] && ![[object objectForKey:@"status"] isKindOfClass:[NSNull class]];
+    BOOL nameExists = [self exists:object withKey:@"name"];
+    BOOL locationExists = [self exists:object withKey:@"location"];
+    BOOL statusExists = [self exists:object withKey:@"status"];
     BOOL updatedExists = object.updatedAt && ![object.updatedAt isKindOfClass:[NSNull class]];
-    BOOL pictureExists = [object objectForKey:@"picture"] && ![[object objectForKey:@"picture"] isKindOfClass:[NSNull class]];
+    BOOL pictureExists = [self exists:object withKey:@"picture"];
     BOOL statusIsOffline = [[object objectForKey:@"status"] isEqualToString:@"Offline"];
     
     //Set name label text
@@ -265,6 +265,18 @@
         PFFile *picture = [object objectForKey:@"picture"];
         NSData *data = [picture getData];
         cell.profileImage.image = [UIImage imageWithData:data];
+        
+        [cell.profileImage.layer setBorderWidth:3.0f];
+        [cell.profileImage.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        
+        CALayer *profileShadow = [[CALayer alloc] init];
+        profileShadow.frame = cell.profileImage.bounds;
+        [profileShadow setShadowRadius:5.0f];
+        [profileShadow setShadowOpacity:0.85f];
+        [profileShadow setShadowOffset:CGSizeMake(1.0f, 2.0f)];
+        [profileShadow setShouldRasterize:YES];
+        [profileShadow setMasksToBounds:NO];
+        [cell.profileImage.layer insertSublayer:profileShadow atIndex:0];
     }
     
     return cell;
@@ -331,6 +343,11 @@
         [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setBadgeValue:NULL];
     else
         [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setBadgeValue:badgeString];
+}
+
+-(BOOL)exists:(PFObject *)object withKey:(NSString *)key
+{ //Helper method for error checking on the PFUser class
+    return ([object objectForKey:key] && ![[object objectForKey:key] isKindOfClass:[NSNull class]]);
 }
 
 @end
