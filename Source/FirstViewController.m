@@ -268,15 +268,6 @@
         
         [cell.profileImage.layer setBorderWidth:3.0f];
         [cell.profileImage.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-        
-        CALayer *profileShadow = [[CALayer alloc] init];
-        profileShadow.frame = cell.profileImage.bounds;
-        [profileShadow setShadowRadius:5.0f];
-        [profileShadow setShadowOpacity:0.85f];
-        [profileShadow setShadowOffset:CGSizeMake(1.0f, 2.0f)];
-        [profileShadow setShouldRasterize:YES];
-        [profileShadow setMasksToBounds:NO];
-        [cell.profileImage.layer insertSublayer:profileShadow atIndex:0];
     }
     
     return cell;

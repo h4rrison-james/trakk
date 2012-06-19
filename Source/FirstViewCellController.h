@@ -16,6 +16,7 @@
     IBOutlet UIImageView *profileImage;
 }
 
+-(void)drawLinearGradient:(CGContextRef) context: (CGRect) rect: (CGColorRef) startColor: (CGColorRef)  endColor;
 @property (nonatomic, retain) UILabel *statusLabel;
 @property (nonatomic, retain) UILabel *nameLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
