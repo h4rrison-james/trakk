@@ -220,9 +220,6 @@
         cell = [[FirstViewCellController alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    //Set custom background
-    //cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Cell-Design.png"]];
-    
     //Set boolean values based on PFUser values
     BOOL nameExists = [self exists:object withKey:@"name"];
     BOOL locationExists = [self exists:object withKey:@"location"];
@@ -265,9 +262,8 @@
         PFFile *picture = [object objectForKey:@"picture"];
         NSData *data = [picture getData];
         cell.profileImage.image = [UIImage imageWithData:data];
-        
-        [cell.profileImage.layer setBorderWidth:3.0f];
-        [cell.profileImage.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        cell.profileImage.layer.masksToBounds = TRUE;
+        cell.profileImage.layer.cornerRadius = 3.0f;
     }
     
     return cell;

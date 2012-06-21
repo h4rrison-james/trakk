@@ -17,6 +17,8 @@
 }
 
 -(void)drawLinearGradient:(CGContextRef) context: (CGRect) rect: (CGColorRef) startColor: (CGColorRef)  endColor;
+-(void)draw1PxStroke:(CGContextRef) context: (CGPoint) startPoint: (CGPoint) endPoint: (CGColorRef) color;
+- (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius;
 @property (nonatomic, retain) UILabel *statusLabel;
 @property (nonatomic, retain) UILabel *nameLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
