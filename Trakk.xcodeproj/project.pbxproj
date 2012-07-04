@@ -114,7 +114,6 @@
 		84DF9C871546B18D00FAFCBF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DF9C861546B18D00FAFCBF /* Parse.framework */; };
 		84E8531B1527591500004099 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8531A1527591500004099 /* SettingsController.m */; };
 		84F4ECC21556A95200486EF6 /* Settings-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F4ECC11556A95200486EF6 /* Settings-Button.png */; };
-		84FF9CC015629897002644F8 /* Trakk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B63FAB14BC04670062671A /* Trakk-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -699,7 +698,7 @@
 		47D1ABCD13B4945A00B23A8F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = UWA;
 			};
 			buildConfigurationList = 47D1ABD013B4945A00B23A8F /* Build configuration list for PBXProject "Trakk" */;
@@ -795,7 +794,6 @@
 				843F600D1531837D0056597F /* MessageEntryBackground.png in Resources */,
 				843F600E1531837D0056597F /* MessageEntryBackground@2x.png in Resources */,
 				84F4ECC21556A95200486EF6 /* Settings-Button.png in Resources */,
-				84FF9CC015629897002644F8 /* Trakk-Info.plist in Resources */,
 				84BD04381569155100DD6645 /* Logout-Button.png in Resources */,
 				848D45E91573D29500C0DA89 /* SSMessageTableViewCellBackgroundDullGreen@2x.png in Resources */,
 				848D45EB1573D71400C0DA89 /* SSMessageTableViewCellBackgroundDullClear@2x.png in Resources */,
