@@ -279,6 +279,11 @@
         [new setHidesBottomBarWhenPushed:YES];
         NSIndexPath *indexPath = [[self tableView] indexPathForSelectedRow];
         PFUser *currentUser = [self.objects objectAtIndex:[indexPath row]];
+        
+        //Set profile picture based on current cell
+        UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
+        new.profile = cell.imageView.image;
+        
         new.userID = [currentUser objectId];
         new.title = [NSString stringWithFormat:@"%@ %@", [currentUser objectForKey:@"first_name"], [currentUser objectForKey:@"last_name"]];
     }

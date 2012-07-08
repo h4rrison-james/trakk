@@ -891,7 +891,7 @@ http://github.com/tmdvs/TDBadgedCell
                 <relationship kind="outlet" name="titleImage" candidateClass="UIImageView"/>
             </relationships>
         </class>
-        <class className="PFQueryTableViewController" superclassName="UITableViewController">
+        <class className="PFQueryTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
         </class>
         <class className="SSMessagesViewController" superclassName="UIViewController">
@@ -942,7 +942,4 @@ http://github.com/tmdvs/TDBadgedCell
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="rTr-LS-LQu"/>
-    </inferredMetricsTieBreakers>
 </document>

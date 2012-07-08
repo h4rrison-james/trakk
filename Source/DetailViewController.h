@@ -17,11 +17,13 @@
     NSMutableArray *messages;
     NSNumber *badge;
     NSString *userID;
+    UIImage *profile;
 }
 
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic) NSNumber *badge;
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) UIImage *profile;
 - (void)newMessageReceived:(NSDictionary *)messageContent;
 - (void)saveMessages;
 - (void)loadMessages;

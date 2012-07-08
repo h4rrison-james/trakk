@@ -13,6 +13,7 @@
 @synthesize messages;
 @synthesize userID;
 @synthesize badge;
+@synthesize profile;
 
 - (utrakAppDelegate *)appDelegate {
     return (utrakAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -29,6 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Set default title if title not set
+    if (!self.title)
+    {
+        DLog(@"Error: DetailViewController title not set");
+        self.title = @"Tony Stark";
+    }
 }
 
 - (void)viewDidUnload
@@ -125,8 +132,28 @@
 
 #pragma mark SSMessageViewControllerDelegate
 
-- (NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return [[messages objectAtIndex:[indexPath row]] objectForKey:@"msg"];
+- (Message *)messageForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *storedMessage = [messages objectAtIndex:[indexPath row]];
+    
+    NSString *text = [storedMessage objectForKey:@"msg"];
+    AuthorType author = [[storedMessage objectForKey:@"sender"] intValue];
+    UIImage *img;
+    //Set image to current user profile picture if author is self
+    if (author == STBubbleTableViewCellAuthorTypeSelf) {
+        PFFile *picture = [[PFUser currentUser] objectForKey:@"picture"];
+        NSData *data = [picture getData];
+        img = [UIImage imageWithData:data];
+    }
+    //Otherwise set image to profile picture of friend
+    else if (!profile) {
+        img = [UIImage imageNamed:@"jonnotie"];
+    }
+    else {
+        img = profile;
+    }
+    
+    Message *msg = [msg initWithString:text image:img author:author];
+    return msg;
 }
 
 - (SSMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
