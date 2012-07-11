@@ -282,9 +282,9 @@
 		843F600115317A3D0056597F /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPGrowingTextView.m; path = Libraries/HPGrowingTextView/HPGrowingTextView.m; sourceTree = SOURCE_ROOT; };
 		843F600215317A3D0056597F /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPTextViewInternal.h; path = Libraries/HPGrowingTextView/HPTextViewInternal.h; sourceTree = SOURCE_ROOT; };
 		843F600315317A3D0056597F /* HPTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPTextViewInternal.m; path = Libraries/HPGrowingTextView/HPTextViewInternal.m; sourceTree = SOURCE_ROOT; };
-		8446AC081519FE230065601C /* Icon-Standard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Standard.png"; sourceTree = "<group>"; };
+		8446AC081519FE230065601C /* Icon-Standard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Standard.png"; path = "Images/Icon-Standard.png"; sourceTree = "<group>"; };
 		8446AC0C151A00300065601C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		844E3FE11508B004006938B8 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		844E3FE11508B004006938B8 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = Images/facebook.png; sourceTree = "<group>"; };
 		844E402A150B4D64006938B8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Constants.h; path = Source/Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8453D5BD15272A4100B05D56 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		8453D5BE15272A4100B05D56 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 		845C4E2715A85BE000CC4F1D /* MessageEntryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryBackground@2x.png"; sourceTree = "<group>"; };
 		845C4E2815A85BE000CC4F1D /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
 		845C4E2915A85BE000CC4F1D /* MessageEntryInputField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryInputField@2x.png"; sourceTree = "<group>"; };
-		845C4E2F15A87D2900CC4F1D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		845C4E2F15A87D2900CC4F1D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Libraries/Parse.framework; sourceTree = "<group>"; };
 		845D97781503B18000FBD43A /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDBadgedCell.h; path = Source/TDBadgedCell.h; sourceTree = SOURCE_ROOT; };
 		845D97791503B18000FBD43A /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDBadgedCell.m; path = Source/TDBadgedCell.m; sourceTree = SOURCE_ROOT; };
 		847D946F14847019001FE441 /* Default-Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Back@2x.png"; path = "Images/Default-Back@2x.png"; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		847E8B4E15023DE3004A73A5 /* MessageViewCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MessageViewCellController.m; path = Source/MessageViewCellController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8482544314846FED00F3C246 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images/Default@2x.png"; sourceTree = "<group>"; };
 		849E616015AD518B00D3A467 /* Logout-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logout-Button.png"; path = "Images/Logout-Button.png"; sourceTree = "<group>"; };
-		84A8B64D151243490018AB43 /* Icon-Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Retina.png"; sourceTree = "<group>"; };
+		84A8B64D151243490018AB43 /* Icon-Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Retina.png"; path = "Images/Icon-Retina.png"; sourceTree = "<group>"; };
 		84B0763B150D0AB300CAFD68 /* Default-Message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Message@2x.png"; sourceTree = "<group>"; };
 		84B0763F150D0B1B00CAFD68 /* ping.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ping.caf; sourceTree = SOURCE_ROOT; };
 		84B63FA714BC04670062671A /* Data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Data.plist; path = Source/Data.plist; sourceTree = SOURCE_ROOT; };
