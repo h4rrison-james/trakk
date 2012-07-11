@@ -168,6 +168,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mV viewForAnnotation:(id)annotation
 {
+    //If annotation is not the default current location annotation
     if(![[annotation title] isEqualToString:@"Current Location"])
     { 
         //Set up the custom marker
@@ -179,26 +180,45 @@
         if ( markerView == nil )
             markerView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultID];
         
-        //Configure annotation
+        //Set default options
         markerView.canShowCallout = YES;
-        markerView.pinColor = [annotation pinColor];
         markerView.animatesDrop = YES;
-        
-        //Set detail disclosure in callout if required
-        if ([annotation pinColor] == MKPinAnnotationColorGreen)
+    
+        //If annotation is a cluster type  
+        if ([annotation isKindOfClass:[OCAnnotation class]])
+        {  
+            OCAnnotation *clusterAnnotation = (OCAnnotation *)annotation;
+            clusterAnnotation.title = [NSString stringWithFormat:@"%d people", [clusterAnnotation.annotationsInCluster count]];
+            
+            //Configure cluster annotation specifics
+            markerView.pinColor = MKPinAnnotationColorRed;
             markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        else
-            markerView.rightCalloutAccessoryView = nil;
-        
-        //Set profile image in callout
-        UIImageView *image = [[UIImageView alloc] initWithImage:[annotation image]];
-        image.contentMode = UIViewContentModeScaleAspectFill; //Set scaling mode
-        image.clipsToBounds = YES;
-        image.frame = CGRectMake(0, 0, 30, 30); //Resize image to fit annotation
-        markerView.leftCalloutAccessoryView = image;
-        
-        return markerView;
-    }
+            
+            
+        }  
+        //If regular annotation  
+        else if([annotation isKindOfClass:[MKPinAnnotationView class]])
+        { 
+            //Configure single annotation specifics
+            markerView.pinColor = [annotation pinColor];
+            
+            //Set detail disclosure in callout if required
+            if ([annotation pinColor] == MKPinAnnotationColorGreen)
+                markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            else
+                markerView.rightCalloutAccessoryView = nil;
+            
+            //Set profile image in callout
+            UIImageView *image = [[UIImageView alloc] initWithImage:[annotation image]];
+            image.contentMode = UIViewContentModeScaleAspectFill; //Set scaling mode
+            image.clipsToBounds = YES;
+            image.frame = CGRectMake(0, 0, 30, 30); //Resize image to fit annotation
+            markerView.leftCalloutAccessoryView = image;
+            
+            return markerView;
+        }
+      
+    }  
     
     return nil;
 }
