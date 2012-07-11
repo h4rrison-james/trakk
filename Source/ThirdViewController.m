@@ -188,16 +188,52 @@
         if ([annotation isKindOfClass:[OCAnnotation class]])
         {  
             OCAnnotation *clusterAnnotation = (OCAnnotation *)annotation;
-            clusterAnnotation.title = [NSString stringWithFormat:@"%d people", [clusterAnnotation.annotationsInCluster count]];
+            int numberPeople = [clusterAnnotation.annotationsInCluster count];
+            
+            //Set title depending on how many people there are in the cluster
+            if (numberPeople < 3)
+            { //Display lengthier title
+                NSString *title = [[NSString alloc] init];
+                for (userAnnotation* annotation in clusterAnnotation.annotationsInCluster)
+                {
+                    NSArray *nameArray = [annotation.title componentsSeparatedByString:@" "];
+                    title = [title stringByAppendingString:[nameArray objectAtIndex:0]];
+                    title = [title stringByAppendingString:@" "];
+                    title = [title stringByAppendingString:[[nameArray lastObject] substringToIndex:1]];
+                    title = [title stringByAppendingString:@" & "];
+                }
+                title = [title substringToIndex:(title.length - 3)];
+                clusterAnnotation.title = title;
+            }
+            else
+            { //Display shortened title
+                NSString *title = [[NSString alloc] init];
+                userAnnotation *annotation = [clusterAnnotation.annotationsInCluster objectAtIndex:0];
+                NSArray *nameArray = [annotation.title componentsSeparatedByString:@" "];
+                title = [title stringByAppendingString:[nameArray objectAtIndex:0]];
+                title = [title stringByAppendingString:@" "];
+                title = [title stringByAppendingString:[[nameArray lastObject] substringToIndex:1]];
+                title = [NSString stringWithFormat:@"%@. and %d others", title, numberPeople-1];
+                clusterAnnotation.title = title;
+            }
+            
+            //Set subtitle
+            NSString *sub = [[clusterAnnotation.annotationsInCluster objectAtIndex:0] subtitle];
+            NSArray *subArray = [sub componentsSeparatedByString:@" @ "];
+            clusterAnnotation.subtitle = [subArray lastObject];
+            
             
             //Configure cluster annotation specifics
-            markerView.pinColor = MKPinAnnotationColorRed;
+            markerView.pinColor = MKPinAnnotationColorGreen;
             markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             
+            //Set profile image in callout
+            #warning TODO: Add image to callout for multiple people
             
+            return markerView;
         }  
         //If regular annotation  
-        else if([annotation isKindOfClass:[MKPinAnnotationView class]])
+        else if([annotation isKindOfClass:[userAnnotation class]])
         { 
             //Configure single annotation specifics
             markerView.pinColor = [annotation pinColor];
@@ -225,12 +261,22 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    DetailViewController *detail = [[DetailViewController alloc] init];
-    [detail setHidesBottomBarWhenPushed:YES];
-    userAnnotation *annotation = view.annotation;
-    detail.title = annotation.title;
-    detail.userID = [annotation.user objectId];
-    [self.navigationController pushViewController:detail animated:YES];
+    //If regular annotation selected, then push chat controller
+    if ([view.annotation isKindOfClass:[userAnnotation class]])
+    {
+        DetailViewController *detail = [[DetailViewController alloc] init];
+        [detail setHidesBottomBarWhenPushed:YES];
+        userAnnotation *annotation = view.annotation;
+        detail.title = annotation.title;
+        detail.userID = [annotation.user objectId];
+        [self.navigationController pushViewController:detail animated:YES];
+    }
+    //Otherwise if annotation is a cluster, push table of annotations
+    else if ([view.annotation isKindOfClass:[OCAnnotation class]])
+    {
+        DLog(@"Push cluster selector");
+        #warning TODO: Add selector for annotation objects
+    }
 }
 
 -(BOOL)exists:(PFUser *)user withKey:(NSString *)key
