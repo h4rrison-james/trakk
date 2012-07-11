@@ -22,8 +22,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //Set colours
-    CGColorRef whiteColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.5].CGColor; 
-    CGColorRef lightGrayColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0].CGColor;
+    CGColorRef whiteColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.3].CGColor; 
+    CGColorRef lightGrayColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:0.7].CGColor;
     CGColorRef separatorColor = [UIColor colorWithRed:208.0/255.0 green:208.0/255.0 blue:208.0/255.0 alpha:1.0].CGColor;
     CGColorRef shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5].CGColor;
     CGColorRef borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
@@ -42,13 +42,14 @@
     CGRect profileBox = profileImage.frame;
     CGFloat borderWidth = -2.0;
     CGRect profileBorder = CGRectInset(profileBox, borderWidth, borderWidth);
-    CGPathRef roundedBorder = [self newPathForRoundedRect:profileBorder radius:3.0];
+    //CGPathRef roundedBorder = [self newPathForRoundedRect:profileBorder radius:3.0];
     
     CGContextSaveGState(context);
     CGContextSetShadowWithColor(context, CGSizeMake(0, 2), 3.0, shadowColor);
     CGContextSetFillColorWithColor(context, borderColor);
-    CGContextAddPath(context, roundedBorder);
-    CGContextFillPath(context);
+    //CGContextAddPath(context, roundedBorder);
+    //CGContextFillPath(context);
+    CGContextFillRect(context, profileBorder);
     CGContextRestoreGState(context);
     
 }

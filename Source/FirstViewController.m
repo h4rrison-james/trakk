@@ -138,7 +138,7 @@
     if (gesture.state != UIGestureRecognizerStateEnded) return;
     DLog(@"Nav Tap Recieved");
     if (![[LocationController sharedClient] isUpdating])
-    {
+    { //If not on, turn location updating on
         DLog(@"Location Awareness On");
         statusButton.title = @"Available";
         //Update the user status
@@ -149,7 +149,7 @@
         [[LocationController sharedClient] setIsUpdating:TRUE];
     }
     else
-    {
+    { //If already on, turn location updating off
         DLog(@"Location Awareness Off");
         statusButton.title = @"Offline";
         //Update the user status
@@ -180,7 +180,7 @@
 #pragma mark - Table view data source
 
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryForUser];
+    PFQuery *query = [PFUser query];
     
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
@@ -207,7 +207,7 @@
     [super objectsDidLoad:error];
     if (error) DLog(@"Error: %@", error);
     utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate setFriends:[self objects]];
+    [delegate setFriends:[[self objects] mutableCopy]];
     //Alert other views to refresh
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNotification" object:nil userInfo:nil];
 }
@@ -263,7 +263,7 @@
         NSData *data = [picture getData];
         cell.profileImage.image = [UIImage imageWithData:data];
         cell.profileImage.layer.masksToBounds = TRUE;
-        cell.profileImage.layer.cornerRadius = 3.0f;
+        //cell.profileImage.layer.cornerRadius = 3.0f;
     }
     
     return cell;
@@ -281,8 +281,8 @@
         PFUser *currentUser = [self.objects objectAtIndex:[indexPath row]];
         
         //Set profile picture based on current cell
-        UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
-        new.profile = cell.imageView.image;
+        FirstViewCellController *cell = (FirstViewCellController *)[[self tableView] cellForRowAtIndexPath:indexPath];
+        new.profile = cell.profileImage.image;
         
         new.userID = [currentUser objectId];
         new.title = [NSString stringWithFormat:@"%@ %@", [currentUser objectForKey:@"first_name"], [currentUser objectForKey:@"last_name"]];

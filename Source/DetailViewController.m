@@ -137,29 +137,25 @@
     
     NSString *text = [storedMessage objectForKey:@"msg"];
     AuthorType author = [[storedMessage objectForKey:@"sender"] intValue];
-    UIImage *img;
+    UIImage *img = [[UIImage alloc] init];
     //Set image to current user profile picture if author is self
     if (author == STBubbleTableViewCellAuthorTypeSelf) {
-        PFFile *picture = [[PFUser currentUser] objectForKey:@"picture"];
-        NSData *data = [picture getData];
-        img = [UIImage imageWithData:data];
+        PFFile *file = [[PFUser currentUser] objectForKey:@"picture"];
+        NSData *pictureData = [file getData];
+        UIImage *avatar = [UIImage imageWithData:pictureData];
+        img = avatar;
     }
     //Otherwise set image to profile picture of friend
-    else if (!profile) {
+    else if (profile == NULL) {
         img = [UIImage imageNamed:@"jonnotie"];
     }
     else {
         img = profile;
     }
     
-    Message *msg = [msg initWithString:text image:img author:author];
+    Message *msg = [Message alloc];
+    msg = [msg initWithString:text image:img author:author];
     return msg;
-}
-
-- (SSMessageStyle)messageStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *sender = [[messages objectAtIndex:[indexPath row]] objectForKey:@"sender"];
-    if ([sender isEqualToString:@"you"]) return SSMessageStyleRight;
-    else return SSMessageStyleLeft;
 }
 
 - (void)sendButtonPressed {
@@ -171,7 +167,7 @@
         
         NSMutableDictionary *m = [[NSMutableDictionary alloc] init];
         [m setObject:messageStr forKey:@"msg"];
-        [m setObject:@"you" forKey:@"sender"];
+        [m setObject:@"0" forKey:@"sender"];
         
         [messages addObject:m];
         int value = [badge intValue];
