@@ -282,11 +282,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ClusterViewController *cluster = [segue destinationViewController];
-    cluster.annotations = annotationArray;
-    NSString *sub = [[annotationArray objectAtIndex:0] subtitle];
-    NSArray *subArray = [sub componentsSeparatedByString:@" @ "];
-    cluster.title = [subArray lastObject];
+    if ([segue.identifier isEqualToString:@"profile"])
+    { //Check segue is to cluster view controller
+        ClusterViewController *cluster = [segue destinationViewController];
+        cluster.annotations = annotationArray;
+        NSString *sub = [[annotationArray objectAtIndex:0] subtitle];
+        NSArray *subArray = [sub componentsSeparatedByString:@" @ "];
+        cluster.title = [subArray lastObject];
+    }
 }
 
 -(BOOL)exists:(PFUser *)user withKey:(NSString *)key

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "userAnnotation.h"
 #import "ClusterViewCell.h"
+#import "DetailViewController.h"
 
 @interface ClusterViewController : UITableViewController {
     NSArray *annotations;

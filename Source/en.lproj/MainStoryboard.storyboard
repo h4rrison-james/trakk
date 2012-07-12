@@ -192,7 +192,9 @@
                             <outlet property="delegate" destination="HDF-AR-BCq" id="g2M-gt-OGQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="G08-wD-xsV"/>
+                    <navigationItem key="navigationItem" id="G08-wD-xsV">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="U1t-1f-DVA"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>

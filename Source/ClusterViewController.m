@@ -75,6 +75,8 @@
     cell.nameLabel.text = annotation.title;
     cell.statusLabel.text = annotation.subtitle;
     cell.profileImage.image = annotation.image;
+    PFUser *user = annotation.user;
+    cell.userID = [user objectId];
     
     return cell;
 }
@@ -83,13 +85,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    DetailViewController *new = [[DetailViewController alloc] init];
+    [new setHidesBottomBarWhenPushed:YES];
+    ClusterViewCell *cell = (ClusterViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    new.userID = cell.userID;
+    new.title = cell.nameLabel.text;
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                      style:UIBarButtonItemStyleBordered
+                                     target:nil
+                                     action:nil];
+    [self.navigationController pushViewController:new animated:YES];
 }
 
 @end
