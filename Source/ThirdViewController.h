@@ -13,12 +13,14 @@
 //Import Custom Headers
 #import "utrakAppDelegate.h"
 #import "OCMapView.h"
+#import "ClusterViewController.h"
 
 @interface ThirdViewController : UIViewController
 <MKMapViewDelegate> {
     NSArray *friendArray;
     NSArray *poiArray;
     MKMapView *mapView;
+    NSArray *annotationArray;
 }
 
 -(void)zoomToFitUniversity:(MKMapView*)map;

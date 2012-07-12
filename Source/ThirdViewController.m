@@ -274,9 +274,19 @@
     //Otherwise if annotation is a cluster, push table of annotations
     else if ([view.annotation isKindOfClass:[OCAnnotation class]])
     {
-        DLog(@"Push cluster selector");
-        #warning TODO: Add selector for annotation objects
+        OCAnnotation *annotation = (OCAnnotation*)view.annotation;
+        annotationArray = annotation.annotationsInCluster;
+        [self performSegueWithIdentifier:@"profile" sender:self];
     }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ClusterViewController *cluster = [segue destinationViewController];
+    cluster.annotations = annotationArray;
+    NSString *sub = [[annotationArray objectAtIndex:0] subtitle];
+    NSArray *subArray = [sub componentsSeparatedByString:@" @ "];
+    cluster.title = [subArray lastObject];
 }
 
 -(BOOL)exists:(PFUser *)user withKey:(NSString *)key

@@ -29,6 +29,8 @@
 		8408DAC9158A2F0500C2C647 /* Pin-Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8408DAC4158A2F0500C2C647 /* Pin-Orange.png */; };
 		8408DACA158A2F0500C2C647 /* Pin-Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 8408DAC5158A2F0500C2C647 /* Pin-Pink.png */; };
 		8408DACB158A2F0500C2C647 /* Pin-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8408DAC6158A2F0500C2C647 /* Pin-Red.png */; };
+		8417971615AD817400EA7E61 /* ClusterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417971515AD817400EA7E61 /* ClusterViewController.m */; };
+		8417971C15AE9FAD00EA7E61 /* ClusterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417971B15AE9FAD00EA7E61 /* ClusterViewCell.m */; };
 		841B546015AD56F900C69550 /* ocmapview_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B53BC15AD56F900C69550 /* ocmapview_logo.png */; };
 		841B546115AD56F900C69550 /* ocmapview_logo512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B53BD15AD56F900C69550 /* ocmapview_logo512x512.png */; };
 		841B546215AD56F900C69550 /* ocmapview_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B53BE15AD56F900C69550 /* ocmapview_logo@2x.png */; };
@@ -242,6 +244,10 @@
 		8408DAC4158A2F0500C2C647 /* Pin-Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pin-Orange.png"; path = "Images/Pins/Pin-Orange.png"; sourceTree = "<group>"; };
 		8408DAC5158A2F0500C2C647 /* Pin-Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pin-Pink.png"; path = "Images/Pins/Pin-Pink.png"; sourceTree = "<group>"; };
 		8408DAC6158A2F0500C2C647 /* Pin-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pin-Red.png"; path = "Images/Pins/Pin-Red.png"; sourceTree = "<group>"; };
+		8417971415AD817400EA7E61 /* ClusterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClusterViewController.h; path = Source/ClusterViewController.h; sourceTree = SOURCE_ROOT; };
+		8417971515AD817400EA7E61 /* ClusterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClusterViewController.m; path = Source/ClusterViewController.m; sourceTree = SOURCE_ROOT; };
+		8417971A15AE9FAD00EA7E61 /* ClusterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClusterViewCell.h; path = Source/ClusterViewCell.h; sourceTree = SOURCE_ROOT; };
+		8417971B15AE9FAD00EA7E61 /* ClusterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClusterViewCell.m; path = Source/ClusterViewCell.m; sourceTree = SOURCE_ROOT; };
 		841B53BC15AD56F900C69550 /* ocmapview_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocmapview_logo.png; sourceTree = "<group>"; };
 		841B53BD15AD56F900C69550 /* ocmapview_logo512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocmapview_logo512x512.png; sourceTree = "<group>"; };
 		841B53BE15AD56F900C69550 /* ocmapview_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ocmapview_logo@2x.png"; sourceTree = "<group>"; };
@@ -608,6 +614,7 @@
 		47F90DDB13D9716400E94806 /* Map View */ = {
 			isa = PBXGroup;
 			children = (
+				8417971915AE9F5F00EA7E61 /* Cluster View */,
 				47BB95BE13DC0CF0001AA628 /* Overlay & Annotation */,
 				47952E7C13C0317D0098CDC1 /* ThirdViewController.h */,
 				47952E7D13C0317D0098CDC1 /* ThirdViewController.m */,
@@ -625,6 +632,17 @@
 				8408DAC6158A2F0500C2C647 /* Pin-Red.png */,
 			);
 			name = Pins;
+			sourceTree = "<group>";
+		};
+		8417971915AE9F5F00EA7E61 /* Cluster View */ = {
+			isa = PBXGroup;
+			children = (
+				8417971415AD817400EA7E61 /* ClusterViewController.h */,
+				8417971515AD817400EA7E61 /* ClusterViewController.m */,
+				8417971A15AE9FAD00EA7E61 /* ClusterViewCell.h */,
+				8417971B15AE9FAD00EA7E61 /* ClusterViewCell.m */,
+			);
+			name = "Cluster View";
 			sourceTree = "<group>";
 		};
 		841B534C15AD56F900C69550 /* OCMapView */ = {
@@ -1209,6 +1227,8 @@
 				841B546F15AD56F900C69550 /* OCAnnotation.m in Sources */,
 				841B547015AD56F900C69550 /* OCDistance.m in Sources */,
 				841B547115AD56F900C69550 /* OCMapView.m in Sources */,
+				8417971615AD817400EA7E61 /* ClusterViewController.m in Sources */,
+				8417971C15AE9FAD00EA7E61 /* ClusterViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
