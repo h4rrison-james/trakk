@@ -135,7 +135,17 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     //Reset badge
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    if (application.applicationIconBadgeNumber != 0) {
+        application.applicationIconBadgeNumber = 0;
+        [[PFInstallation currentInstallation] saveEventually];
+    }
+    
+    //Extend access token
+    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [PFFacebookUtils extendAccessTokenIfNeededForUser:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Extended access token: %d (%@)", succeeded, error);
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

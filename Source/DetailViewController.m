@@ -176,16 +176,20 @@
         
         //Send push notification off
         NSMutableDictionary *data = [NSMutableDictionary dictionary];
-            //NSMutableDictionary *alert = [NSMutableDictionary dictionary];
+        
+        //Set alert dictionary
         NSString *finalMessage = [NSString stringWithFormat:@"%@: %@", [[PFUser currentUser] objectForKey:@"first_name"], messageStr];
-            //[alert setObject:finalMessage forKey:@"body"];
-            //[alert setObject:@"Default-Launch" forKey:@"launch-image"];
-        [data setObject:finalMessage forKey:@"alert"];
+        NSMutableDictionary *alert = [NSMutableDictionary dictionary];
+        [alert setObject:finalMessage forKey:@"body"];
+        [alert setObject:@"Default-Launch" forKey:@"launch-image"];
+        [data setObject:alert forKey:@"alert"];
+        
+        //Set other options
         [data setObject:@"ping.caf" forKey:@"sound"];
         [data setObject:@"msg" forKey:@"type"];
         [data setObject:[[PFUser currentUser] objectId] forKey:@"sender"];
         [data setObject:self.title forKey:@"name"];
-        [data setObject:[NSNumber numberWithInt:1] forKey:@"badge"];
+        [data setObject:@"Increment" forKey:@"badge"];
         [PFPush sendPushDataToChannelInBackground:userID withData:data];
         
         //Send message to server for safekeeping

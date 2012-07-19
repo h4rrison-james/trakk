@@ -136,12 +136,15 @@
 		8453D5C015272A4100B05D56 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8453D5BE15272A4100B05D56 /* 19-gear@2x.png */; };
 		845BB1D0152EEDAC00A7F3CC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BB1CF152EEDAC00A7F3CC /* AboutController.m */; };
 		845BB1D3152EF32000A7F3CC /* updateIntervalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BB1D2152EF32000A7F3CC /* updateIntervalController.m */; };
+		845BCFF815B5BCC000D16132 /* Settings-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 845BCFF715B5BCC000D16132 /* Settings-Icon.png */; };
+		845BCFFB15B6643900D16132 /* Cell-Location-Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 845BCFF915B6643900D16132 /* Cell-Location-Marker.png */; };
+		845BCFFC15B6643900D16132 /* Cell-Time-Marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */; };
+		845BCFFE15B85BD000D16132 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845BCFFD15B85BD000D16132 /* Parse.framework */; };
 		845C4E2A15A85BE000CC4F1D /* MessageEntryBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 845C4E2615A85BE000CC4F1D /* MessageEntryBackground.png */; };
 		845C4E2B15A85BE000CC4F1D /* MessageEntryBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845C4E2715A85BE000CC4F1D /* MessageEntryBackground@2x.png */; };
 		845C4E2C15A85BE000CC4F1D /* MessageEntryInputField.png in Resources */ = {isa = PBXBuildFile; fileRef = 845C4E2815A85BE000CC4F1D /* MessageEntryInputField.png */; };
 		845C4E2D15A85BE000CC4F1D /* MessageEntryInputField@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845C4E2915A85BE000CC4F1D /* MessageEntryInputField@2x.png */; };
 		845C4E2E15A87A6900CC4F1D /* SSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BC7C514BC080F003FE42B /* SSMessagesViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		845C4E3015A87D2900CC4F1D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845C4E2F15A87D2900CC4F1D /* Parse.framework */; };
 		845D977A1503B18000FBD43A /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845D97791503B18000FBD43A /* TDBadgedCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		847D947014847019001FE441 /* Default-Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847D946F14847019001FE441 /* Default-Back@2x.png */; };
 		847D947214847027001FE441 /* Default-Text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847D947114847027001FE441 /* Default-Text@2x.png */; };
@@ -372,11 +375,15 @@
 		845BB1CF152EEDAC00A7F3CC /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AboutController.m; path = Source/AboutController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		845BB1D1152EF32000A7F3CC /* updateIntervalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = updateIntervalController.h; path = Source/updateIntervalController.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		845BB1D2152EF32000A7F3CC /* updateIntervalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = updateIntervalController.m; path = Source/updateIntervalController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		845BCFF415B1815400D16132 /* Proxima-Nova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima-Nova-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		845BCFF715B5BCC000D16132 /* Settings-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Icon.png"; path = "Images/Settings-Icon.png"; sourceTree = "<group>"; };
+		845BCFF915B6643900D16132 /* Cell-Location-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell-Location-Marker.png"; sourceTree = "<group>"; };
+		845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell-Time-Marker.png"; sourceTree = "<group>"; };
+		845BCFFD15B85BD000D16132 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Libraries/Parse.framework; sourceTree = "<group>"; };
 		845C4E2615A85BE000CC4F1D /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
 		845C4E2715A85BE000CC4F1D /* MessageEntryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryBackground@2x.png"; sourceTree = "<group>"; };
 		845C4E2815A85BE000CC4F1D /* MessageEntryInputField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryInputField.png; sourceTree = "<group>"; };
 		845C4E2915A85BE000CC4F1D /* MessageEntryInputField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryInputField@2x.png"; sourceTree = "<group>"; };
-		845C4E2F15A87D2900CC4F1D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Libraries/Parse.framework; sourceTree = "<group>"; };
 		845D97781503B18000FBD43A /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDBadgedCell.h; path = Source/TDBadgedCell.h; sourceTree = SOURCE_ROOT; };
 		845D97791503B18000FBD43A /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDBadgedCell.m; path = Source/TDBadgedCell.m; sourceTree = SOURCE_ROOT; };
 		847D946F14847019001FE441 /* Default-Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Back@2x.png"; path = "Images/Default-Back@2x.png"; sourceTree = "<group>"; };
@@ -443,7 +450,7 @@
 				843BC7BB14BC07E9003FE42B /* libThree20UI.a in Frameworks */,
 				843BC7BC14BC07E9003FE42B /* libThree20UICommon.a in Frameworks */,
 				843BC7BD14BC07E9003FE42B /* libThree20UINavigator.a in Frameworks */,
-				845C4E3015A87D2900CC4F1D /* Parse.framework in Frameworks */,
+				845BCFFE15B85BD000D16132 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +505,9 @@
 				8446AC081519FE230065601C /* Icon-Standard.png */,
 				84A8B64D151243490018AB43 /* Icon-Retina.png */,
 				844E3FE11508B004006938B8 /* facebook.png */,
+				845BCFF915B6643900D16132 /* Cell-Location-Marker.png */,
+				845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */,
+				845BCFF715B5BCC000D16132 /* Settings-Icon.png */,
 				84308ED214B6CDD7005A6882 /* Navigation-Bar.png */,
 				84308ED314B6CDD7005A6882 /* Navigation-Bar@2x.png */,
 				84C34CCF15AC26B8001AF038 /* Navigation-Bar-Off.png */,
@@ -583,6 +593,7 @@
 				84B0763F150D0B1B00CAFD68 /* ping.caf */,
 				844E402A150B4D64006938B8 /* Constants.h */,
 				84B63FA714BC04670062671A /* Data.plist */,
+				845BCFF415B1815400D16132 /* Proxima-Nova-Regular.otf */,
 				84B63FA814BC04670062671A /* Franchise-Bold.ttf */,
 				84B63FA914BC04670062671A /* main.m */,
 				84B63FAB14BC04670062671A /* Trakk-Info.plist */,
@@ -912,9 +923,9 @@
 		849E616215AD523C00D3A467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				845BCFFD15B85BD000D16132 /* Parse.framework */,
 				84BD042E1568EFFB00DD6645 /* MessageUI.framework */,
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
-				845C4E2F15A87D2900CC4F1D /* Parse.framework */,
 				84354274148F289300FB3A46 /* Security.framework */,
 				84354270148F285400FB3A46 /* AudioToolbox.framework */,
 				47F425B613E0230D00CDF75C /* CFNetwork.framework */,
@@ -1181,6 +1192,9 @@
 				841B547D15AD56F900C69550 /* oranges@2x.png in Resources */,
 				841B547E15AD56F900C69550 /* regular.png in Resources */,
 				841B547F15AD56F900C69550 /* regular@2x.png in Resources */,
+				845BCFF815B5BCC000D16132 /* Settings-Icon.png in Resources */,
+				845BCFFB15B6643900D16132 /* Cell-Location-Marker.png in Resources */,
+				845BCFFC15B6643900D16132 /* Cell-Time-Marker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

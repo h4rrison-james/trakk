@@ -42,15 +42,19 @@
     CGRect profileBox = profileImage.frame;
     CGFloat borderWidth = -2.0;
     CGRect profileBorder = CGRectInset(profileBox, borderWidth, borderWidth);
+    //Add rounded borders to profile picture (disabled)
     //CGPathRef roundedBorder = [self newPathForRoundedRect:profileBorder radius:3.0];
     
     CGContextSaveGState(context);
     CGContextSetShadowWithColor(context, CGSizeMake(0, 2), 3.0, shadowColor);
     CGContextSetFillColorWithColor(context, borderColor);
+    //Add rounded borders to profile picture (disabled)
     //CGContextAddPath(context, roundedBorder);
     //CGContextFillPath(context);
     CGContextFillRect(context, profileBorder);
     CGContextRestoreGState(context);
+    
+    
     
 }
 
