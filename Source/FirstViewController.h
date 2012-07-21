@@ -11,12 +11,12 @@
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Parse/Parse.h"
-#import "Three20/Three20+Additions.h"
 
 //Import Custom Headers
 #import "LocationController.h"
 #import "DetailViewController.h"
 #import "FirstViewCellController.h"
+#import "NSDate+Format.h"
 #import "utrakAppDelegate.h"
 #import "Constants.h"
 

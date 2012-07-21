@@ -143,7 +143,12 @@
     //Extend access token
     if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         [PFFacebookUtils extendAccessTokenIfNeededForUser:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
-            NSLog(@"Extended access token: %d (%@)", succeeded, error);
+            if (succeeded) {
+                DLog(@"Extended access token");
+            }
+            else {
+                DLog(@"Extension of access token failed. (%@)", error);
+            }
         }];
     }
 }
