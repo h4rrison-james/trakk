@@ -179,10 +179,10 @@
         
         //Set alert dictionary
         NSString *finalMessage = [NSString stringWithFormat:@"%@: %@", [[PFUser currentUser] objectForKey:@"first_name"], messageStr];
-        NSMutableDictionary *alert = [NSMutableDictionary dictionary];
-        [alert setObject:finalMessage forKey:@"body"];
-        [alert setObject:@"Default-Launch" forKey:@"launch-image"];
-        [data setObject:alert forKey:@"alert"];
+        //NSMutableDictionary *alert = [NSMutableDictionary dictionary];
+        //[alert setObject:finalMessage forKey:@"body"];
+        //[alert setObject:@"Default-Launch" forKey:@"launch-image"];
+        [data setObject:finalMessage forKey:@"alert"];
         
         //Set other options
         [data setObject:@"ping.caf" forKey:@"sound"];
@@ -197,6 +197,7 @@
         [message setObject:finalMessage forKey:@"text"];
         [message setObject:[[PFUser currentUser] objectId] forKey:@"sender"];
         [message setObject:userID forKey:@"destination"];
+        [message setObject:[[NSDate date] timeStamp] forKey:@"time"];
         [message saveEventually];
         
         //Reload data in the table view

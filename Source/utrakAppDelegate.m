@@ -60,6 +60,12 @@
     [[UITabBar appearance] setSelectedImageTintColor:green];
     [[UINavigationBar appearance] setTintColor:green];
     
+    //Register for Push Notifications
+    [PFInstallation currentInstallation];
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
+                                                                           |UIRemoteNotificationTypeAlert
+                                                                           |UIRemoteNotificationTypeSound)];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -172,7 +178,7 @@
     
 #pragma mark Push Notifications Callback
     
-- (void)application:(UIApplication *)applicationdidRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
     // Tell Parse about the device token.
     [PFPush storeDeviceToken:newDeviceToken];

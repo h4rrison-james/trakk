@@ -144,6 +144,9 @@
 		847E8B4B15022D8F004A73A5 /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E8B4A15022D8F004A73A5 /* MessagesViewController.m */; };
 		847E8B4F15023DE3004A73A5 /* MessageViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847E8B4E15023DE3004A73A5 /* MessageViewCellController.m */; };
 		8482544414846FED00F3C246 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8482544314846FED00F3C246 /* Default@2x.png */; };
+		8498921B15BC015500D580A0 /* Deafult-Avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8498921A15BC015500D580A0 /* Deafult-Avatar.png */; };
+		8498921E15BC09F700D580A0 /* Cell-Location-Marker-Highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 8498921C15BC09F700D580A0 /* Cell-Location-Marker-Highlight.png */; };
+		8498921F15BC09F700D580A0 /* Cell-Time-Marker-Highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 8498921D15BC09F700D580A0 /* Cell-Time-Marker-Highlight.png */; };
 		849E616115AD518B00D3A467 /* Logout-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 849E616015AD518B00D3A467 /* Logout-Button.png */; };
 		84A8B64E151243490018AB43 /* Icon-Retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A8B64D151243490018AB43 /* Icon-Retina.png */; };
 		84B0763C150D0AB300CAFD68 /* Default-Message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B0763B150D0AB300CAFD68 /* Default-Message@2x.png */; };
@@ -345,8 +348,8 @@
 		845BB1D2152EF32000A7F3CC /* updateIntervalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = updateIntervalController.m; path = Source/updateIntervalController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		845BCFF415B1815400D16132 /* Proxima-Nova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima-Nova-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		845BCFF715B5BCC000D16132 /* Settings-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Settings-Icon.png"; path = "Images/Settings-Icon.png"; sourceTree = "<group>"; };
-		845BCFF915B6643900D16132 /* Cell-Location-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell-Location-Marker.png"; sourceTree = "<group>"; };
-		845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell-Time-Marker.png"; sourceTree = "<group>"; };
+		845BCFF915B6643900D16132 /* Cell-Location-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cell-Location-Marker.png"; path = "Images/Cell-Location-Marker.png"; sourceTree = "<group>"; };
+		845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cell-Time-Marker.png"; path = "Images/Cell-Time-Marker.png"; sourceTree = "<group>"; };
 		845BCFFD15B85BD000D16132 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Libraries/Parse.framework; sourceTree = "<group>"; };
 		845C4E2615A85BE000CC4F1D /* MessageEntryBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntryBackground.png; sourceTree = "<group>"; };
 		845C4E2715A85BE000CC4F1D /* MessageEntryBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryBackground@2x.png"; sourceTree = "<group>"; };
@@ -363,6 +366,9 @@
 		847E8B4D15023DE3004A73A5 /* MessageViewCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MessageViewCellController.h; path = Source/MessageViewCellController.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		847E8B4E15023DE3004A73A5 /* MessageViewCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MessageViewCellController.m; path = Source/MessageViewCellController.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8482544314846FED00F3C246 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images/Default@2x.png"; sourceTree = "<group>"; };
+		8498921A15BC015500D580A0 /* Deafult-Avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Deafult-Avatar.png"; path = "Images/Deafult-Avatar.png"; sourceTree = "<group>"; };
+		8498921C15BC09F700D580A0 /* Cell-Location-Marker-Highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cell-Location-Marker-Highlight.png"; path = "Images/Cell-Location-Marker-Highlight.png"; sourceTree = "<group>"; };
+		8498921D15BC09F700D580A0 /* Cell-Time-Marker-Highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cell-Time-Marker-Highlight.png"; path = "Images/Cell-Time-Marker-Highlight.png"; sourceTree = "<group>"; };
 		849E616015AD518B00D3A467 /* Logout-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logout-Button.png"; path = "Images/Logout-Button.png"; sourceTree = "<group>"; };
 		84A8B64D151243490018AB43 /* Icon-Retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Retina.png"; path = "Images/Icon-Retina.png"; sourceTree = "<group>"; };
 		84B0763B150D0AB300CAFD68 /* Default-Message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Message@2x.png"; path = "Images/Default-Message@2x.png"; sourceTree = "<group>"; };
@@ -468,7 +474,10 @@
 				844E3FE11508B004006938B8 /* facebook.png */,
 				845BCFF915B6643900D16132 /* Cell-Location-Marker.png */,
 				845BCFFA15B6643900D16132 /* Cell-Time-Marker.png */,
+				8498921C15BC09F700D580A0 /* Cell-Location-Marker-Highlight.png */,
+				8498921D15BC09F700D580A0 /* Cell-Time-Marker-Highlight.png */,
 				845BCFF715B5BCC000D16132 /* Settings-Icon.png */,
+				8498921A15BC015500D580A0 /* Deafult-Avatar.png */,
 				84308ED214B6CDD7005A6882 /* Navigation-Bar.png */,
 				84308ED314B6CDD7005A6882 /* Navigation-Bar@2x.png */,
 				84C34CCF15AC26B8001AF038 /* Navigation-Bar-Off.png */,
@@ -1108,6 +1117,9 @@
 				845BCFF815B5BCC000D16132 /* Settings-Icon.png in Resources */,
 				845BCFFB15B6643900D16132 /* Cell-Location-Marker.png in Resources */,
 				845BCFFC15B6643900D16132 /* Cell-Time-Marker.png in Resources */,
+				8498921B15BC015500D580A0 /* Deafult-Avatar.png in Resources */,
+				8498921E15BC09F700D580A0 /* Cell-Location-Marker-Highlight.png in Resources */,
+				8498921F15BC09F700D580A0 /* Cell-Time-Marker-Highlight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1220,8 +1232,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1238,8 +1250,8 @@
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1250,8 +1262,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1262,8 +1274,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1274,8 +1286,8 @@
 			buildSettings = {
 				CLANG_ARC_MIGRATION = donothing;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1297,8 +1309,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trakk;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1308,8 +1320,8 @@
 			buildSettings = {
 				CLANG_ARC_MIGRATION = donothing;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1331,8 +1343,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trakk;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "530DC2E6-5176-4357-8DA1-B494F28E3D50";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

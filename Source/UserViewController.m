@@ -131,10 +131,11 @@
     PFUser *object = [friendArray objectAtIndex:indexPath.row];
     
     //Set boolean values based on PFUser values
-    BOOL nameExists = [object objectForKey:@"name"] && ![[object objectForKey:@"name"] isKindOfClass:[NSNull class]];
-    BOOL locationExists = [object objectForKey:@"location"] && ![[object objectForKey:@"location"] isKindOfClass:[NSNull class]];
-    BOOL statusExists = [object objectForKey:@"status"] && ![[object objectForKey:@"status"] isKindOfClass:[NSNull class]];
+    BOOL nameExists = [self exists:object withKey:@"name"];
+    BOOL locationExists = [self exists:object withKey:@"location"];
+    BOOL statusExists = [self exists:object withKey:@"status"];
     BOOL statusIsOffline = [[object objectForKey:@"status"] isEqualToString:@"Offline"];
+    BOOL pictureExists = [self exists:object withKey:@"picture"];
     
     //Set name label text
     if (nameExists)
@@ -158,9 +159,12 @@
     cell.statusLabel.text = statusText;
     
     //Set profile picture
-    PFFile *picture = [object objectForKey:@"picture"];
-    NSData *data = [picture getData];
-    cell.profileImage.image = [UIImage imageWithData:data];
+    if (pictureExists)
+    {
+        PFFile *picture = [object objectForKey:@"picture"];
+        NSData *data = [picture getData];
+        cell.profileImage.image = [UIImage imageWithData:data];
+    }
     
     //Set user ID
     cell.userID = [object objectId];
@@ -200,6 +204,11 @@
     }
     else
         [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setBadgeValue:nil];
+}
+
+-(BOOL)exists:(PFObject *)object withKey:(NSString *)key
+{ //Helper method for error checking on the PFUser class
+    return ([object objectForKey:key] && ![[object objectForKey:key] isKindOfClass:[NSNull class]]);
 }
 
 @end

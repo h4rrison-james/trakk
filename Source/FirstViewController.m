@@ -43,7 +43,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     //Change navigation bar font to custom font
-    [self setTitle:@"TRAKK"];
+    //[self setTitle:@"TRAKK"];
     
     //Add shadow to navigation bar
     SET_SHADOW
@@ -95,11 +95,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSIndexPath* selection = [table indexPathForSelectedRow];
-	if (selection)
-		[table deselectRowAtIndexPath:selection animated:YES];
 	[table reloadData];
-    
     [super viewWillAppear:animated];
 }
 
@@ -208,8 +204,12 @@
     if (error) DLog(@"Error: %@", error);
     utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate setFriends:[[self objects] mutableCopy]];
+    
     //Alert other views to refresh
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNotification" object:nil userInfo:nil];
+    
+    //Refresh table view
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object

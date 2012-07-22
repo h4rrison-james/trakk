@@ -19,7 +19,7 @@
 <MKMapViewDelegate> {
     NSArray *friendArray;
     NSArray *poiArray;
-    MKMapView *mapView;
+    OCMapView *mapView;
     NSArray *annotationArray;
 }
 

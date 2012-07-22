@@ -14,6 +14,7 @@
 @synthesize pinColor;
 @synthesize title;
 @synthesize subtitle;
+@synthesize groupTag;
 @synthesize image;
 @synthesize user;
 
@@ -25,6 +26,11 @@
     }
     
     return self;
+}
+
+- (NSString *)groupTag
+{
+    return groupTag;
 }
 
 @end

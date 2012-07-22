@@ -62,6 +62,9 @@
         [mapView addOverlay:overlay];
     }
     
+    //Enable clustering by group
+    mapView.clusterByGroupTag = TRUE;
+    
     //Add pin annotations
     [self addAnnotations];
     
@@ -70,7 +73,13 @@
 
 -(void)addAnnotations
 { //Adds all marker annotations to the map
+    
+    //Zoom map to standard view
     [self zoomToFitUniversity:mapView];
+    
+    //Remove all current annotations before adding new ones
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //Add friend pins to the map
@@ -119,6 +128,9 @@
                 NSData *data = [picture getData];
                 pin.image = [UIImage imageWithData:data];
                 
+                //Set group tag
+                pin.groupTag = @"person";
+                
                 PFGeoPoint *loc = [user objectForKey:@"coordinates"]; //Place pin at actual co-ordinates
                 CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([loc latitude], [loc longitude]);
                 pin.coordinate = coord;
@@ -142,6 +154,7 @@
             CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([loc latitude], [loc longitude]);
             pin.coordinate = coord;
             pin.pinColor = MKPinAnnotationColorRed; //Set color
+            pin.groupTag = @"club"; //Set group tag
             [mapView addAnnotation:pin];
         }
     }
@@ -266,7 +279,7 @@
     {
         DetailViewController *detail = [[DetailViewController alloc] init];
         [detail setHidesBottomBarWhenPushed:YES];
-        userAnnotation *annotation = view.annotation;
+        userAnnotation *annotation = (userAnnotation *)view.annotation;
         detail.title = annotation.title;
         detail.userID = [annotation.user objectId];
         [self.navigationController pushViewController:detail animated:YES];

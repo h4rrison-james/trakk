@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #include <QuartzCore/QuartzCore.h>
 #import "SSMessagesViewController.h"
+#import "NSDate+Format.h"
 #import "Parse/Parse.h"
 
 @interface DetailViewController : SSMessagesViewController {

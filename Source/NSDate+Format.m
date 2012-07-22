@@ -216,6 +216,14 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)timeStamp {
+    static NSDateFormatter* formatter = nil;
+    if (nil == formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+    }
+    return [formatter stringFromDate:self];
+}
 
 
 @end

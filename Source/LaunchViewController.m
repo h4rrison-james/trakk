@@ -45,7 +45,8 @@ BOOL alertShown = FALSE;
 {
     //Check if first time running application
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if([defaults objectForKey:@"firstRun"] && [PFUser currentUser])
+    
+    if([defaults boolForKey:@"notFirstRun"] && [PFUser currentUser])
     { //If it is not the first time running, and session is valid, assume logged in
         [self facebookLoginCallback];
     }
@@ -123,11 +124,6 @@ BOOL alertShown = FALSE;
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,first_name,middle_name,last_name,name,gender" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/picture?type=large" andDelegate:self];
-
-    //Register for Push Notifications now that we are logged in
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
-     UIRemoteNotificationTypeAlert|
-     UIRemoteNotificationTypeSound];
 
     //Initialize the location controller singleton
     [[LocationController sharedClient] start];

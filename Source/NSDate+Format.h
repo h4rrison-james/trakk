@@ -78,4 +78,9 @@
  */
 - (NSString*)formatYear;
 
+/**
+ * Returns a timestamp of the current time in format 'ddMMyyyyHHmmss'
+ */
+- (NSString*)timeStamp;
+
 @end

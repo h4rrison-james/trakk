@@ -16,7 +16,7 @@
     IBOutlet UIImageView *profileImage;
 }
 
--(void)drawLinearGradient:(CGContextRef) context: (CGRect) rect: (CGColorRef) startColor: (CGColorRef)  endColor;
+-(void)drawLinearGradient:(CGContextRef) context: (CGRect) rect: (UIColor *) startColor: (UIColor *)  endColor;
 -(void)draw1PxStroke:(CGContextRef) context: (CGPoint) startPoint: (CGPoint) endPoint: (CGColorRef) color;
 - (CGPathRef) newPathForRoundedRect:(CGRect)rect radius:(CGFloat)radius;
 @property (nonatomic, retain) UILabel *statusLabel;

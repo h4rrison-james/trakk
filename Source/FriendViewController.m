@@ -147,12 +147,12 @@
     char letter = (char)[indexPath section] + 97;
     NSString *key = [[NSString stringWithFormat:@"%c", letter] capitalizedString];
     NSMutableArray *array = [master objectForKey:key];
+    
     //Set cell label to person name
     NSDictionary *person = [array objectAtIndex:[indexPath row]];
     NSString *name = [person objectForKey:@"name"];
     cell.nameLabel.text = name;
     
-    cell.profileImage.image = nil;
     NSString *path = [NSString stringWithFormat:@"%@/picture?type=square", [person valueForKey:@"id"]];
     cell.request = [[PFFacebookUtils facebook] requestWithGraphPath:path andDelegate:cell];
     
