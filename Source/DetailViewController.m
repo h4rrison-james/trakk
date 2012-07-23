@@ -36,6 +36,8 @@
         DLog(@"Error: DetailViewController title not set");
         self.title = @"Tony Stark";
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMessages) name:@"messagesComplete" object:nil];
 }
 
 - (void)viewDidUnload
@@ -179,16 +181,17 @@
         
         //Set alert dictionary
         NSString *finalMessage = [NSString stringWithFormat:@"%@: %@", [[PFUser currentUser] objectForKey:@"first_name"], messageStr];
-        //NSMutableDictionary *alert = [NSMutableDictionary dictionary];
-        //[alert setObject:finalMessage forKey:@"body"];
-        //[alert setObject:@"Default-Launch" forKey:@"launch-image"];
+        NSMutableDictionary *alert = [NSMutableDictionary dictionary];
+        [alert setObject:finalMessage forKey:@"body"];
+        [alert setObject:@"Default-Message" forKey:@"launch-image"];
         [data setObject:finalMessage forKey:@"alert"];
         
         //Set other options
         [data setObject:@"ping.caf" forKey:@"sound"];
         [data setObject:@"msg" forKey:@"type"];
         [data setObject:[[PFUser currentUser] objectId] forKey:@"sender"];
-        [data setObject:self.title forKey:@"name"];
+        NSString *name = [NSString stringWithFormat:@"%@ %@", [[PFUser currentUser] objectForKey:@"first_name"], [[PFUser currentUser] objectForKey:@"last_name"]];
+        [data setObject:name forKey:@"name"];
         [data setObject:@"Increment" forKey:@"badge"];
         [PFPush sendPushDataToChannelInBackground:userID withData:data];
         
@@ -253,9 +256,12 @@
 
 - (void)updateBadge
 {
+    UIApplication *application = [UIApplication sharedApplication];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     if ([defaults objectForKey:@"Badges"])
     {
+        //Count up all the current badges
         int total = 0;
         NSMutableDictionary *Badges = [[defaults objectForKey:@"Badges"] mutableCopy];
         for (NSString *key in Badges) {
@@ -264,12 +270,16 @@
             if (number && [number intValue] != 0)
                 total = total + [number intValue];
         }
+        //Set the total badge count if it exists
         if (total) {
+            application.applicationIconBadgeNumber = total;
             NSString *badgeString = [NSString stringWithFormat:@"%d", total];
             NSDictionary *dict = [NSDictionary dictionaryWithObject:badgeString forKey:@"badgeString"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateBadge" object:self userInfo:dict];
         }
+        //Otherwise clear the badge count
         else {
+            application.applicationIconBadgeNumber = 0;
             NSString *badgeString = @"NULL";
             NSDictionary *dict = [NSDictionary dictionaryWithObject:badgeString forKey:@"badgeString"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateBadge" object:self userInfo:dict];
@@ -284,6 +294,13 @@
         [[self tableView] scrollToRowAtIndexPath:indexPath
                            atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
+}
+
+- (void)reloadMessages
+{   
+    [self loadMessages];
+    [self.tableView reloadData];
+    [self scrollToBottomAnimated:YES];
 }
 
 #pragma mark UITableViewDataSource

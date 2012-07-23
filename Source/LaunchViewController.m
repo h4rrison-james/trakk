@@ -37,7 +37,27 @@ BOOL alertShown = FALSE;
     if (startedFromNotification && [PFUser currentUser])
     { //Change background image and present view controllers
         titleImage.alpha = 0;
-        backgroundImage.image = [UIImage imageNamed:@"Default-Launch"];
+        backgroundImage.image = [UIImage imageNamed:@"Default-Message"];
+        
+        DLog(@"Notification Recieved in Launch VC");
+        NSDictionary *userInfo = delegate.notification;
+        NSString *notificationType = [userInfo objectForKey:@"type"];
+        if ([notificationType isEqualToString:@"msg"])
+        { //Notification is a message
+            DLog(@"Notification is a message");
+            
+            //Setup the detail view controller, but do not save the message
+            DetailViewController *temp = [[DetailViewController alloc] init];
+            temp.userID = [userInfo objectForKey:@"sender"];
+            temp.title = [userInfo objectForKey:@"name"];
+            temp.hidesBottomBarWhenPushed = YES;
+            
+            DLog(@"Application launched with notification");
+            self.tabBarController.selectedIndex = 0;
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self.navigationController pushViewController:temp animated:NO];
+            [temp scrollToBottomAnimated:NO];
+        }
     }
 }
 
@@ -159,6 +179,9 @@ BOOL alertShown = FALSE;
         else if (error) {
             DLog(@"Error: %@", error);
         }
+        
+        //Let the detail view controller know when processing is complete
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"messagesComplete" object:nil];
     }];
     
     //Request POI array from server
@@ -192,6 +215,7 @@ BOOL alertShown = FALSE;
         [[PFUser currentUser] setObject:[result objectForKey:@"last_name"] forKey:@"last_name"];
         [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"name"];
         [[PFUser currentUser] setObject:[result objectForKey:@"gender"] forKey:@"gender"];
+        
         FBMe = TRUE;
     }
     else if ([requestType isEqualToString:@"me/picture?type=large"])
@@ -202,6 +226,7 @@ BOOL alertShown = FALSE;
         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [[PFUser currentUser] setObject:file forKey:@"picture"];
         }];
+        
         FBPicture = TRUE;
     }
     else if ([requestType isEqualToString:@"me/friends"])
@@ -216,6 +241,7 @@ BOOL alertShown = FALSE;
         }
         utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
         [delegate setFacebookFriends:fbFriendArray];
+        
         FBFriends = TRUE;
     }
     else

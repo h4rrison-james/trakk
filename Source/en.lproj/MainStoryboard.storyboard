@@ -152,7 +152,6 @@
         <!--Cluster View Controller-->
         <scene sceneID="Pdj-ys-ga5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oiG-uX-WcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="HDF-AR-BCq" customClass="ClusterViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HOv-AN-kDO">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -205,6 +204,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oiG-uX-WcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1909" y="1507"/>
         </scene>
@@ -893,7 +893,7 @@ http://github.com/tmdvs/TDBadgedCell
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="286" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-360" y="630"/>
+            <point key="canvasLocation" x="-360" y="620"/>
         </scene>
     </scenes>
     <resources>

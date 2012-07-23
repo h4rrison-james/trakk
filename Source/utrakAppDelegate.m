@@ -37,7 +37,7 @@
     //Check is application was started in response to a push notification
     NSDictionary *notif = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (notif)
-    { //Process notification and delete message from server
+    { //Process boolean and notification object
         DLog(@"Notification Recieved in AD");
         startedFromNotification = TRUE;
         notification = notif;
@@ -83,6 +83,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    //Save installation to update the badge count on the server
+    [[PFInstallation currentInstallation] saveEventually];
+    
     if ([PFUser currentUser])
     { //Only set background task if currently logged in
         [[LocationController sharedClient] updateDelegate:nil];
@@ -111,10 +114,12 @@
     
     if ([PFUser currentUser])
     { //Check that user is logged in and not returning from login page
+        
         //Restore location controllers previous delegate
         id delegate = [[LocationController sharedClient] previousDelegate];
         [[LocationController sharedClient] updateDelegate:delegate];
     
+        //Check for new messages on the server
         PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
         [query whereKey:@"destination" equalTo:[[PFUser currentUser] objectId]];
         [query orderByAscending:@"createdAt"];
@@ -134,6 +139,9 @@
             else if (error) {
                 DLog(@"Error: %@", error);
             }
+            
+            //Let the detail view controller know when processing is complete
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"messagesComplete" object:nil];
         }];
     }
 }
