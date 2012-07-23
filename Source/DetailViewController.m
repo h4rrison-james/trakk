@@ -147,12 +147,13 @@
         UIImage *avatar = [UIImage imageWithData:pictureData];
         img = avatar;
     }
-    //Otherwise set image to profile picture of friend
-    else if (profile == NULL) {
-        img = [UIImage imageNamed:@"jonnotie"];
-    }
-    else {
+    //Set image to profile picture of friend
+    else if (profile != NULL) {
         img = profile;
+    }
+    //Otherwise set image to default avatar
+    else {
+        img = [UIImage imageNamed:@"Default-Avatar"];
     }
     
     Message *msg = [Message alloc];
@@ -181,9 +182,9 @@
         
         //Set alert dictionary
         NSString *finalMessage = [NSString stringWithFormat:@"%@: %@", [[PFUser currentUser] objectForKey:@"first_name"], messageStr];
-        NSMutableDictionary *alert = [NSMutableDictionary dictionary];
-        [alert setObject:finalMessage forKey:@"body"];
-        [alert setObject:@"Default-Message" forKey:@"launch-image"];
+        //NSMutableDictionary *alert = [NSMutableDictionary dictionary];
+        //[alert setObject:finalMessage forKey:@"body"];
+        //[alert setObject:@"Default-Message" forKey:@"launch-image"];
         [data setObject:finalMessage forKey:@"alert"];
         
         //Set other options

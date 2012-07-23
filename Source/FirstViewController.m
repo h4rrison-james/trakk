@@ -53,6 +53,29 @@
     //Listen for push notifications from the application delegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNotificationReceived:) name:@"pushNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBadge:) name:@"updateBadge" object:nil];
+    
+    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    
+    if (delegate.startedFromNotification)
+    {
+        NSDictionary *userInfo = delegate.notification;
+        NSString *notificationType = [userInfo objectForKey:@"type"];
+        if ([notificationType isEqualToString:@"msg"])
+        { //Notification is a message
+            DLog(@"Notification is a message");
+            
+            //Setup the detail view controller, but do not save the message
+            DetailViewController *temp = [[DetailViewController alloc] init];
+            temp.userID = [userInfo objectForKey:@"sender"];
+            temp.title = [userInfo objectForKey:@"name"];
+            temp.hidesBottomBarWhenPushed = YES;
+            
+            DLog(@"Application launched with notification");
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self.navigationController pushViewController:temp animated:NO];
+            [temp scrollToBottomAnimated:NO];
+        }
+    }
 }
 
 - (void)viewDidUnload
@@ -234,7 +257,6 @@
         NSData *data = [picture getData];
         cell.profileImage.image = [UIImage imageWithData:data];
         cell.profileImage.layer.masksToBounds = TRUE;
-        //cell.profileImage.layer.cornerRadius = 3.0f;
     }
     
     return cell;

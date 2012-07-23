@@ -10,6 +10,7 @@
 #import "Parse/Parse.h"
 #import "LocationController.h"
 #import "utrakAppDelegate.h"
+#import "FirstViewController.h"
 
 @interface LaunchViewController : UIViewController <PF_FBRequestDelegate, UIAlertViewDelegate> {
     IBOutlet UIImageView *titleImage;

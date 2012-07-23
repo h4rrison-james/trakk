@@ -42,7 +42,7 @@
                                             <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Deafult-Avatar.png" id="ofH-am-A61">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Deafult-Avatar.png" id="ofH-am-A61" customClass="PFImageView">
                                             <rect key="frame" x="8" y="8" width="46" height="46"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -932,7 +932,7 @@ http://github.com/tmdvs/TDBadgedCell
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewCellController.h"/>
             <relationships>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="PFImageView"/>
                 <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
@@ -971,6 +971,9 @@ http://github.com/tmdvs/TDBadgedCell
         </class>
         <class className="OCMapView" superclassName="MKMapView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OCMapView.h"/>
+        </class>
+        <class className="PFImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
         </class>
         <class className="PFQueryTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>

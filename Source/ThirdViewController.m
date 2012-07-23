@@ -123,10 +123,15 @@
                 else statusText = status;
                 pin.subtitle = statusText;
                 
-                //Set image
-                PFFile *picture = [user objectForKey:@"picture"];
-                NSData *data = [picture getData];
-                pin.image = [UIImage imageWithData:data];
+                //Set image if it exists
+                if ([self exists:user withKey:@"picture"]) {
+                    PFFile *picture = [user objectForKey:@"picture"];
+                    NSData *data = [picture getData];
+                    pin.image = [UIImage imageWithData:data];
+                }
+                else {
+                    pin.image = [UIImage imageNamed:@"Default-Avatar"];
+                }
                 
                 //Set group tag
                 pin.groupTag = @"person";

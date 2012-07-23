@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parse/Parse.h"
 
 @interface FirstViewCellController : UITableViewCell
 {
     IBOutlet UILabel *statusLabel;
     IBOutlet UILabel *nameLabel;
     IBOutlet UILabel *timeLabel;
-    IBOutlet UIImageView *profileImage;
+    IBOutlet PFImageView *profileImage;
 }
 
 -(void)drawLinearGradient:(CGContextRef) context: (CGRect) rect: (UIColor *) startColor: (UIColor *)  endColor;
@@ -22,6 +23,6 @@
 @property (nonatomic, retain) UILabel *statusLabel;
 @property (nonatomic, retain) UILabel *nameLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
-@property (nonatomic, retain) UIImageView *profileImage;
+@property (nonatomic, retain) PFImageView *profileImage;
 
 @end

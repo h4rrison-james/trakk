@@ -31,34 +31,7 @@ BOOL alertShown = FALSE;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //Check if application started from remote notification
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    startedFromNotification = delegate.startedFromNotification;
-    if (startedFromNotification && [PFUser currentUser])
-    { //Change background image and present view controllers
-        titleImage.alpha = 0;
-        backgroundImage.image = [UIImage imageNamed:@"Default-Message"];
-        
-        DLog(@"Notification Recieved in Launch VC");
-        NSDictionary *userInfo = delegate.notification;
-        NSString *notificationType = [userInfo objectForKey:@"type"];
-        if ([notificationType isEqualToString:@"msg"])
-        { //Notification is a message
-            DLog(@"Notification is a message");
-            
-            //Setup the detail view controller, but do not save the message
-            DetailViewController *temp = [[DetailViewController alloc] init];
-            temp.userID = [userInfo objectForKey:@"sender"];
-            temp.title = [userInfo objectForKey:@"name"];
-            temp.hidesBottomBarWhenPushed = YES;
-            
-            DLog(@"Application launched with notification");
-            self.tabBarController.selectedIndex = 0;
-            [self.navigationController popToRootViewControllerAnimated:NO];
-            [self.navigationController pushViewController:temp animated:NO];
-            [temp scrollToBottomAnimated:NO];
-        }
-    }
+    //View did load
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,7 +71,7 @@ BOOL alertShown = FALSE;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //Prepare for Segue
+    //Prepare for segue
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
