@@ -72,7 +72,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="4Sk-HJ-BfH">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="jrq-EK-M1Z"/>
+                        <barButtonItem key="backBarButtonItem" title="Home" id="jrq-EK-M1Z"/>
                         <barButtonItem key="leftBarButtonItem" title="Available" id="AOi-CN-6jL">
                             <connections>
                                 <action selector="statusTap:" destination="Ufb-n8-y1H" id="rfj-Sv-mDH"/>
@@ -832,7 +832,7 @@ http://github.com/tmdvs/TDBadgedCell
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="260">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="283"/>
+                        <barButtonItem key="backBarButtonItem" title="Friends" id="283"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="265">
                             <connections>
                                 <segue destination="124" kind="modal" identifier="addFriendOverview" modalTransitionStyle="coverVertical" id="dlh-lg-b4R"/>
@@ -1027,6 +1027,6 @@ http://github.com/tmdvs/TDBadgedCell
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rTr-LS-LQu"/>
+        <segue reference="261"/>
     </inferredMetricsTieBreakers>
 </document>

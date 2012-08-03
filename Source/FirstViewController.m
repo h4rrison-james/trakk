@@ -56,6 +56,7 @@
     
     utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     
+    //Check if application was launched from the background with a push notification
     if (delegate.startedFromNotification)
     {
         NSDictionary *userInfo = delegate.notification;

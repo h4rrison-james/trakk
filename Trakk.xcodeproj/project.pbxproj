@@ -1262,8 +1262,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harrison Sweeney";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harrison Sweeney";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1274,8 +1274,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "8DEEC789-F462-42B7-9FAC-012197C427F5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DEEC789-F462-42B7-9FAC-012197C427F5";
+				PROVISIONING_PROFILE = "C2F6BC65-99D4-4BBC-BB00-647BC4941611";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C2F6BC65-99D4-4BBC-BB00-647BC4941611";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1320,8 +1320,8 @@
 			buildSettings = {
 				CLANG_ARC_MIGRATION = donothing;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harrison Sweeney (52Z96FSUB3)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harrison Sweeney";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Harrison Sweeney";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1343,8 +1343,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trakk;
-				PROVISIONING_PROFILE = "8DEEC789-F462-42B7-9FAC-012197C427F5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DEEC789-F462-42B7-9FAC-012197C427F5";
+				PROVISIONING_PROFILE = "C2F6BC65-99D4-4BBC-BB00-647BC4941611";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C2F6BC65-99D4-4BBC-BB00-647BC4941611";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
