@@ -114,6 +114,7 @@ BOOL alertShown = FALSE;
 - (void)facebookLoginCallback
 { //Send requests now that we are logged in
 
+    //Send Facebook requests off
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,first_name,middle_name,last_name,name,gender" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/picture?type=large" andDelegate:self];
@@ -121,41 +122,19 @@ BOOL alertShown = FALSE;
     //Initialize the location controller singleton
     [[LocationController sharedClient] start];
     [[LocationController sharedClient] setIsUpdating:TRUE];
+    
+    //Register for Push Notifications
+    [PFInstallation currentInstallation];
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
+                                                                           |UIRemoteNotificationTypeAlert
+                                                                           |UIRemoteNotificationTypeSound)];
 
     //Set status to "Available" to start
     [[PFUser currentUser] setObject:@"Available" forKey:@"status"];
 
     //Check for current messages on the server
-    PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
-    [query whereKey:@"destination" equalTo:[[PFUser currentUser] objectId]];
-    [query orderByAscending:@"createdAt"];
-    if (startedFromNotification)
-    { //Exclude notification that the application was started from in the query
-        utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-        NSDictionary *userInfo = delegate.notification;
-        NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-        [query whereKey:@"text" notEqualTo:message];
-    }
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error && [objects count])
-        {
-            for (PFObject *message in objects)
-            { //Process and delete each message
-                NSMutableDictionary *aps = [[NSMutableDictionary alloc] init];
-                [aps setValue:[message objectForKey:@"text"] forKey:@"alert"];
-                NSDictionary *mess = [[NSDictionary alloc] initWithObjectsAndKeys:aps, @"aps", nil];
-                DetailViewController *detail = [[DetailViewController alloc] init];
-                [detail setUserID:[message objectForKey:@"sender"]];
-                [detail newMessageReceived:mess];
-            }
-        }
-        else if (error) {
-            DLog(@"Error: %@", error);
-        }
-        
-        //Let the detail view controller know when processing is complete
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"messagesComplete" object:nil];
-    }];
+    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate updateMessages];
     
     //Request POI array from server
     PFQuery *poiQuery = [PFQuery queryWithClassName:@"POI"];
@@ -194,6 +173,7 @@ BOOL alertShown = FALSE;
     else if ([requestType isEqualToString:@"me/picture?type=large"])
     { //Profile picture loaded, add data to PFUser and save result
         DLog(@"Facebook profile picture loaded");
+        result = request.responseText;
         NSData *data = [NSData dataWithData:result];
         PFFile *file = [PFFile fileWithName:@"picture" data:data];
         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

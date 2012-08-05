@@ -12,11 +12,12 @@
 
 @synthesize nameLabel;
 @synthesize profileImage;
-@synthesize request;
+@synthesize request = _request;
 
 - (void)request:(PF_FBRequest *)request didLoad:(id)result
 { //Set profile picture
     self.request = nil;
+    result = request.responseText;
     NSData *picture = [NSData dataWithData:result];
     UIImage *image = [UIImage imageWithData:picture];
     profileImage.image = image;
@@ -40,14 +41,14 @@
 
 - (void)prepareForReuse
 { //If there is a pending Facebook request that has not yet been recieved, cancel it
-    if (request)
-        [[request connection] cancel];
+    if (_request)
+        [[_request connection] cancel];
 }
 
 - (void)dealloc
 { //Also remove request when deallocating to avoid crash
-    if (request)
-        [[request connection] cancel];
+    if (_request)
+        [[_request connection] cancel];
 }
 
 @end

@@ -7,53 +7,66 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Source/utrakAppDelegate.m"
-         timestampString = "364750655.287007"
+         filePath = "Libraries/SSMessagesViewController/SSMessagesViewController.m"
+         timestampString = "365778584.681724"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
-         landmarkName = "-applicationDidEnterBackground:"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Source/FirstViewCellController.m"
-         timestampString = "364655054.072206"
+         filePath = "Source/FriendViewCellController.m"
+         timestampString = "365770443.157925"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
-         landmarkName = "-drawLinearGradient::::"
+         startingLineNumber = "20"
+         endingLineNumber = "20"
+         landmarkName = "-request:didLoad:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Source/LocationController.m"
-         timestampString = "362917170.999085"
+         filePath = "Source/FriendViewCellController.m"
+         timestampString = "365777306.923664"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "189"
-         endingLineNumber = "189"
-         landmarkName = "-locationCallback:error:"
+         startingLineNumber = "15"
+         endingLineNumber = "15"
+         landmarkName = "_request"
+         landmarkType = "19">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Source/LaunchViewController.m"
+         timestampString = "365780659.310773"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "151"
+         endingLineNumber = "151"
+         landmarkName = "-request:didLoad:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Libraries/STBubbleTableViewCell/Classes/Message.h"
-         timestampString = "363412257.302963"
+         filePath = "Source/LaunchViewController.m"
+         timestampString = "365780659.310773"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
-         landmarkName = "@interface Message"
-         landmarkType = "2">
+         startingLineNumber = "176"
+         endingLineNumber = "176"
+         landmarkName = "-request:didLoad:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
@@ -63,6 +76,14 @@
          continueAfterRunningActions = "No"
          scope = "0"
          stopOnStyle = "0">
+      </ExceptionBreakpoint>
+      <ExceptionBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         scope = "2"
+         stopOnStyle = "0"
+         exceptionName = "objc_autoreleaseNoPool">
       </ExceptionBreakpoint>
    </ExceptionBreakpoints>
 </Bucket>

@@ -29,4 +29,6 @@
 @property (nonatomic) BOOL startedFromNotification;
 @property (strong, nonatomic) NSDictionary *notification;
 
+- (void)updateMessages;
+
 @end

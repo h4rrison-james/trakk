@@ -47,14 +47,7 @@
     //Create an overlay using tiles from the bundle
     if ([PFUser currentUser])
     {
-        NSString *university;
-        if ([[PFUser currentUser] objectForKey:@"university"]) {
-            university = [[PFUser currentUser] objectForKey:@"university"];
-        }
-        else
-        { //Set default university as UWA for now to avoid crashing here
-            university = @"UWA";
-        }
+        NSString *university = @"UWA";
         NSString *path = [NSString stringWithFormat:@"Tiles/%@", university];
         DLog(@"Overlay Path: %@", path);
         NSString *tileDirectory = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:path];
@@ -246,7 +239,11 @@
             markerView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             
             //Set profile image in callout
-            #warning TODO: Add image to callout for multiple people
+            UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default-Avatar"]];
+            image.contentMode = UIViewContentModeScaleAspectFill;
+            image.clipsToBounds = YES;
+            image.frame = CGRectMake(0, 0, 30, 30);
+            markerView.leftCalloutAccessoryView = image;
             
             return markerView;
         }  

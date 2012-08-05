@@ -61,12 +61,6 @@
     [[UITabBar appearance] setSelectedImageTintColor:green];
     [[UINavigationBar appearance] setTintColor:green];
     
-    //Register for Push Notifications
-    [PFInstallation currentInstallation];
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
-                                                                           |UIRemoteNotificationTypeAlert
-                                                                           |UIRemoteNotificationTypeSound)];
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -75,6 +69,7 @@
 {
     DLog(@"Notification Recieved in AD");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
+    [self updateMessages];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -179,7 +174,7 @@
 - (void)updateMessages
 {
     //Check for new messages on the server
-        PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
     [query whereKey:@"destination" equalTo:[[PFUser currentUser] objectId]];
     [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

@@ -134,7 +134,7 @@
 
 #pragma mark SSMessageViewControllerDelegate
 
-- (Message *)messageForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (STMessage *)messageForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *storedMessage = [messages objectAtIndex:[indexPath row]];
     
     NSString *text = [storedMessage objectForKey:@"msg"];
@@ -156,7 +156,7 @@
         img = [UIImage imageNamed:@"Default-Avatar"];
     }
     
-    Message *msg = [Message alloc];
+    STMessage *msg = [STMessage alloc];
     msg = [msg initWithString:text image:img author:author];
     return msg;
 }
@@ -300,6 +300,7 @@
 - (void)reloadMessages
 {   
     [self loadMessages];
+    [self updateBadge];
     [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
 }
