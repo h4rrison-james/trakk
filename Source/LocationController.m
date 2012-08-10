@@ -28,7 +28,7 @@ static LocationController *sharedClient;
 
 +(id)alloc {
     @synchronized(self) {
-        NSAssert(sharedClient == nil, @"Cannot create second LocationController");
+        NSAssert(sharedClient == nil, @"Cannot create second instance of LocationController singleton");
         sharedClient = [super alloc];
     }
     return sharedClient;
@@ -46,7 +46,8 @@ static LocationController *sharedClient;
 -(void) start {
     if ([PFUser currentUser] && ![[[PFUser currentUser] objectForKey:@"status"] isEqualToString:@"Offline"])
     { //Only proceed if user logged in and not offline
-        //Toggle location updates, then attempt to find location with BSSID
+        
+        //Toggle location updates to reset the application expiration timer, then attempt to find location with Wifi
         [locationManager startUpdatingLocation];
         [locationManager stopUpdatingLocation];
         
@@ -118,11 +119,14 @@ static LocationController *sharedClient;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    //Ignore if more than 120 seconds old
-    if (abs([newLocation.timestamp timeIntervalSinceDate: [NSDate date]]) < 120) {
+{ //Location algorithm called each time a new location passed to the location manager
+    
+    if (abs([newLocation.timestamp timeIntervalSinceDate: [NSDate date]]) < 120)
+    { //Ignore if more than 120 seconds old
+        
         if (newLocation.horizontalAccuracy < 50)
         { //Assume location is accurate enough and turn off location updates for time interval
+            
             DLog(@"Location Accurate");
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSTimeInterval interval;
@@ -151,7 +155,8 @@ static LocationController *sharedClient;
 }
 
 - (void)locationCallback:(NSArray *)results error:(NSError *)error
-{
+{ //Updates user object with new location pointer if the determined location is close enough
+    
     PFObject *callbackLocationObject = [results objectAtIndex:0];
     DLog(@"Closest point is %@", [callbackLocationObject objectForKey:@"name"]);
     PFGeoPoint *currentGeoPoint = [callbackLocationObject objectForKey:@"location"];
@@ -163,11 +168,14 @@ static LocationController *sharedClient;
     DLog(@"Current Location: (%f, %f)", lat, lon);
     DLog(@"Stored Location: (%f, %f)", stored.coordinate.latitude, stored.coordinate.longitude);
     double distance = [currentLocation distanceFromLocation:stored];
+    
     if (distance < radius)
     { //Location is within trigger radius
+        
         PFUser *user = [PFUser currentUser];
         NSString *currentName = [callbackLocationObject objectForKey:@"name"];
         DLog(@"User location within trigger radius of %@", currentName);
+        
         if ([user objectForKey:@"location"]) 
         { //Check if location key exists in current user
             //NSString *storedName = [[user objectForKey:@"location"] objectForKey:@"name"];
@@ -176,6 +184,7 @@ static LocationController *sharedClient;
             [user saveEventually];
             DLog(@"User Location Updated");
         }
+        
         else
         { //If no location exists, upload current location
             [[PFUser currentUser] setObject:callbackLocationObject forKey:@"location"];
@@ -184,8 +193,9 @@ static LocationController *sharedClient;
             DLog(@"User Location Updated for first time.");
         }
     }
+    
     else
-    { //Location is not within trigger radius, upload null location
+    { //Location is not within trigger radius, upload null location but set coordinates
         NSNull *null = [NSNull null];
         [[PFUser currentUser] setObject:null forKey:@"location"];
         [[PFUser currentUser] setObject:actualGeoPoint forKey:@"coordinates"];
