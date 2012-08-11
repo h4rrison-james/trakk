@@ -11,6 +11,7 @@
 
 //Import Custom Headers
 #import "utrakAppDelegate.h"
+#import "DataController.h"
 
 @interface FriendViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, PF_FBDialogDelegate> {

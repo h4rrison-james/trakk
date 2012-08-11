@@ -55,6 +55,7 @@ static LocationController *sharedClient;
         if (info != NULL)
         { //If wifi is on and connected to something
             NSString *BSSID = [info objectForKey:@"BSSID"];
+            DLog(@"BSSID: %@", BSSID);
             PFQuery *query = [PFQuery queryWithClassName:@"WAP"];
             [query whereKey:@"BSSID" equalTo:BSSID];
             [query includeKey:@"Location"];

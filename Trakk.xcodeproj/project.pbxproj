@@ -148,6 +148,7 @@
 		84B63FAD14BC04670062671A /* Data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B63FA714BC04670062671A /* Data.plist */; };
 		84B63FAE14BC04670062671A /* Franchise-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84B63FA814BC04670062671A /* Franchise-Bold.ttf */; };
 		84B63FAF14BC04670062671A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B63FA914BC04670062671A /* main.m */; };
+		84B8BDCD15D5587C0057E963 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8BDCC15D5587C0057E963 /* DataController.m */; };
 		84B9FADB14BC1A000061D7AB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B9FAD914BC1A000061D7AB /* MainStoryboard.storyboard */; };
 		84BC879514BC10CF000406B3 /* utrakAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D1ABEA13B4945B00B23A8F /* utrakAppDelegate.m */; };
 		84BC879614BC10DB000406B3 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 478084FC13BEE95E00E97F06 /* LocationController.m */; };
@@ -362,6 +363,8 @@
 		84B63FA914BC04670062671A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = main.m; path = Source/main.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84B63FAB14BC04670062671A /* Trakk-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Trakk-Info.plist"; path = "Source/Trakk-Info.plist"; sourceTree = SOURCE_ROOT; };
 		84B63FAC14BC04670062671A /* Trakk-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = "Trakk-Prefix.pch"; path = "Source/Trakk-Prefix.pch"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		84B8BDCB15D5587C0057E963 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataController.h; path = Source/DataController.h; sourceTree = SOURCE_ROOT; };
+		84B8BDCC15D5587C0057E963 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataController.m; path = Source/DataController.m; sourceTree = SOURCE_ROOT; };
 		84B9FADA14BC1A000061D7AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Source/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		84BD042E1568EFFB00DD6645 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		84C34CCF15AC26B8001AF038 /* Navigation-Bar-Off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Navigation-Bar-Off.png"; path = "Images/Navigation-Bar-Off.png"; sourceTree = "<group>"; };
@@ -530,6 +533,8 @@
 				84B9FAD914BC1A000061D7AB /* MainStoryboard.storyboard */,
 				47D1ABE913B4945B00B23A8F /* utrakAppDelegate.h */,
 				47D1ABEA13B4945B00B23A8F /* utrakAppDelegate.m */,
+				84B8BDCB15D5587C0057E963 /* DataController.h */,
+				84B8BDCC15D5587C0057E963 /* DataController.m */,
 				478084FB13BEE95E00E97F06 /* LocationController.h */,
 				478084FC13BEE95E00E97F06 /* LocationController.m */,
 				4752B9DD13C442D3001021E4 /* View Controllers */,
@@ -1121,6 +1126,7 @@
 				842FDD3215BAFD9E00727A86 /* NSDate+Format.m in Sources */,
 				848CC12B15CD1D2C000B60F2 /* STMessage.m in Sources */,
 				848CC12E15CD1D49000B60F2 /* STBubbleTableViewCell.m in Sources */,
+				84B8BDCD15D5587C0057E963 /* DataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 //Import Custom Headers
 #import "UserViewCellController.h"
 #import "DetailViewController.h"
+#import "DataController.h"
 #import "utrakAppDelegate.h"
 #import "Constants.h"
 

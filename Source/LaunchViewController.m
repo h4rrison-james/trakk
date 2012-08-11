@@ -115,7 +115,7 @@ BOOL alertShown = FALSE;
 { //Send requests now that we are logged in
 
     //Send Facebook requests off
-    [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,first_name,middle_name,last_name,name,gender" andDelegate:self];
+    [[PFFacebookUtils facebook] requestWithGraphPath:@"me?fields=id,first_name,last_name,name" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/friends" andDelegate:self];
     [[PFFacebookUtils facebook] requestWithGraphPath:@"me/picture?type=large" andDelegate:self];
 
@@ -133,14 +133,19 @@ BOOL alertShown = FALSE;
     [[PFUser currentUser] setObject:@"Available" forKey:@"status"];
 
     //Check for current messages on the server
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate updateMessages];
+    [[DataController sharedClient] updateMessages];
+    
+    //Check for pending friend requests
+    PFQuery *frQuery = [PFQuery queryWithClassName:@"FriendRequest"];
+    [frQuery whereKey:@"targetUser" equalTo:[[PFUser currentUser] objectId]];
+    [frQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [DataController sharedClient].friendRequestArray = objects;
+    }];
     
     //Request POI array from server
     PFQuery *poiQuery = [PFQuery queryWithClassName:@"POI"];
     [poiQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-        delegate.poiArray = objects;
+        [DataController sharedClient].pointOfInterestArray = objects;
     }];
 }
 
@@ -151,7 +156,7 @@ BOOL alertShown = FALSE;
     DLog(@"FB: Request recieved. (LVC)");
     NSString *requestType =[request.url stringByReplacingOccurrencesOfString:@"https://graph.facebook.com/" withString:@""];
     
-    if ([requestType isEqualToString:@"me?fields=id,first_name,middle_name,last_name,name,gender"])
+    if ([requestType isEqualToString:@"me?fields=id,first_name,last_name,name"])
     { //FBMe loaded, add data to PFUser and save result
         DLog(@"Facebook profile object loaded");
         //Load university preference from settings
@@ -162,11 +167,8 @@ BOOL alertShown = FALSE;
         //Load remaining data from FBRequest
         [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"facebookID"];
         [[PFUser currentUser] setObject:[result objectForKey:@"first_name"] forKey:@"first_name"];
-        if ([result objectForKey:@"middle_name"])
-            [[PFUser currentUser] setObject:[result objectForKey:@"middle_name"] forKey:@"middle_name"];
         [[PFUser currentUser] setObject:[result objectForKey:@"last_name"] forKey:@"last_name"];
         [[PFUser currentUser] setObject:[result objectForKey:@"name"] forKey:@"name"];
-        [[PFUser currentUser] setObject:[result objectForKey:@"gender"] forKey:@"gender"];
         
         FBMe = TRUE;
     }
@@ -192,9 +194,8 @@ BOOL alertShown = FALSE;
         { //For each user dictionary, extract facebook ID and add to array
             [fbFriendArray addObject:user];
         }
-        utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-        [delegate setFacebookFriends:fbFriendArray];
         
+        [DataController sharedClient].facebookFriendArray = fbFriendArray;
         FBFriends = TRUE;
     }
     else

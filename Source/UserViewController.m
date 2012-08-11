@@ -46,10 +46,9 @@
     //Add shadow to navigation bar
     SET_SHADOW
     
-    //Load friendArray from application delegate if possible
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate friends])
-        friendArray = [delegate friends];
+    //Load friendArray from data controller if possible
+    if ([DataController sharedClient].friendArray)
+        friendArray = [DataController sharedClient].friendArray;
 }
 
 - (void)refreshTable

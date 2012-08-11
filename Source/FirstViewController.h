@@ -18,6 +18,7 @@
 #import "FirstViewCellController.h"
 #import "NSDate+Format.h"
 #import "utrakAppDelegate.h"
+#import "DataController.h"
 #import "Constants.h"
 
 @interface FirstViewController : PFQueryTableViewController <UIGestureRecognizerDelegate, UIActionSheetDelegate> 

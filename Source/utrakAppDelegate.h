@@ -10,25 +10,18 @@
 
 //Import Custom Headers
 #import "LocationController.h" //Location Singleton
+#import "DataController.h" //Data singleton
 #import "Parse/Parse.h" //Parse Framework
 #import "DetailViewController.h"
 
 @interface utrakAppDelegate : UIResponder <UIApplicationDelegate> {
     UIWindow *window;
     NSArray *permissions;
-    NSMutableArray *friends;
-    NSMutableArray *facebookFriends;
-    NSArray *poiArray;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSArray *permissions;
-@property (strong, nonatomic) NSMutableArray *friends;
-@property (strong, nonatomic) NSMutableArray *facebookFriends;
-@property (strong, nonatomic) NSArray *poiArray;
 @property (nonatomic) BOOL startedFromNotification;
 @property (strong, nonatomic) NSDictionary *notification;
-
-- (void)updateMessages;
 
 @end

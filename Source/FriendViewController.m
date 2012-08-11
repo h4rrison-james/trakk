@@ -32,10 +32,11 @@
 {
     [super viewDidLoad];
     
-    //Load existing friendArray and fbFriendArray from the app delegate
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    friendArray = delegate.friends;
-    fbFriendArray = delegate.facebookFriends;
+    //Load existing friendArray and fbFriendArray from the data controller
+    if ([DataController sharedClient].friendArray)
+        friendArray = [DataController sharedClient].friendArray;
+    if ([DataController sharedClient].facebookFriendArray)
+        fbFriendArray = [DataController sharedClient].facebookFriendArray;
     
     //Remove friends that have already registered in the app
     NSMutableArray *temp = [[NSMutableArray alloc] init];

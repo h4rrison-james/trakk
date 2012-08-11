@@ -13,9 +13,6 @@
 
 @synthesize window = _window;
 @synthesize permissions;
-@synthesize friends;
-@synthesize facebookFriends;
-@synthesize poiArray;
 @synthesize startedFromNotification;
 @synthesize notification;
 
@@ -24,16 +21,6 @@
     //Set started from notification to false to begin with
     startedFromNotification = FALSE;
     
-    //Set facebookFriends and friends array from user defaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"facebookFriends"]) {
-        facebookFriends = [defaults objectForKey:@"facebookFriends"];
-    }
-    if ([defaults objectForKey:@"friendArray"]) {
-        NSData *archive = [defaults objectForKey:@"friendArray"];
-        friends = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
-    }
-    
     //Check is application was started in response to a push notification
     NSDictionary *notif = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (notif)
@@ -41,7 +28,7 @@
         DLog(@"Notification Recieved in AD");
         startedFromNotification = TRUE;
         notification = notif;
-        [self updateMessages];
+        [[DataController sharedClient] updateMessages];
     }
     
     //Reset badge
@@ -69,7 +56,7 @@
 {
     DLog(@"Notification Recieved in AD");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pushNotification" object:nil userInfo:userInfo];
-    [self updateMessages];
+    [[DataController sharedClient] updateMessages];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -116,7 +103,7 @@
         [[LocationController sharedClient] updateDelegate:delegate];
     
         //Check for new messages on the server
-        [self updateMessages];
+        [[DataController sharedClient] updateMessages];
     }
 }
 
@@ -143,8 +130,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:facebookFriends forKey:@"facebookFriends"];
+    //Application will terminate
 }
 
 #pragma mark Facebook Callback
@@ -169,35 +155,6 @@
     NSString *objectID = [[PFUser currentUser] objectId];
     DLog(@"Registered for push notifications on channel: %@", objectID);
     [PFPush subscribeToChannelInBackground:objectID];
-}
-
-- (void)updateMessages
-{
-    //Check for new messages on the server
-    PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
-    [query whereKey:@"destination" equalTo:[[PFUser currentUser] objectId]];
-    [query orderByAscending:@"createdAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error && [objects count])
-        {
-            for (PFObject *message in objects)
-            { //Process and delete each message
-                NSMutableDictionary *aps = [[NSMutableDictionary alloc] init];
-                [aps setValue:[message objectForKey:@"text"] forKey:@"alert"];
-                NSDictionary *mess = [[NSDictionary alloc] initWithObjectsAndKeys:aps, @"aps", nil];
-                DetailViewController *detail = [[DetailViewController alloc] init];
-                [detail setUserID:[message objectForKey:@"sender"]];
-                [detail newMessageReceived:mess];
-            }
-        }
-        else if (error) {
-            DLog(@"Error: %@", error);
-        }
-        
-        //Let the detail view controller know when processing is complete
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"messagesComplete" object:nil];
-    }];
-
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

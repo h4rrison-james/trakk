@@ -177,8 +177,7 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    NSArray *facebookFriends = [delegate facebookFriends];
+    NSArray *facebookFriends = [DataController sharedClient].facebookFriendArray;
     NSMutableArray *facebookIDs = [[NSMutableArray alloc] init];
     for (NSDictionary *user in facebookFriends)
     {
@@ -197,8 +196,7 @@
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     if (error) DLog(@"Error: %@", error);
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate setFriends:[[self objects] mutableCopy]];
+    [DataController sharedClient].friendArray = [[self objects] mutableCopy];
     
     //Alert other views to refresh
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNotification" object:nil userInfo:nil];

@@ -35,14 +35,13 @@
     //Register for refresh notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAnnotations) name:@"refreshNotification" object:nil];
     
-    //Load friendArray from application delegate if possible
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate friends])
-        friendArray = [delegate friends];
+    //Load friendArray from data controller if possible
+    if ([DataController sharedClient].friendArray)
+        friendArray = [DataController sharedClient].friendArray;
     
-    //Load poiArray from application delegate if possible
-    if ([delegate poiArray])
-        poiArray = [delegate poiArray];
+    //Load poiArray from data controller if possible
+    if ([DataController sharedClient].pointOfInterestArray)
+        poiArray = [DataController sharedClient].pointOfInterestArray;
     
     //Create an overlay using tiles from the bundle
     if ([PFUser currentUser])
