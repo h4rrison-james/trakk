@@ -42,9 +42,8 @@
     self.navigationController.navigationBar.layer.shadowOpacity = 1;
     
     //Load friendArray from application delegate if possible
-    utrakAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate friends])
-        friendArray = [delegate friends];
+    if ([DataController sharedClient].friendArray)
+        friendArray = [DataController sharedClient].friendArray;
     
     //Load messagesDict from user defaults if possible
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

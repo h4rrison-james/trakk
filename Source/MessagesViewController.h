@@ -12,6 +12,7 @@
 //Import Custom Headers
 #import "MessageViewCellController.h"
 #import "DetailViewController.h"
+#import "DataController.h"
 #import "utrakAppDelegate.h"
 
 @interface MessagesViewController : UITableViewController {
