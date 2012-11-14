@@ -79,7 +79,6 @@
 		843BC92E14BC080F003FE42B /* SSMessageTableViewCellBackgroundClear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843BC8A114BC080F003FE42B /* SSMessageTableViewCellBackgroundClear@2x.png */; };
 		843BC92F14BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 843BC8A214BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen.png */; };
 		843BC93014BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843BC8A314BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen@2x.png */; };
-		843D1872162C5F1800D45A83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D1871162C5F1800D45A83 /* Default-568h@2x.png */; };
 		843F3B2214BC182E00E4CB3D /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47BCF6C313DC542400E3C785 /* LaunchViewController.m */; };
 		843F3B2314BC183300E4CB3D /* UserViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766710E13D998CC0005E1E3 /* UserViewCellController.m */; };
 		843F3B2414BC183600E4CB3D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4766710B13D9978F0005E1E3 /* UserViewController.m */; };
@@ -96,6 +95,9 @@
 		8446AC091519FE230065601C /* Icon-Standard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446AC081519FE230065601C /* Icon-Standard.png */; };
 		8446AC0D151A00300065601C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446AC0C151A00300065601C /* Default.png */; };
 		844E3FE21508B004006938B8 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 844E3FE11508B004006938B8 /* facebook.png */; };
+		844EFF131653BDBA00E6F53D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844EFF101653BDBA00E6F53D /* Default-568h@2x.png */; };
+		844EFF141653BDBA00E6F53D /* Default-Text-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844EFF111653BDBA00E6F53D /* Default-Text-568h@2x.png */; };
+		844EFF151653BDBA00E6F53D /* Default-Back-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844EFF121653BDBA00E6F53D /* Default-Back-568h@2x.png */; };
 		8453D5BF15272A4100B05D56 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8453D5BD15272A4100B05D56 /* 19-gear.png */; };
 		8453D5C015272A4100B05D56 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8453D5BE15272A4100B05D56 /* 19-gear@2x.png */; };
 		845BB1D0152EEDAC00A7F3CC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BB1CF152EEDAC00A7F3CC /* AboutController.m */; };
@@ -294,7 +296,6 @@
 		843BC8A114BC080F003FE42B /* SSMessageTableViewCellBackgroundClear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SSMessageTableViewCellBackgroundClear@2x.png"; sourceTree = "<group>"; };
 		843BC8A214BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSMessageTableViewCellBackgroundGreen.png; sourceTree = "<group>"; };
 		843BC8A314BC080F003FE42B /* SSMessageTableViewCellBackgroundGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SSMessageTableViewCellBackgroundGreen@2x.png"; sourceTree = "<group>"; };
-		843D1871162C5F1800D45A83 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		843F600015317A3D0056597F /* HPGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPGrowingTextView.h; path = Libraries/HPGrowingTextView/HPGrowingTextView.h; sourceTree = SOURCE_ROOT; };
 		843F600115317A3D0056597F /* HPGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPGrowingTextView.m; path = Libraries/HPGrowingTextView/HPGrowingTextView.m; sourceTree = SOURCE_ROOT; };
 		843F600215317A3D0056597F /* HPTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPTextViewInternal.h; path = Libraries/HPGrowingTextView/HPTextViewInternal.h; sourceTree = SOURCE_ROOT; };
@@ -303,6 +304,9 @@
 		8446AC0C151A00300065601C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images/Default.png; sourceTree = "<group>"; };
 		844E3FE11508B004006938B8 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = Images/facebook.png; sourceTree = "<group>"; };
 		844E402A150B4D64006938B8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Constants.h; path = Source/Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		844EFF101653BDBA00E6F53D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
+		844EFF111653BDBA00E6F53D /* Default-Text-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Text-568h@2x.png"; path = "Images/Default-Text-568h@2x.png"; sourceTree = "<group>"; };
+		844EFF121653BDBA00E6F53D /* Default-Back-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Back-568h@2x.png"; path = "Images/Default-Back-568h@2x.png"; sourceTree = "<group>"; };
 		8453D5BD15272A4100B05D56 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear.png"; path = "Images/19-gear.png"; sourceTree = "<group>"; };
 		8453D5BE15272A4100B05D56 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear@2x.png"; path = "Images/19-gear@2x.png"; sourceTree = "<group>"; };
 		845BB1CE152EEDAC00A7F3CC /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = AboutController.h; path = Source/AboutController.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -869,7 +873,9 @@
 		84B0763D150D0AC300CAFD68 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				843D1871162C5F1800D45A83 /* Default-568h@2x.png */,
+				844EFF101653BDBA00E6F53D /* Default-568h@2x.png */,
+				844EFF111653BDBA00E6F53D /* Default-Text-568h@2x.png */,
+				844EFF121653BDBA00E6F53D /* Default-Back-568h@2x.png */,
 				8446AC0C151A00300065601C /* Default.png */,
 				8482544314846FED00F3C246 /* Default@2x.png */,
 				847D946F14847019001FE441 /* Default-Back@2x.png */,
@@ -1084,7 +1090,9 @@
 				848CC15515CD1D66000B60F2 /* Bubble-8@2x.png in Resources */,
 				848CC15615CD1D66000B60F2 /* Bubble-9.png in Resources */,
 				848CC15715CD1D66000B60F2 /* Bubble-9@2x.png in Resources */,
-				843D1872162C5F1800D45A83 /* Default-568h@2x.png in Resources */,
+				844EFF131653BDBA00E6F53D /* Default-568h@2x.png in Resources */,
+				844EFF141653BDBA00E6F53D /* Default-Text-568h@2x.png in Resources */,
+				844EFF151653BDBA00E6F53D /* Default-Back-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

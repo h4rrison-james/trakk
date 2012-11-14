@@ -68,26 +68,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
-	<key>UIStatusBarTintParameters</key>
-	<dict>
-		<key>UINavigationBar</key>
-		<dict>
-			<key>Style</key>
-			<string>UIBarStyleDefault</string>
-			<key>TintColor</key>
-			<dict>
-				<key>Blue</key>
-				<real>0.041872711898624286</real>
-				<key>Green</key>
-				<real>0.64612563775510212</real>
-				<key>Red</key>
-				<real>0.073550535806860495</real>
-			</dict>
-			<key>Translucent</key>
-			<false/>
-		</dict>
-	</dict>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
