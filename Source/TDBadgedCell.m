@@ -93,7 +93,7 @@
 	
 	CGContextSetBlendMode(context, kCGBlendModeClear);
 	
-	[__badgeString drawInRect:bounds withFont:[UIFont boldSystemFontOfSize:fontsize] lineBreakMode:UILineBreakModeClip];
+	[__badgeString drawInRect:bounds withFont:[UIFont boldSystemFontOfSize:fontsize] lineBreakMode:kCTLineBreakByClipping];
 	
 	CGContextSetBlendMode(context, kCGBlendModeNormal);
 	

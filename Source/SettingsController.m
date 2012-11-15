@@ -90,7 +90,7 @@
             mailer.mailComposeDelegate = self;
             [mailer setSubject:@"Feedback"];
             [mailer setToRecipients:[NSArray arrayWithObject:@"feedback@trakkapp.com"]];
-            [self presentModalViewController:mailer animated:YES];
+            [self presentViewController:mailer animated:YES completion:nil];
         }
         else
         { //Display error alert
@@ -150,7 +150,7 @@ heightForFooterInSection:(NSInteger)section
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
-    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)peopleSwitchChanged:(id)sender forEvent:(UIEvent *)event
@@ -206,7 +206,7 @@ heightForFooterInSection:(NSInteger)section
         DLog(@"Send Failed");
     }
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

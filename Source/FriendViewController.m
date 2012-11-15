@@ -80,7 +80,7 @@
 
 - (IBAction)dismissModal:(id)sender
 {
-    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidUnload
@@ -154,8 +154,16 @@
     NSString *name = [person objectForKey:@"name"];
     cell.nameLabel.text = name;
     
-    NSString *path = [NSString stringWithFormat:@"%@/picture?type=square", [person valueForKey:@"id"]];
-    cell.request = [[PFFacebookUtils facebook] requestWithGraphPath:path andDelegate:cell];
+    #warning #7 This does not work correctly yet
+    //Request the users profile picture
+    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", [person valueForKey:@"id"]]];
+    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:pictureURL
+                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                          timeoutInterval:2.0f];
+    // Run network request asynchronously
+    NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:cell];
+    [urlConnection start];
     
     return cell;
 }
@@ -188,18 +196,19 @@
         @"Invites you to start using Trakk",  @"message",
         @"Check this out", @"notification_text",
         [person objectForKey:@"id"], @"to",
-     nil];  
+     nil];
+    #warning #8 Need to update for new SDK
     [[PFFacebookUtils facebook] dialog:@"apprequests" andParams:params andDelegate:self];
 }
 
 - (void)dialogDidComplete:(PF_FBDialog *)dialog {
     NSLog(@"Request sent succesfully.");
-    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dialogDidNotComplete:(PF_FBDialog *)dialog {
     NSLog(@"Request did not complete.");
-    [self.presentingViewController dismissModalViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -114,18 +114,6 @@
         application.applicationIconBadgeNumber = 0;
         [[PFInstallation currentInstallation] saveEventually];
     }
-    
-    //Extend access token
-    if ([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        [PFFacebookUtils extendAccessTokenIfNeededForUser:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                DLog(@"Extended access token");
-            }
-            else {
-                DLog(@"Extension of access token failed. (%@)", error);
-            }
-        }];
-    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -136,12 +124,12 @@
 #pragma mark Facebook Callback
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [[PFFacebookUtils facebook] handleOpenURL:url];
+    return [PFFacebookUtils handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[PFFacebookUtils facebook] handleOpenURL:url]; 
+    return [PFFacebookUtils handleOpenURL:url]; 
 }
     
 #pragma mark Push Notifications Callback

@@ -13,14 +13,17 @@
 @synthesize nameLabel;
 @synthesize profileImage;
 @synthesize request = _request;
+@synthesize pictureData;
 
-- (void)request:(PF_FBRequest *)request didLoad:(id)result
-{ //Set profile picture
-    self.request = nil;
-    result = request.responseText;
-    NSData *picture = [NSData dataWithData:result];
-    UIImage *image = [UIImage imageWithData:picture];
-    profileImage.image = image;
+// Called every time a chunk of the data is received
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [pictureData appendData:data]; // Build the image
+}
+
+// Called when the entire image is finished downloading
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // Set the image in the header imageView
+    profileImage.image = [UIImage imageWithData:pictureData];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

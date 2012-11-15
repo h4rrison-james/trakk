@@ -31,7 +31,7 @@
 		
 		self.textLabel.backgroundColor = [UIColor colorWithRed:0.859f green:0.886f blue:0.929f alpha:1.0f];
 		self.textLabel.numberOfLines = 0;
-		self.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+		self.textLabel.lineBreakMode = kCTLineBreakByWordWrapping;
 		self.textLabel.textColor = [UIColor blackColor];
 		self.textLabel.font = [UIFont systemFontOfSize:14.0];
 		
@@ -65,9 +65,9 @@
 	
 	CGSize size;
 	if(self.imageView.image)
-		size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(self.frame.size.width - minInset - kSTBubbleWidthOffset - kSTBubbleImageSize - 8.0f, 1024.0f) lineBreakMode:UILineBreakModeWordWrap];
+		size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(self.frame.size.width - minInset - kSTBubbleWidthOffset - kSTBubbleImageSize - 8.0f, 1024.0f) lineBreakMode:kCTLineBreakByWordWrapping];
 	else
-		size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(self.frame.size.width - minInset - kSTBubbleWidthOffset, 1024.0f) lineBreakMode:UILineBreakModeWordWrap];
+		size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:CGSizeMake(self.frame.size.width - minInset - kSTBubbleWidthOffset, 1024.0f) lineBreakMode:kCTLineBreakByWordWrapping];
 	
 	// You can always play with these values if you need to
 	if(type == STBubbleTableViewCellAuthorTypeSelf)

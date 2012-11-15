@@ -249,9 +249,9 @@ CGFloat previousContentHeight;
 	CGSize size;
 	
 	if(message.avatar)
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(tableView.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - kSTBubbleImageSize - 8.0f - kSTBubbleWidthOffset, 480.0) lineBreakMode:UILineBreakModeWordWrap];
+		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(tableView.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - kSTBubbleImageSize - 8.0f - kSTBubbleWidthOffset, 480.0) lineBreakMode:kCTLineBreakByWordWrapping];
 	else
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(tableView.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - kSTBubbleWidthOffset, 480.0) lineBreakMode:UILineBreakModeWordWrap];
+		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(tableView.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - kSTBubbleWidthOffset, 480.0) lineBreakMode:kCTLineBreakByWordWrapping];
 	
 	// This makes sure the cell is big enough to hold the avatar
 	if(size.height + 15.0f < kSTBubbleImageSize + 4.0f && message.avatar)

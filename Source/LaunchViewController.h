@@ -13,7 +13,7 @@
 #import "DataController.h"
 #import "FirstViewController.h"
 
-@interface LaunchViewController : UIViewController <PF_FBRequestDelegate, UIAlertViewDelegate> {
+@interface LaunchViewController : UIViewController <PF_FBRequestDelegate, UIAlertViewDelegate, NSURLConnectionDelegate> {
     IBOutlet UIImageView *titleImage;
     IBOutlet UIButton *fbButton;
     IBOutlet UIImageView *backgroundImage;
@@ -24,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (strong, nonatomic) IBOutlet UIButton *fbButton;
 @property (nonatomic) BOOL startedFromNotification;
+@property (nonatomic, strong) NSMutableData *pictureData;
 
 @end

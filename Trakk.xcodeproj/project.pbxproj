@@ -111,6 +111,10 @@
 		845C4E2D15A85BE000CC4F1D /* MessageEntryInputField@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845C4E2915A85BE000CC4F1D /* MessageEntryInputField@2x.png */; };
 		845C4E2E15A87A6900CC4F1D /* SSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BC7C514BC080F003FE42B /* SSMessagesViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		845D977A1503B18000FBD43A /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845D97791503B18000FBD43A /* TDBadgedCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		847A690E1654D5D4001AD852 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847A690D1654D5D4001AD852 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		847A69101654D5DE001AD852 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847A690F1654D5DE001AD852 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		847A69121654D5EA001AD852 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847A69111654D5EA001AD852 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		847A69141654D6B8001AD852 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 847A69131654D6B8001AD852 /* libsqlite3.dylib */; };
 		847D947014847019001FE441 /* Default-Back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847D946F14847019001FE441 /* Default-Back@2x.png */; };
 		847D947214847027001FE441 /* Default-Text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 847D947114847027001FE441 /* Default-Text@2x.png */; };
 		847E8B4715022CE1004A73A5 /* 18-envelope.png in Resources */ = {isa = PBXBuildFile; fileRef = 847E8B4515022CE1004A73A5 /* 18-envelope.png */; };
@@ -323,6 +327,10 @@
 		845C4E2915A85BE000CC4F1D /* MessageEntryInputField@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntryInputField@2x.png"; sourceTree = "<group>"; };
 		845D97781503B18000FBD43A /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDBadgedCell.h; path = Source/TDBadgedCell.h; sourceTree = SOURCE_ROOT; };
 		845D97791503B18000FBD43A /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDBadgedCell.m; path = Source/TDBadgedCell.m; sourceTree = SOURCE_ROOT; };
+		847A690D1654D5D4001AD852 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		847A690F1654D5DE001AD852 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		847A69111654D5EA001AD852 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		847A69131654D6B8001AD852 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		847D946F14847019001FE441 /* Default-Back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Back@2x.png"; path = "Images/Default-Back@2x.png"; sourceTree = "<group>"; };
 		847D947114847027001FE441 /* Default-Text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Text@2x.png"; path = "Images/Default-Text@2x.png"; sourceTree = "<group>"; };
 		847E8B4515022CE1004A73A5 /* 18-envelope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "18-envelope.png"; path = "Images/18-envelope.png"; sourceTree = "<group>"; };
@@ -396,6 +404,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847A69141654D6B8001AD852 /* libsqlite3.dylib in Frameworks */,
+				847A69121654D5EA001AD852 /* Social.framework in Frameworks */,
+				847A69101654D5DE001AD852 /* AdSupport.framework in Frameworks */,
+				847A690E1654D5D4001AD852 /* Accounts.framework in Frameworks */,
 				84079C8C15CBE58B00B3F867 /* StoreKit.framework in Frameworks */,
 				84BD042F1568EFFB00DD6645 /* MessageUI.framework in Frameworks */,
 				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
@@ -528,6 +540,7 @@
 				843BC7BE14BC080F003FE42B /* SSMessagesViewController */,
 				84354272148F288000FB3A46 /* libz.1.1.3.dylib */,
 				47F4262113E02E5800CDF75C /* libresolv.dylib */,
+				847A69131654D6B8001AD852 /* libsqlite3.dylib */,
 				849E616215AD523C00D3A467 /* Frameworks */,
 			);
 			name = Libraries;
@@ -849,6 +862,9 @@
 		849E616215AD523C00D3A467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847A69111654D5EA001AD852 /* Social.framework */,
+				847A690F1654D5DE001AD852 /* AdSupport.framework */,
+				847A690D1654D5D4001AD852 /* Accounts.framework */,
 				84A87CF71651416700D7B164 /* Parse.framework */,
 				84079C8B15CBE58B00B3F867 /* StoreKit.framework */,
 				84BD042E1568EFFB00DD6645 /* MessageUI.framework */,

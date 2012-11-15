@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
 
-@interface FriendViewCellController : UITableViewCell <PF_FBRequestDelegate> {
+@interface FriendViewCellController : UITableViewCell <NSURLConnectionDelegate> {
     UILabel *nameLabel;
     UIImageView *profileImage;
 }
@@ -17,5 +17,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) PF_FBRequest *request;
+@property (nonatomic, strong) NSMutableData *pictureData;
 
 @end

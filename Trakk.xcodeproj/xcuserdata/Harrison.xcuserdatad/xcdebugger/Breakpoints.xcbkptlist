@@ -21,25 +21,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/FriendViewCellController.m"
-         timestampString = "365770443.157925"
+         timestampString = "374667163.71112"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "20"
-         endingLineNumber = "20"
-         landmarkName = "-request:didLoad:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/FriendViewCellController.m"
-         timestampString = "365777306.923664"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
-         landmarkName = "_request"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
+         landmarkName = "pictureData"
          landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
@@ -47,26 +34,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Source/LaunchViewController.m"
-         timestampString = "366359758.11393"
+         timestampString = "374666768.564779"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "150"
-         endingLineNumber = "150"
-         landmarkName = "-facebookLoginCallback"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/LaunchViewController.m"
-         timestampString = "366359758.11393"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
-         landmarkName = "-request:didLoad:"
-         landmarkType = "5">
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "@implementation LaunchViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
