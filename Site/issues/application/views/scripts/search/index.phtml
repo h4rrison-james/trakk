@@ -1,0 +1,8 @@
+
+<div class="left-column content shadow">
+    <h1>Search Results<span class="issue-quantity right"><a title="<?php echo $this->total; ?> Issues" rel="tipsyleft"><?php echo $this->total; ?></a></span></h1>
+    
+    <?php echo $this->ListIssues($this->issues, true); ?>
+    
+    <?php echo $pagination = $this->Pagination('/search/?q='.$this->q.'&page=%s', $this->page, $this->limit, $this->total); ?>
+</div>

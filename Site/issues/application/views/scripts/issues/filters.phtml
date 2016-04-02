@@ -1,0 +1,22 @@
+<div class="right-content">
+    <div class="box white">
+        <a href="/issues" class="button gray">Search Issues</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Saved Filters<span class="issue-quantity right"><a title="<?php echo count($this->filters); ?> Filters" rel="tipsyleft"><?php echo count($this->filters); ?></a></span></h1>
+    
+    <?php if (count($this->filters) > 0): ?>
+    <table class="filters-list">
+        <?php foreach($this->filters as $key => $val): ?>
+        <tr>
+            <td>
+                <a href="/issues/?filter_id=<?php echo $val['id']; ?>"><?php echo $val['name']; ?></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+    
+</div>

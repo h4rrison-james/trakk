@@ -1,0 +1,1 @@
+function checkForMessages(a){$(".mailbox-throbber").fadeIn();$.ajax({url:"/mailboxes/js-check-for-messages",dataType:"json",type:"POST",data:({mailbox_id:a}),success:function(b){if(b.status){console.debug(b)}else{}},error:function(b){},complete:function(){$(".mailbox-throbber").fadeOut()}})};

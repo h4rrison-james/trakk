@@ -1,0 +1,46 @@
+    
+    <div class="wrapper footer">
+        <div class="right" id="version">Version <?php echo $this->app_version; ?></div>
+        <div class="content">&copy; 2011-<?php echo date('Y'); ?> <a href="http://frondiz.com">Frondiz Ltd</a>.  All rights reserved.</div>
+    </div>
+    
+    <script type="text/javascript" src="/js/combined.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    
+    <?php if ($this->controller == 'index' && $this->action == 'index'): ?>
+    <script type="text/javascript" src="/js/overview.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'issues' && ($this->action == 'overview' || $this->action == 'new')): ?>
+    <script type="text/javascript" src="/js/issue.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'issues' && ($this->action == 'index' || $this->action == 'mine')): ?>
+    <script type="text/javascript" src="/js/issues.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'projects' && ($this->action == 'overview' || $this->action == 'category-issues')): ?>
+    <script type="text/javascript" src="/js/project.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'milestones'): ?>
+    <script type="text/javascript" src="/js/milestones.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'mailboxes' && $this->action == 'index'): ?>
+    <script type="text/javascript" src="/js/mailboxes.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'update' && $this->action == 'index'): ?>
+    <script type="text/javascript" src="/js/update.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'search' && $this->action == 'settings'): ?>
+    <script type="text/javascript" src="/js/search.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    <?php if ($this->controller == 'users' && $this->action == 'edit'): ?>
+    <script type="text/javascript" src="/js/user.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+    <?php endif; ?>
+    
+    </body>
+</html>

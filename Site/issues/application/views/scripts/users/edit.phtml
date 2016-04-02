@@ -1,0 +1,133 @@
+<div class="right-content">
+    <div class="box white">
+        <a class="button gray" href="<?php echo sprintf('/users/%s/issues', $this->edit_user['username']); ?>">View Issues &rarr;</a>
+    </div>
+    
+    <div class="box white">
+        <h1>Notifications</h1>
+        <p>I would like to receive notifications for:</p>
+        <form action="" method="post" autocomplete="off">
+            <table>
+                <tr>
+                    <td class="issue-overview-title"><label><input type="checkbox" name="notification[<?php echo Bugify_User::NOTIFICATION_CREATOR; ?>]" value="1" <?php echo ($this->edit_user['notifications'][Bugify_User::NOTIFICATION_CREATOR]) ? 'checked="checked"' : ''; ?> /> Issues I created</label></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title"><label><input type="checkbox" name="notification[<?php echo Bugify_User::NOTIFICATION_ASSIGNEE; ?>]" value="1" <?php echo ($this->edit_user['notifications'][Bugify_User::NOTIFICATION_ASSIGNEE]) ? 'checked="checked"' : ''; ?> /> Issues assigned to me</label></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title"><label><input type="checkbox" name="notification[<?php echo Bugify_User::NOTIFICATION_FOLLOWING; ?>]" value="1" <?php echo ($this->edit_user['notifications'][Bugify_User::NOTIFICATION_FOLLOWING]) ? 'checked="checked"' : ''; ?> /> Issues I'm following</label></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title"><label><input type="checkbox" name="notification[<?php echo Bugify_User::NOTIFICATION_COMMENTED; ?>]" value="1" <?php echo ($this->edit_user['notifications'][Bugify_User::NOTIFICATION_COMMENTED]) ? 'checked="checked"' : ''; ?> /> Issues I commented on</label></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title"><label><input type="checkbox" name="notification[<?php echo Bugify_User::NOTIFICATION_MYCHANGE; ?>]" value="1" <?php echo ($this->edit_user['notifications'][Bugify_User::NOTIFICATION_MYCHANGE]) ? 'checked="checked"' : ''; ?> /> Changes I make</label></td>
+                </tr>
+            </table>
+            <input type="hidden" name="formName" value="notification" />
+            <input type="submit" class="button gray" value="Save Notifications" />
+        </form>
+    </div>
+    
+    <div class="box white semi">
+        <a class="button gray generate-api-key-button">Generate API Key</a>
+    </div>
+    
+    <div class="box red semi">
+        <a class="button red confirm-button" href="#delete">Delete User</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1><?php echo $this->edit_user['name']; ?></h1>
+    
+    <div class="info-box">
+        <div class="edit-user-gravatar"><?php echo $this->Gravatar($this->edit_user['name'], $this->edit_user['email'], 32); ?></div>
+        <h1>Gravatar</h1>
+        <p>Change your avatar image at <a href="http://gravatar.com" target="_blank">gravatar.com</a> using your email address "<?php echo $this->edit_user['email']; ?>".</p>
+    </div>
+    
+    <form action="" method="post" autocomplete="off">
+        <div>
+            <div class="form-row">
+                <div class="form-label">First name</div>
+                <div class="form-field"><input type="text" name="user[firstname]" value="<?php echo $this->edit_user['firstname']; ?>" autofocus="autofocus" /></div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Last name</div>
+                <div class="form-field"><input type="text" name="user[lastname]" value="<?php echo $this->edit_user['lastname']; ?>" /></div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Email</div>
+                <div class="form-field"><input type="email" name="user[email]" value="<?php echo $this->edit_user['email']; ?>" /></div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Username</div>
+                <div class="form-field"><input type="text" value="<?php echo $this->edit_user['username']; ?>" readonly="readonly" /></div>
+                <div class="form-field hint">The username cannot be changed.</div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Password</div>
+                <div class="form-field"><input type="password" name="user[password]" value="" /></div>
+            </div>
+            
+            <?php if (strlen($this->api_key) > 0): ?>
+            <div class="form-row">
+                <div class="form-label">API Key</div>
+                <div class="form-field"><input type="text" value="<?php echo $this->api_key; ?>" readonly="readonly" /></div>
+                <div class="form-field hint">Read the <a href="http://bugify.com/api">API documentation</a>.</div>
+            </div>
+            <?php endif; ?>
+            
+            <div class="form-row">
+                <div class="form-label">Timezone</div>
+                <div class="form-field">
+                    <select name="user[timezone]">
+                        <?php
+                            $timezones = Bugify_Date::getTimezonesWithLocalTime();
+                            
+                            foreach ($timezones as $key => $val) {
+                                $selected = ($this->edit_user['timezone'] == $val['timezone']) ? ' selected="selected"' : '';
+                                
+                                echo sprintf('<option value="%s"%s>%s - %s</option>', $val['timezone'], $selected, $val['localTime'], $val['name']);
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="form-buttons">
+            <input type="hidden" name="formName" value="user" />
+            <input type="submit" value="Save Changes" class="button green" /> <a href="/users">cancel and go back</a>
+        </div>
+    </form>
+</div>
+
+<div id="generate-api-key-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Generate API Key</h2>
+        <p>Are you sure you would like to generate a new API key for <?php echo $this->edit_user['name']; ?>?  The old key will no longer work.</p>
+        
+        <form id="generate-api-key" method="post" action="">
+            <input type="hidden" name="formName" value="apikey" />
+            <div class="form-buttons">
+                <input type="submit" value="Generate API Key" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Delete <?php echo $this->edit_user['name']; ?></h2>
+        <p>Are you sure you would like to delete <?php echo $this->edit_user['name']; ?>?</p>
+        
+        <form id="delete-user" method="post" action="/users/<?php echo $this->edit_user['username']; ?>/delete">
+            <div class="form-buttons">
+                <input type="submit" value="Delete" class="button red" onclick="confirmSubmit('delete-user');" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/issues/new">New Issue</a>
+    </div>
+    
+    <?php
+    /*
+    <div class="box white overview-chart-box">
+        <h1>Last Month (Open vs Closed)</h1>
+        <div><?php echo $this->Chart('overviewOpenClosed', 256, 100, 'Summary of last issues from the last month'); ?></div>
+    </div>
+    */
+    ?>
+    
+    <div class="box white milestones-box" style="display: none;">
+        <h1>Milestones</h1>
+        <div class="milestones-list"></div>
+    </div>
+    
+    <div class="box white issues-in-progress-box" style="display: none;">
+        <h1>In Progress</h1>
+        <div class="issues-in-progress"></div>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <div class="heading">
+        <div class="overview-stats">
+            <?php echo sprintf('<a href="/issues" title="Open Issues" rel="tipsydown"><span class="stat">%s</span><span class="stat-type">Open</span></a>', $this->totals['open']); ?>
+            <?php echo sprintf('<a href="/issues?filter[states][]=%s&filter[states][]=%s" title="Closed Issues" rel="tipsydown"><span class="stat">%s</span><span class="stat-type">Closed</span></a>', Bugify_Issue::STATE_RESOLVED, Bugify_Issue::STATE_CLOSED, $this->totals['closed']); ?>
+            <?php echo sprintf('<a title="Assigned and Open Issues" rel="tipsydown"><span class="stat">%s</span><span class="stat-type">Assigned</span></a>', $this->totals['assigned']); ?>
+            <?php echo sprintf('<a href="/issues?filter[states][]=%s&filter[states][]=%s&filter[states][]=%s&filter[users][]=0" title="Unassigned and Open Issues" rel="tipsydown"><span class="stat">%s</span><span class="stat-type">Unassigned</span></a>', Bugify_Issue::STATE_OPEN, Bugify_Issue::STATE_IN_PROGRESS, Bugify_Issue::STATE_REOPENED, $this->totals['unassigned']); ?>
+        </div>
+    </div>
+    
+    <?php if ($this->assigned['total'] > 0): ?>
+        <div class="info-box">
+            <div class="edit-user-gravatar"><?php echo $this->Gravatar($this->user['name'], $this->user['email'], 32); ?></div>
+            <h1>Assigned To Me</h1>
+            <p>These are the issues that have been assigned to me, and are still open.</p>
+        </div>
+        <?php echo $this->ListIssues($this->assigned['issues']); ?>
+        <?php $issuesWord = ($this->assigned['total'] > 1) ? 'Issues' : 'Issue'; ?>
+        <?php echo sprintf('<div class="see-more"><a href="/issues/mine">%s %s…</a></div>', $this->assigned['total'], $issuesWord); ?>
+    <?php else: ?>
+        <div class="info-box">
+            <div class="edit-user-gravatar"><?php echo $this->Gravatar($this->user['name'], $this->user['email'], 32); ?></div>
+            <h1>Assigned To Me</h1>
+            <p>Normally you would see issues that have been assigned to you here.</p>
+        </div>
+        <p class="no-items-message">No Issues Assigned To Me</p>
+    <?php endif; ?>
+    
+    
+    <div class="overview-separator"></div>
+    
+    
+    <?php if ($this->following['total'] > 0): ?>
+        <div class="info-box">
+            <h1>Following</h1>
+            <p>These are the issues I am following, regardless of the issue status.</p>
+        </div>
+        <?php echo $this->ListIssues($this->following['issues'], true); ?>
+        <?php $issuesWord = ($this->following['total'] > 1) ? 'Issues' : 'Issue'; ?>
+        <?php echo sprintf('<div class="see-more"><a href="/issues/following">%s %s…</a></div>', $this->following['total'], $issuesWord); ?>
+    <?php else: ?>
+        <div class="info-box">
+            <h1>Following</h1>
+            <p>Normally you would see the issues you follow here.  To follow an issue, click the eye icon to the right of the issue name (when viewing an issue).</p>
+        </div>
+        <p class="no-items-message">Not Following Any Issues</p>
+    <?php endif; ?>
+    
+    
+    <div class="overview-separator"></div>
+    
+    
+    <?php if ($this->history['total'] > 0): ?>
+        <div class="info-box">
+            <h1>History</h1>
+            <p>These are the changes to issues that were made recently.</p>
+        </div>
+        <?php echo $this->ListHistory($this->history['history'], true); ?>
+        <?php $changesWord = ($this->history['total'] > 1) ? 'Changes' : 'Change'; ?>
+        <?php echo sprintf('<div class="see-more"><a href="/history">%s %s…</a></div>', $this->history['total'], $changesWord); ?>
+    <?php else: ?>
+        <div class="info-box">
+            <h1>History</h1>
+            <p>Normally you would see a list of recent changes here.</p>
+        </div>
+        <p class="no-items-message">No Recent History Found</p>
+    <?php endif; ?>
+    
+</div>

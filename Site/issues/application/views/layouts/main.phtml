@@ -1,0 +1,55 @@
+<?php echo $this->render('header.phtml'); ?>
+    
+    <?php echo $this->render('messages.phtml'); ?>
+    <?php echo $this->render('menu.phtml'); ?>
+    
+    <div class="wrapper">
+        <?php echo $this->layout()->content; ?>
+    </div>
+    <div class="clear"></div>
+    
+    <div id="shortcuts" style="display:none;">
+        <div class="keyboard-shortcuts-info" style="width: 500px;">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="column">
+                <h3>All pages</h3>
+                <ul>
+                    <li><span>h</span> Show this help</li>
+                    <li><span>s</span> Search</li>
+                    <li><span>n</span> New issue</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><span>o</span> Overview</li>
+                    <li><span>i</span> My issues</li>
+                    <li><span>p</span> Projects</li>
+                    <li><span>m</span> Milestones</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>While viewing an issue</h3>
+                <ul>
+                    <li><span>c</span> Change status</li>
+                    <li><span>e</span> Update issue</li>
+                    <li><span>w</span> Write comment</li>
+                    <li><span>ctrl+u</span> Upload attachment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="preloader">
+        <img src="/images/throbber_32.gif" />
+        <img src="/images/throbber_32-blackbg.gif" />
+    </div>
+    
+    <div class="full-overlay" style="display: none;">
+        <div class="overlay-content"></div>
+    </div>
+
+
+<?php echo $this->render('debug.phtml'); ?>
+
+<?php echo $this->render('footer.phtml'); ?>

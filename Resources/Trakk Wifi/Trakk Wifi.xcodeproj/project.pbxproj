@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84484EA2150DA1110054C0D2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84484EA1150DA1110054C0D2 /* CFNetwork.framework */; };
+		84484EA5150DA1640054C0D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84484EA4150DA1640054C0D2 /* SystemConfiguration.framework */; };
+		844E3FF3150A6E81006938B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E3FF2150A6E81006938B8 /* UIKit.framework */; };
+		844E3FF5150A6E81006938B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E3FF4150A6E81006938B8 /* Foundation.framework */; };
+		844E3FF7150A6E81006938B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E3FF6150A6E81006938B8 /* CoreGraphics.framework */; };
+		844E3FFD150A6E81006938B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 844E3FFB150A6E81006938B8 /* InfoPlist.strings */; };
+		844E3FFF150A6E82006938B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E3FFE150A6E82006938B8 /* main.m */; };
+		844E4003150A6E82006938B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4002150A6E82006938B8 /* AppDelegate.m */; };
+		844E4006150A6E82006938B8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4005150A6E82006938B8 /* ViewController.m */; };
+		844E4009150A6E82006938B8 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E4007150A6E82006938B8 /* ViewController_iPhone.xib */; };
+		844E400C150A6E82006938B8 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E400A150A6E82006938B8 /* ViewController_iPad.xib */; };
+		844E4014150A6E82006938B8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E4013150A6E82006938B8 /* SenTestingKit.framework */; };
+		844E4015150A6E82006938B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E3FF2150A6E81006938B8 /* UIKit.framework */; };
+		844E4016150A6E82006938B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844E3FF4150A6E81006938B8 /* Foundation.framework */; };
+		844E401E150A6E82006938B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 844E401C150A6E82006938B8 /* InfoPlist.strings */; };
+		844E4021150A6E82006938B8 /* Trakk_WifiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 844E4020150A6E82006938B8 /* Trakk_WifiTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		844E4017150A6E82006938B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 844E3FE5150A6E81006938B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 844E3FED150A6E81006938B8;
+			remoteInfo = "Trakk Wifi";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84484EA1150DA1110054C0D2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		84484EA4150DA1640054C0D2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		844E3FEE150A6E81006938B8 /* Trakk Wifi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trakk Wifi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		844E3FF2150A6E81006938B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		844E3FF4150A6E81006938B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		844E3FF6150A6E81006938B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		844E3FFA150A6E81006938B8 /* Trakk Wifi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Trakk Wifi-Info.plist"; sourceTree = "<group>"; };
+		844E3FFC150A6E81006938B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		844E3FFE150A6E82006938B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		844E4000150A6E82006938B8 /* Trakk Wifi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trakk Wifi-Prefix.pch"; sourceTree = "<group>"; };
+		844E4001150A6E82006938B8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		844E4002150A6E82006938B8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		844E4004150A6E82006938B8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		844E4005150A6E82006938B8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		844E4008150A6E82006938B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		844E400B150A6E82006938B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		844E4012150A6E82006938B8 /* Trakk WifiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trakk WifiTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		844E4013150A6E82006938B8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		844E401B150A6E82006938B8 /* Trakk WifiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Trakk WifiTests-Info.plist"; sourceTree = "<group>"; };
+		844E401D150A6E82006938B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		844E401F150A6E82006938B8 /* Trakk_WifiTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trakk_WifiTests.h; sourceTree = "<group>"; };
+		844E4020150A6E82006938B8 /* Trakk_WifiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trakk_WifiTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		844E3FEB150A6E81006938B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84484EA5150DA1640054C0D2 /* SystemConfiguration.framework in Frameworks */,
+				84484EA2150DA1110054C0D2 /* CFNetwork.framework in Frameworks */,
+				844E3FF3150A6E81006938B8 /* UIKit.framework in Frameworks */,
+				844E3FF5150A6E81006938B8 /* Foundation.framework in Frameworks */,
+				844E3FF7150A6E81006938B8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844E400E150A6E82006938B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844E4014150A6E82006938B8 /* SenTestingKit.framework in Frameworks */,
+				844E4015150A6E82006938B8 /* UIKit.framework in Frameworks */,
+				844E4016150A6E82006938B8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		844E3FE3150A6E81006938B8 = {
+			isa = PBXGroup;
+			children = (
+				84484EA4150DA1640054C0D2 /* SystemConfiguration.framework */,
+				84484EA1150DA1110054C0D2 /* CFNetwork.framework */,
+				844E3FF8150A6E81006938B8 /* Trakk Wifi */,
+				844E4019150A6E82006938B8 /* Trakk WifiTests */,
+				844E3FF1150A6E81006938B8 /* Frameworks */,
+				844E3FEF150A6E81006938B8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		844E3FEF150A6E81006938B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				844E3FEE150A6E81006938B8 /* Trakk Wifi.app */,
+				844E4012150A6E82006938B8 /* Trakk WifiTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		844E3FF1150A6E81006938B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				844E3FF2150A6E81006938B8 /* UIKit.framework */,
+				844E3FF4150A6E81006938B8 /* Foundation.framework */,
+				844E3FF6150A6E81006938B8 /* CoreGraphics.framework */,
+				844E4013150A6E82006938B8 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		844E3FF8150A6E81006938B8 /* Trakk Wifi */ = {
+			isa = PBXGroup;
+			children = (
+				844E4001150A6E82006938B8 /* AppDelegate.h */,
+				844E4002150A6E82006938B8 /* AppDelegate.m */,
+				844E4004150A6E82006938B8 /* ViewController.h */,
+				844E4005150A6E82006938B8 /* ViewController.m */,
+				844E4007150A6E82006938B8 /* ViewController_iPhone.xib */,
+				844E400A150A6E82006938B8 /* ViewController_iPad.xib */,
+				844E3FF9150A6E81006938B8 /* Supporting Files */,
+			);
+			path = "Trakk Wifi";
+			sourceTree = "<group>";
+		};
+		844E3FF9150A6E81006938B8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				844E3FFA150A6E81006938B8 /* Trakk Wifi-Info.plist */,
+				844E3FFB150A6E81006938B8 /* InfoPlist.strings */,
+				844E3FFE150A6E82006938B8 /* main.m */,
+				844E4000150A6E82006938B8 /* Trakk Wifi-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		844E4019150A6E82006938B8 /* Trakk WifiTests */ = {
+			isa = PBXGroup;
+			children = (
+				844E401F150A6E82006938B8 /* Trakk_WifiTests.h */,
+				844E4020150A6E82006938B8 /* Trakk_WifiTests.m */,
+				844E401A150A6E82006938B8 /* Supporting Files */,
+			);
+			path = "Trakk WifiTests";
+			sourceTree = "<group>";
+		};
+		844E401A150A6E82006938B8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				844E401B150A6E82006938B8 /* Trakk WifiTests-Info.plist */,
+				844E401C150A6E82006938B8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		844E3FED150A6E81006938B8 /* Trakk Wifi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 844E4024150A6E82006938B8 /* Build configuration list for PBXNativeTarget "Trakk Wifi" */;
+			buildPhases = (
+				844E3FEA150A6E81006938B8 /* Sources */,
+				844E3FEB150A6E81006938B8 /* Frameworks */,
+				844E3FEC150A6E81006938B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trakk Wifi";
+			productName = "Trakk Wifi";
+			productReference = 844E3FEE150A6E81006938B8 /* Trakk Wifi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		844E4011150A6E82006938B8 /* Trakk WifiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 844E4027150A6E82006938B8 /* Build configuration list for PBXNativeTarget "Trakk WifiTests" */;
+			buildPhases = (
+				844E400D150A6E82006938B8 /* Sources */,
+				844E400E150A6E82006938B8 /* Frameworks */,
+				844E400F150A6E82006938B8 /* Resources */,
+				844E4010150A6E82006938B8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				844E4018150A6E82006938B8 /* PBXTargetDependency */,
+			);
+			name = "Trakk WifiTests";
+			productName = "Trakk WifiTests";
+			productReference = 844E4012150A6E82006938B8 /* Trakk WifiTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		844E3FE5150A6E81006938B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = UWA;
+			};
+			buildConfigurationList = 844E3FE8150A6E81006938B8 /* Build configuration list for PBXProject "Trakk Wifi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 844E3FE3150A6E81006938B8;
+			productRefGroup = 844E3FEF150A6E81006938B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				844E3FED150A6E81006938B8 /* Trakk Wifi */,
+				844E4011150A6E82006938B8 /* Trakk WifiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		844E3FEC150A6E81006938B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844E3FFD150A6E81006938B8 /* InfoPlist.strings in Resources */,
+				844E4009150A6E82006938B8 /* ViewController_iPhone.xib in Resources */,
+				844E400C150A6E82006938B8 /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844E400F150A6E82006938B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844E401E150A6E82006938B8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		844E4010150A6E82006938B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		844E3FEA150A6E81006938B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844E3FFF150A6E82006938B8 /* main.m in Sources */,
+				844E4003150A6E82006938B8 /* AppDelegate.m in Sources */,
+				844E4006150A6E82006938B8 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		844E400D150A6E82006938B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844E4021150A6E82006938B8 /* Trakk_WifiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		844E4018150A6E82006938B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 844E3FED150A6E81006938B8 /* Trakk Wifi */;
+			targetProxy = 844E4017150A6E82006938B8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		844E3FFB150A6E81006938B8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844E3FFC150A6E81006938B8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		844E4007150A6E82006938B8 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844E4008150A6E82006938B8 /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		844E400A150A6E82006938B8 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844E400B150A6E82006938B8 /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		844E401C150A6E82006938B8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844E401D150A6E82006938B8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		844E4022150A6E82006938B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		844E4023150A6E82006938B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		844E4025150A6E82006938B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Trakk Wifi/Trakk Wifi-Prefix.pch";
+				INFOPLIST_FILE = "Trakk Wifi/Trakk Wifi-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		844E4026150A6E82006938B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Trakk Wifi/Trakk Wifi-Prefix.pch";
+				INFOPLIST_FILE = "Trakk Wifi/Trakk Wifi-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		844E4028150A6E82006938B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Trakk Wifi.app/Trakk Wifi";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Trakk Wifi/Trakk Wifi-Prefix.pch";
+				INFOPLIST_FILE = "Trakk WifiTests/Trakk WifiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		844E4029150A6E82006938B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Trakk Wifi.app/Trakk Wifi";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Trakk Wifi/Trakk Wifi-Prefix.pch";
+				INFOPLIST_FILE = "Trakk WifiTests/Trakk WifiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		844E3FE8150A6E81006938B8 /* Build configuration list for PBXProject "Trakk Wifi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844E4022150A6E82006938B8 /* Debug */,
+				844E4023150A6E82006938B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		844E4024150A6E82006938B8 /* Build configuration list for PBXNativeTarget "Trakk Wifi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844E4025150A6E82006938B8 /* Debug */,
+				844E4026150A6E82006938B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		844E4027150A6E82006938B8 /* Build configuration list for PBXNativeTarget "Trakk WifiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844E4028150A6E82006938B8 /* Debug */,
+				844E4029150A6E82006938B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 844E3FE5150A6E81006938B8 /* Project object */;
+}

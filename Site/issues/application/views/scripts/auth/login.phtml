@@ -1,0 +1,33 @@
+
+<form action="" method="post" autocomplete="off">
+    
+    <?php if (isset($this->login_error) && strlen($this->login_error) > 0): ?>
+    <p class="login-error"><?php echo $this->login_error; ?></p>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            shakeLoginBox();
+        });
+    </script>
+    <?php endif; ?>
+    
+    <div>
+        <?php if ($this->is_demo === true): ?>
+        <div class="info-box">
+            <h1>Demo</h1>
+            <p>This app is running in demo mode.  You may log in with the username "<b><?php echo $this->demo['username']; ?></b>" and password "<b><?php echo $this->demo['password']; ?></b>".  The data on this site will be reset every <?php echo $this->demo['reset_period']; ?> minutes.<br />Please feel free to play around as much as you like.  If you like it, you can <a href="http://bugify.com">download Bugify</a>, or use <a href="http://bugify.com">Bugify Hosted</a>.</p>
+        </div>
+        <?php endif; ?>
+        <div class="form-row">
+            <div class="form-label">Username</div>
+            <input type="text" name="username" value="<?php echo $this->username; ?>" placeholder="Username" class="large" autocapitalize="off" autocorrect="off" <?php echo (!$this->Mobile()) ? 'autofocus="autofocus"' : ''; ?> />
+        </div>
+        <div class="form-row">
+            <div class="form-label">Password</div>
+            <input type="password" name="password" value="" placeholder="Password" class="large" />
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Log in" class="button gray" />
+    </div>
+</form>

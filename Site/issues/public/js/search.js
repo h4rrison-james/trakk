@@ -1,0 +1,1 @@
+function reIndexIssues(){var a=$(".full-overlay .overlay-content");a.html("Re-indexing...");a.css({top:$(window).height()/2-(a.height()/2),left:$(window).width()/2-(a.width()/2)});$(".full-overlay").fadeIn()};

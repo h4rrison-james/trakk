@@ -1,0 +1,54 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green confirm-button" href="#add-milestone">Add Milestone</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Milestones</h1>
+    
+    <?php if (count($this->milestones) > 0): ?>
+    <table class="milestone-list">
+        <?php foreach($this->milestones as $key => $val): ?>
+        <tr>
+            <td class="column-quantity">
+                <div class="issue-quantity"><?php echo $val['issue_count']; ?></div>
+            </td>
+            <td>
+                <?php echo sprintf('<a href="/milestones/%s">%s</a>', $val['id'], $val['name']); ?>
+                <div class="meta"><?php echo (strlen($val['due']) > 0) ? 'Due '.Bugify_Date::formatDate('EEE, d MMM yyyy', $val['due']) : 'No due date'; ?>.</div>
+                
+                <?php if (strlen($val['description']) > 0): ?>
+                <div class="description"><?php echo $val['description']; ?></div>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php else: ?>
+    <p class="no-items-message">No Milestones Found</p>
+    <?php endif; ?>
+</div>
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Add Milestone</h2>
+        <p>Fill in the milestone name and due date below.</p>
+        
+        <form id="add-milestone" method="post" action="">
+            
+            <p>Milestone name</p>
+            <input type="text" name="milestone[name]" placeholder="Milestone name" />
+            
+            <p>Due Date (optional)</p>
+            <input type="text" name="milestone[due]" class="datepicker" placeholder="Due date" />
+            
+            <p>Description (optional)</p>
+            <textarea name="milestone[description]" placeholder="Description"></textarea>
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>

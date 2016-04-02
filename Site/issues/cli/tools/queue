@@ -1,0 +1,97 @@
+#!/usr/bin/php
+<?php
+/**
+ * Run any jobs in the queue.
+ * ./queue
+ */
+
+//Load the bootstrapper in cli mode
+require_once realpath(dirname(__FILE__).'/../../library/Bootstrap.php');
+Bootstrap::start(true);
+
+try {
+    //Define the cli options
+    $opts = new Zend_Console_Getopt(
+       array(
+          'help|h'   => 'Displays this help information.',
+       )
+    );
+    
+    $opts->parse();
+} catch (Zend_Console_Getopt_Exception $e) {
+    echo $e->getUsageMessage();
+    exit(1);
+}
+
+//Check if the "help" option was specified
+if (isset($opts->help)) {
+    echo $opts->getUsageMessage();
+    exit(1);
+}
+
+try {
+    //Make sure the user that is running this script is correct
+    $config = Zend_Registry::get('config');
+    
+    $cli = new Ui_Cli();
+    $cli->setExpectedUser($config->web_user)
+        ->dropPrivileges();
+    
+    //Check if there are any pending jobs
+    $q    = new Bugify_Queue();
+    $jobs = $q->fetchPending(1);
+    
+    if (is_array($jobs) && count($jobs) > 0) {
+        
+        do {
+            //Prepare the job/method runner
+            $m = new Bugify_Queue_Job_Method();
+            
+            foreach ($jobs as $job) {
+                //Mark the job as running
+                /*
+                $job->setStarted(time())
+                    ->setState(Bugify_Queue_Job::STATE_RUNNING);
+                
+                $q->save($job);
+                */
+                
+                if ($q->markJobAsRunning($job)) {
+                    try {
+                        //Now run the job
+                        $m->run($job->getMethod(), $job->getParams());
+                        
+                        //Mark the job as finished
+                        $job->setFinished(time())
+                            ->setState(Bugify_Queue_Job::STATE_COMPLETE);
+                        
+                        $q->save($job);
+                        
+                    } catch (Exception $e) {
+                        //Mark the job as failed
+                        $job->setFinished(time())
+                            ->setState(Bugify_Queue_Job::STATE_FAILED)
+                            ->setMessage($e->getMessage().' '.$e->getTraceAsString());
+                        
+                        $q->save($job);
+                    }
+                }
+            }
+            
+            //Wait for half a second
+            usleep(500000);
+            
+            //Now fetch the next job
+            $jobs = $q->fetchPending(1);
+            
+        } while (is_array($jobs) && count($jobs) > 0);
+    }
+    
+    exit(0);
+    
+} catch (Exception $e) {
+    echo $e->getMessage()."\n";
+    //echo $e->getTraceAsString()."\n";
+    
+    exit(1);
+}

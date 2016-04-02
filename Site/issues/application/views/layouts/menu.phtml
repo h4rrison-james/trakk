@@ -1,0 +1,165 @@
+<div class="header-container">
+    <div class="content">
+        <ul class="menu">
+            <li>
+                <?php
+                    //Figure out if we are somewhere in the overview
+                    $overviewControllers = array(
+                        'index'   => array(),
+                        'history' => array(),
+                    );
+                    
+                    $inOverview = false;
+                    
+                    if (array_key_exists($this->controller, $overviewControllers)) {
+                        //Check if this is only for a specific action
+                        if (count($overviewControllers[$this->controller]) > 0) {
+                            
+                            if (in_array($this->action, $overviewControllers[$this->controller])) {
+                                $inOverview = true;
+                            }
+                            
+                        } else {
+                            $inOverview = true;
+                        }
+                    }
+                    
+                ?>
+                <a href="/" <?php echo ($inOverview === true) ? 'class="selected"' : ''; ?> id="menu-overview">Overview</a>
+                <ul>
+                    <li><a href="/history">History</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/issues/mine" <?php echo ($this->controller == 'issues') ? 'class="selected"' : ''; ?> id="menu-issues-mine">Issues <span class="notification"><?php echo $this->MyIssueCount($this->user['username']); ?></span></a>
+                <?php
+                //Get list of recently visited issues
+                $s = new Zend_Session_Namespace('RecentIssues');
+                
+                if (isset($s->issues) && is_array($s->issues) && count($s->issues) > 0) {
+                    $recent  = $s->issues;
+                    $all_css = 'separate-below';
+                    $new_css = 'separate-above';
+                } else {
+                    $recent  = array();
+                    $all_css = '';
+                    $new_css = '';
+                }
+                ?>
+                <ul>
+                    <li><a href="/issues/mine"><span class="issue-count"><?php echo $this->MyIssueCount($this->user['username']); ?></span>Assigned To Me</a></li>
+                    
+                    <?php if (($following = $this->MyFollowCount($this->user['username'])) > 0): ?>
+                    <li><a href="/issues/following"><span class="issue-count"><?php echo $following; ?></span>Following</a></li>
+                    <?php endif; ?>
+                    
+                    <?php if (($filters = $this->MyFilterCount($this->user['username'])) > 0): ?>
+                    <li><a href="/issues/filters"><span class="issue-count"><?php echo $filters; ?></span>Filters</a></li>
+                    <?php endif; ?>
+                    
+                    <li><a href="/issues" class="<?php echo $all_css; ?>"><span class="issue-count"><?php echo $this->TotalIssueCount(); ?></span>All Issues</a></li>
+                    
+                    <?php foreach ($recent as $key => $val): ?>
+                    <li><a href="/issues/<?php echo $val['id']; ?>"><?php echo sprintf('<span class="hash">#</span>%s - %s', $val['id'], $this->ShortenString($val['subject'], 60)); ?></a></li>
+                    <?php endforeach; ?>
+                    
+                    <li><a href="/issues/new" class="<?php echo $new_css; ?>">New Issue</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/projects" <?php echo ($this->controller == 'projects') ? 'class="selected"' : ''; ?> id="menu-projects">Projects</a>
+                <ul>
+                    <?php $projects = $this->Projects(); ?>
+                    <li><a href="/projects" <?php echo (count($projects) > 0) ? 'class="separate-below"' : ''; ?>>All Projects</a></li>
+                    <?php
+                    
+                    if (is_array($projects) && count($projects) > 0)
+                    {
+                        foreach ($projects as $key => $val)
+                        {
+                            echo sprintf('<li><a href="/projects/%s"><span class="issue-count">%s</span>%s</a></li>', $val['slug'], $val['issue_count'], $val['name']);
+                        }
+                    }
+                    
+                    ?>
+                </ul>
+            </li>
+            <li>
+                <a href="/milestones" <?php echo ($this->controller == 'milestones') ? 'class="selected"' : ''; ?> id="menu-milestones">Milestones</a>
+                <ul>
+                    <?php $milestones = $this->Milestones(); ?>
+                    <li><a href="/milestones" <?php echo (count($milestones) > 0) ? 'class="separate-below"' : ''; ?>>All Milestones</a></li>
+                    <?php
+                    
+                    if (is_array($milestones) && count($milestones) > 0)
+                    {
+                        foreach ($milestones as $key => $val)
+                        {
+                            echo sprintf('<li><a href="/milestones/%s"><span class="issue-count">%s</span>%s</a></li>', $val['id'], $val['issue_count'], $val['name']);
+                        }
+                    }
+                    
+                    ?>
+                </ul>
+            </li>
+            <li>
+                <?php
+                    //Figure out if we are somewhere in the settings
+                    $settingsControllers = array(
+                        'settings' => array(),
+                        'update'   => array(),
+                        'users'    => array(
+                            'index',
+                        ),
+                        'search'   => array(
+                            'settings',
+                        ),
+                    );
+                    
+                    $inSettings = false;
+                    
+                    if (array_key_exists($this->controller, $settingsControllers)) {
+                        //Check if this is only for a specific action
+                        if (count($settingsControllers[$this->controller]) > 0) {
+                            
+                            if (in_array($this->action, $settingsControllers[$this->controller])) {
+                                $inSettings = true;
+                            }
+                            
+                        } else {
+                            $inSettings = true;
+                        }
+                    }
+                    
+                ?>
+                <a href="/users" <?php echo ($inSettings === true) ? 'class="selected"' : ''; ?>>Settings</a>
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                    <!--<li><a href="/settings">General Settings</a></li>
+                    <li><a href="/mailboxes">Mailbox Settings</a></li>
+                    <li><a href="/import">Import Data</a></li>-->
+                    <li><a href="/search/settings">Search Settings</a></li>
+                    <li><a href="/settings/cache">Cache Settings</a></li>
+                    <li><a href="/update">Software Update</a></li>
+                </ul>
+            </li>
+            <li class="last">
+                <a href="<?php echo sprintf('/users/%s/edit', $this->user['username']); ?>" <?php echo ($this->controller == 'users' && $this->action == 'edit') ? 'class="selected"' : ''; ?>>My Account</a>
+                <ul>
+                    <li><a href="<?php echo sprintf('/users/%s/edit', $this->user['username']); ?>"><?php echo $this->user['name']; ?></a></li>
+                    <?php if ($this->isHosted): ?>
+                    <li><a href="/account">Account Management</a></li>
+                    <?php endif; ?>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="search">
+            <form action="/search" method="get" autocomplete="off">
+                <input type="text" id="search" name="q" class="search-box" placeholder="Search Issues" autocapitalize="off" autocorrect="off" value="<?php echo (isset($this->q)) ? $this->q : ''; ?>" />
+            </form>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

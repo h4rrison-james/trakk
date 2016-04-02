@@ -1,0 +1,11 @@
+<?php echo $this->render('header.phtml'); ?>
+
+<div class="wrapper error">
+    <div class="error-box content">
+        <?php if (strlen($this->title) > 0): ?><h1><?php echo $this->title; ?></h1><?php endif; ?>
+        <?php echo $this->layout()->content; ?>
+    </div>
+</div>
+
+</body>
+</html>

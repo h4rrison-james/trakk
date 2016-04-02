@@ -1,0 +1,106 @@
+
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/issues/new/?milestone=<?php echo $this->milestone['id']; ?>">New Issue</a>
+    </div>
+    
+    <div class="box white">
+        <h1>Milestone Details</h1>
+        <table>
+            <tr>
+                <td class="issue-overview-title">Due</td>
+                <td class="issue-overview-data"><?php echo (strlen($this->milestone['due']) > 0) ? Bugify_Date::formatDate('EEE, d MMM yyyy', $this->milestone['due']) : 'No due date'; ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Issues</td>
+                <td class="issue-overview-data"><?php echo sprintf('%s closed, %s open', $this->closedCount, $this->openCount); ?></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td class="issue-overview-data" colspan="2">
+                    <?php
+                        //Work out the percentage of closed issues
+                        $totalIssuesCount = ($this->closedCount+$this->openCount);
+                        
+                        if ($totalIssuesCount > 0) {
+                            $completePercentage = ($this->closedCount / $totalIssuesCount) * 100;
+                        } else {
+                            $completePercentage = 0;
+                        }
+                        
+                        echo $this->BarGraph($completePercentage);
+                    ?>
+                </td>
+            </tr>
+        </table>
+        
+        <a class="button gray update-button" href="#update-milestone">Update Milestone</a>
+    </div>
+    
+    <div class="box red semi">
+        <a class="button red confirm-button" href="#delete">Archive Milestone</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1><?php echo $this->milestone['name']; ?><span class="issue-quantity right"><a title="<?php echo $this->total; ?> Issues" rel="tipsyleft"><?php echo $this->total; ?></a></span></h1>
+    
+    <?php if (strlen($this->milestone['description']) > 0): ?>
+    <div class="info-box">
+        <p><?php echo $this->milestone['description']; ?></p>
+    </div>
+    <?php endif; ?>
+    
+    <?php if (count($this->issues) > 0): ?>
+        <?php echo $this->ListIssues($this->issues, true, false); ?>
+    <?php else: ?>
+        <p class="no-items-message">No Issues Found</p>
+    <?php endif; ?>
+    
+    <?php echo $this->Pagination('/milestones/'.$this->milestone['id'].'/?page=%s', $this->page, $this->limit, $this->total); ?>
+</div>
+
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Archive <?php echo $this->milestone['name']; ?></h2>
+        <p>Are you sure you would like to archive <?php echo $this->milestone['name']; ?>?  All issues will be removed from this milestone.</p>
+        
+        <form id="delete-milestone" method="post" action="/milestones/<?php echo $this->milestone['id']; ?>/delete">
+            <div class="form-buttons">
+                <input type="submit" value="Archive" class="button red" onclick="confirmSubmit('delete-milestone');" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="update-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Update Milestone</h2>
+        <p></p>
+        
+        <form id="update-milestone" method="post" action="">
+            
+            <div class="form-row">
+                <div class="form-label">Milestone name</div>
+                <div class="form-field"><input type="text" name="milestone[name]" placeholder="Milestone name" value="<?php echo $this->milestone['name']; ?>" /></div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Due Date (optional)</div>
+                <div class="form-field"><input type="text" name="milestone[due]" class="datepicker" placeholder="Due date" value="<?php echo (strlen($this->milestone['due']) > 0) ? Bugify_Date::formatDate('EEE, d MMM yyyy', $this->milestone['due']) : ''; ?>" /></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Description (optional)</div>
+                <div class="form-field"><textarea name="milestone[description]" placeholder="Description"><?php echo $this->milestone['description']; ?></textarea></div>
+            </div>
+            
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save Changes" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+

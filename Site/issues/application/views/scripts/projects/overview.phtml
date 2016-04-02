@@ -1,0 +1,86 @@
+
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/issues/new/?project=<?php echo $this->project['id']; ?>">New Issue</a>
+    </div>
+    
+    <div class="box white">
+        <h1>Categories</h1>
+        
+        <?php if (isset($this->project['categories']) && is_array($this->project['categories']) && count($this->project['categories']) > 0): ?>
+            <ul>
+            <?php foreach($this->project['categories'] as $key => $val): ?>
+                <li><?php echo sprintf('<a href="/projects/%s/categories/%s">%s</a>', $this->project['slug'], $val['id'], $val['name']); ?></li>
+            <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+        
+        <a href="#new-category" class="button gray category-button">New Category</a>
+    </div>
+    
+    <div class="box white">
+        <a href="#update-project" class="button gray update-button">Update Project</a>
+    </div>
+    
+    <div class="box red semi">
+        <a class="button red confirm-button" href="#delete">Archive Project</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1><?php echo $this->project['name']; ?><span class="issue-quantity right"><a title="<?php echo $this->total; ?> Issues" rel="tipsyleft"><?php echo $this->total; ?></a></span></h1>
+    
+    <?php if (count($this->issues) > 0): ?>
+        <?php echo $this->ListIssues($this->issues, true, false); ?>
+    <?php else: ?>
+        <p class="no-items-message">No Issues Found</p>
+    <?php endif; ?>
+    
+    <?php echo $this->Pagination('/projects/'.$this->project['slug'].'/?page=%s', $this->page, $this->limit, $this->total); ?>
+</div>
+
+
+<div id="category-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Add Category</h2>
+        <p>Fill in the category name below.</p>
+        
+        <form id="add-category" method="post" action="/projects/<?php echo $this->project['slug']; ?>/new-category">
+            
+            <input type="text" name="category[name]" placeholder="Category name" />
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="update-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Update Project</h2>
+        <p></p>
+        
+        <form id="update-project" method="post" action="">
+            
+            <input type="text" name="project[name]" placeholder="Project name" value="<?php echo $this->project['name']; ?>" />
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save Changes" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Archive <?php echo $this->project['name']; ?></h2>
+        <p>Are you sure you would like to archive <?php echo $this->project['name']; ?>?  All issues for this project will be marked as closed.</p>
+        
+        <form id="delete-project" method="post" action="/projects/<?php echo $this->project['slug']; ?>/delete">
+            <div class="form-buttons">
+                <input type="submit" value="Archive" class="button red" onclick="confirmSubmit('delete-project');" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>

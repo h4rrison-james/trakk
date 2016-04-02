@@ -1,0 +1,27 @@
+<?php echo $this->render('header.phtml'); ?>
+
+<script type="text/javascript" src="/js/jquery-1.7.1.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+<script type="text/javascript" src="/js/login.js?v<?php echo Bugify_Version::VERSION; ?>"></script>
+
+<div class="wrapper login">
+    
+    <noscript><p class="error">This app requires javascript to be enabled.</p></noscript>
+    
+    <div class="login-box content shadow">
+        <?php if (!$this->is_new): ?>
+        <h1><img src="/images/bugify-logo-medium.png" style="margin-bottom: -7px;" /> Bugify</h1>
+        <?php else: ?>
+        <h1><img src="/images/bugify-logo-medium.png" style="margin-bottom: -7px;" /> Log in below</h1>
+        <?php endif; ?>
+        
+        <?php echo $this->render('messages.phtml'); ?>
+        <?php echo $this->layout()->content; ?>
+    </div>
+    
+    <div class="content">
+        <div class="footer"><div class="right"><a href="https://bugify.com" style="color: #81898B; text-decoration: none;">Bugify Issue Tracker</a></div>&copy; 2011-<?php echo date('Y'); ?> <a href="http://frondiz.com">Frondiz Ltd</a>.  All rights reserved.</div>
+    </div>
+</div>
+
+</body>
+</html>

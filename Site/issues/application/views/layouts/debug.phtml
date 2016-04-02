@@ -1,0 +1,46 @@
+<?php
+
+$db = Bugify_Db::get();
+
+$profiler = $db->getProfiler();
+
+$profiles = $profiler->getQueryProfiles();
+
+if (is_array($profiles) && count($profiles) > 0)
+{
+    echo '<div class="content main">';
+    
+    $totalTime    = $profiler->getTotalElapsedSecs();
+    $queryCount   = $profiler->getTotalNumQueries();
+    $longestTime  = 0;
+    $longestQuery = null;
+    
+    foreach ($profiles as $query)
+    {
+        echo '<pre>';
+        echo 'Time:  '.$query->getElapsedSecs()."\n";
+        echo 'Query: '.$query->getQuery()."\n";
+        echo '</pre>';
+        
+        
+        if ($query->getElapsedSecs() > $longestTime)
+        {
+            $longestTime  = $query->getElapsedSecs();
+            $longestQuery = $query->getQuery();
+        }
+    }
+    
+    echo '<pre>';
+    echo 'Executed ' . $queryCount . ' queries in ' . $totalTime .
+         ' seconds' . "\n";
+    echo 'Average query length: ' . $totalTime / $queryCount .
+         ' seconds' . "\n";
+    echo 'Queries per second: ' . $queryCount / $totalTime . "\n";
+    echo 'Longest query length: ' . $longestTime . "\n";
+    echo "Longest query: \n" . $longestQuery . "\n";
+    echo '</pre>';
+    
+    echo '</div>';
+}
+
+?>

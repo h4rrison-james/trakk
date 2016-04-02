@@ -1,0 +1,49 @@
+<div class="info-box">
+    <h1>Welcome to Bugify</h1>
+    <p>Please fill in your details below to create the first user.</p>
+</div>
+
+<form action="" method="post" autocomplete="off">
+    <div>
+        <div class="form-row">
+            <div class="form-label">First name</div>
+            <div class="form-field"><input type="text" name="user[firstname]" value="<?php echo $this->add_user['firstname']; ?>" autofocus="autofocus" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Last name</div>
+            <div class="form-field"><input type="text" name="user[lastname]" value="<?php echo $this->add_user['lastname']; ?>" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Email</div>
+            <div class="form-field"><input type="email" name="user[email]" value="<?php echo $this->add_user['email']; ?>" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Username</div>
+            <div class="form-field"><input type="text" name="user[username]" value="<?php echo $this->add_user['username']; ?>" autocapitalize="off" autocorrect="off" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Password</div>
+            <div class="form-field"><input type="password" name="user[password]" value="" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Timezone</div>
+            <div class="form-field">
+                <select name="user[timezone]">
+                    <?php
+                        $timezones = Bugify_Date::getTimezonesWithLocalTime();
+                        
+                        foreach ($timezones as $key => $val) {
+                            $selected = ($this->add_user['timezone'] == $val['timezone']) ? ' selected="selected"' : '';
+                            
+                            echo sprintf('<option value="%s"%s>%s - %s</option>', $val['timezone'], $selected, $val['localTime'], $val['name']);
+                        }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <input type="submit" value="Create First User" class="button green" />
+    </div>
+</form>

@@ -1,0 +1,50 @@
+#!/usr/bin/php
+<?php
+/**
+ * Update the database schema
+ * ./update-db-schema
+ */
+
+//Load the bootstrapper in cli mode
+require_once realpath(dirname(__FILE__).'/../../library/Bootstrap.php');
+Bootstrap::start(true);
+
+try {
+    //Define the cli options
+    $opts = new Zend_Console_Getopt(
+       array(
+          'help|h' => 'Displays this help information.',
+       )
+    );
+    
+    $opts->parse();
+} catch (Zend_Console_Getopt_Exception $e) {
+    echo $e->getUsageMessage();
+    exit(1);
+}
+
+//Check if the "help" option was specified
+if (isset($opts->help)) {
+    echo $opts->getUsageMessage();
+    exit(1);
+}
+
+try {
+    //Make sure the user that is running this script is correct
+    $config = Zend_Registry::get('config');
+    
+    $cli = new Ui_Cli();
+    $cli->setExpectedUser($config->web_user)
+        ->dropPrivileges();
+    
+    //Generate the db schema
+    $u = new Bugify_Db_Upgrade();
+    $u->upgradeDbSchema();
+    
+    exit(0);
+} catch (Exception $e) {
+    echo $e->getMessage()."\n";
+    //echo $e->getTraceAsString()."\n";
+    
+    exit(1);
+}

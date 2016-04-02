@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".category-button").bind("click",function(){jQuery.facebox({div:"#category-box"});return false});$(".update-button").bind("click",function(){jQuery.facebox({div:"#update-box"});return false})});

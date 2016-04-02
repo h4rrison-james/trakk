@@ -1,0 +1,85 @@
+<div class="right-content">
+    <div class="box blue">
+        <a href="/update/check" class="button blue">Check For Updates</a>
+    </div>
+    
+    <div class="box white">
+        <h1>Version Details</h1>
+        
+        <table>
+            <tr>
+                <td class="issue-overview-title">Installed</td>
+                <td class="issue-overview-data"><?php echo $this->app_version; ?></td>
+            </tr>
+            
+            <?php if ($this->upgrade_exists === true): ?>
+            <tr>
+                <td class="issue-overview-title">Available</td>
+                <td class="issue-overview-data"><?php echo $this->upgrade['version']; ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Released</td>
+                <td class="issue-overview-data"><?php echo $this->RelativeDate($this->upgrade['released']); ?></td>
+            </tr>
+            <?php else: ?>
+            <tr>
+                <td class="issue-overview-title">Last Checked</td>
+                <td class="issue-overview-data"><?php echo $this->RelativeDate($this->last_checked); ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Next Check</td>
+                <td class="issue-overview-data">After <?php echo Bugify_Date::formatDate('ha, d MMM', $this->next_check); ?></td>
+            </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <?php if ($this->upgrade_exists === true): ?>
+    <h1>Version <?php echo $this->upgrade['version']; ?> is available</h1>
+    <?php else: ?>
+    <h1>Bugify is up-to-date</h1>
+    <?php endif; ?>
+    
+    <?php if ($this->upgrade_exists === true): ?>
+        
+        <div id="confirm-box" style="display:none;">
+            <div class="confirm-content">
+                <h2>Confirm Update</h2>
+                
+                <p>It may take a few moments to install the update.</p>
+                <p>Bugify will be unavailable while the update is happening.</p>
+                
+                <div class="form-buttons">
+                    <a href="/update/now" onclick="confirmUpgrade();" class="button green">Install v<?php echo $this->upgrade['version']; ?> Now</a>
+                    <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h1>Update Available</h1>
+            <p>Please click below to update your installation of Bugify.  After the update is complete, all caches will be cleared.</p>
+        </div>
+        
+        <?php if (strlen($this->upgrade['changelog']) > 0): ?>
+            <div class="info-box green">
+                <h1>Release Notes</h1>
+                <?php echo $this->Markdown($this->upgrade['changelog']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <div class="form-buttons">
+            <a href="#upgrade" id="install-upgrade" class="button green confirm-button">Install v<?php echo $this->upgrade['version']; ?> Now</a>
+        </div>
+    
+    <?php else: ?>
+    
+    <div class="info-box">
+        <h1>No Updates Available At The Moment</h1>
+        <p>Bugify is up-to-date.  From time to time there will be bug-fixes, new features, and security updates.  It is important to keep your installation of Bugify up-to-date.</p>
+    </div>
+    
+    <?php endif; ?>
+</div>

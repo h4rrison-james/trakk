@@ -1,0 +1,1 @@
+$(document).bind("reveal.facebox",function(){$(".datepicker").datepicker({dateFormat:"D, dd M yy"})});$(document).ready(function(){$(".update-button").bind("click",function(){jQuery.facebox({div:"#update-box"});return false})});

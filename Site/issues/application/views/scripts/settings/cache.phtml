@@ -1,0 +1,59 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/settings/cache/?clear-all">Clear All Caches</a>
+    </div>
+    
+    <div class="box white">
+        <h1>Settings</h1>
+        
+        <form action="" method="post">
+        <table>
+            <tr>
+                <td class="issue-overview-title">Cache Status</td>
+                <td class="issue-overview-data">
+                    <select name="settings[state]">
+                        <option value="0" <?php echo ($this->cache_enabled == false) ? 'selected="selected"' : ''; ?>>Disable Cache</option>
+                        <option value="1" <?php echo ($this->cache_enabled == true) ? 'selected="selected"' : ''; ?>>Enable Cache</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+        <input type="submit" class="button gray" value="Save Changes" />
+        
+        </form>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Cache Settings</h1>
+    
+    <?php if ($this->cache_enabled == true): ?>
+    
+    <div class="info-box">
+        <h1>What Are Cache Tags?</h1>
+        <p>Bits of data are stored with a tag.  You can clear individual caches by clicking Clear Cache for each tag.</p>
+    </div>
+    
+    <?php if (is_array($this->tags) && count($this->tags) > 0): ?>
+    <table>
+        <?php foreach ($this->tags as $tag => $tagName): ?>
+        <tr>
+            <td><?php echo $tagName; ?></td>
+            <td width="100"><?php echo sprintf('<a href="/settings/cache/?clear-tag=%s">Clear Cache</a>', $tag); ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php else: ?>
+    <p class="no-items-message">No Cache Tags Found</p>
+    <?php endif; ?>
+    
+    <?php else: ?>
+    
+    <div class="info-box">
+        <h1>Cache is Disabled</h1>
+        <p>While Bugify is very snappy without cache, we recommend turning it on to make Bugify even faster.</p>
+    </div>
+    
+    <?php endif; ?>
+</div>

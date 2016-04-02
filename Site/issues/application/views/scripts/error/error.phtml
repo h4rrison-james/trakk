@@ -1,0 +1,18 @@
+<h1><?php echo $this->error_type; ?></h1>
+
+<?php if ($this->error_type == 404): ?>
+    <p>Uh oh, that page doesn't exist.</p>
+<?php else: ?>
+    <p>If you would like to report this error, please copy the full error message below and send it to <a href="mailto:support@bugify.com">support@bugify.com</a>.  Please provide a description of what you were doing when the error occurred to help us diagnose it.</p>
+    
+    <?php if (strlen($this->raw_error) > 0): ?>
+    <pre><?php echo $this->raw_error; ?></pre>
+    <?php endif; ?>
+    
+    <?php if (strlen($this->stacktrace) > 0): ?>
+    <pre><?php echo $this->stacktrace; ?></pre>
+    <?php endif; ?>
+    
+<?php endif; ?>
+
+<p><a href="/">&larr; Start Over</a></p>

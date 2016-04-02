@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><?php echo (isset($this->page_title) && strlen($this->page_title) > 0) ? sprintf('%s - Bugify', $this->page_title) : 'Bugify'; ?></title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico?v<?php echo Bugify_Version::VERSION; ?>" />
+    <link rel="stylesheet" href="/css/global.css?v<?php echo Bugify_Version::VERSION; ?>" type="text/css" />
+    <link rel="stylesheet" href="/css/tipsy.css?v<?php echo Bugify_Version::VERSION; ?>" type="text/css" />
+    <link rel="stylesheet" href="/css/facebox.css?<?php echo Bugify_Version::VERSION; ?>" type="text/css" />
+    <link rel="stylesheet" href="/css/print.css?<?php echo Bugify_Version::VERSION; ?>" type="text/css" media="print" />
+    
+    <?php if ($this->controller == 'milestones'): ?>
+    <link rel="stylesheet" href="/css/jquery-ui-1.8.13.datepicker.css?<?php echo Bugify_Version::VERSION; ?>" type="text/css" />
+    <?php endif; ?>
+    
+    <?php if (strlen($this->extra_css) > 0): ?>
+    <link rel="stylesheet" href="<?php echo $this->extra_css; ?>?<?php echo Bugify_Version::VERSION; ?>" type="text/css" />
+    <?php endif; ?>
+</head>
+
+<body>

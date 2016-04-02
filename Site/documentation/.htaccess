@@ -1,0 +1,60 @@
+RewriteEngine on
+RewriteBase /
+
+ErrorDocument 404 /404
+
+#work
+RewriteRule ^work$                          work.php
+RewriteRule ^work/$                         work.php
+
+#contact                                    
+RewriteRule ^contact$                       contact.php
+RewriteRule ^contact/$                      contact.php
+
+#madewithlove                               
+RewriteRule ^work/madewithlove$             madewithlove.php
+RewriteRule ^work/madewithlove/$            madewithlove.php
+
+#madewithlove v2                              
+RewriteRule ^work/madewithlove-v2$          madewithlove-v2.php
+RewriteRule ^work/madewithlove-v2/$         madewithlove-v2.php
+
+#enjoythejourney                            
+RewriteRule ^work/enjoythejourney$          enjoythejourney.php
+RewriteRule ^work/enjoythejourney/$         enjoythejourney.php
+
+#faviconz                               
+RewriteRule ^work/faviconz$                 faviconz.php
+RewriteRule ^work/faviconz/$                faviconz.php
+
+#webapplication                               
+RewriteRule ^work/webapplication$           webapplication.php
+RewriteRule ^work/webapplication/$          webapplication.php
+
+#inspecturl                               
+RewriteRule ^work/inspecturl$               inspecturl.php
+RewriteRule ^work/inspecturl/$              inspecturl.php
+
+#portfolio                               
+RewriteRule ^work/portfolio$                 portfolio.php
+RewriteRule ^work/portfolio/$                portfolio.php
+
+#e-commerce                               
+RewriteRule ^work/e-commerce$                 e-commerce.php
+RewriteRule ^work/e-commerce/$                e-commerce.php
+
+#birthday                               
+RewriteRule ^work/birthday$                 birthday.php
+RewriteRule ^work/birthday/$                birthday.php
+
+#404                               
+RewriteRule ^404$                           404.php
+RewriteRule ^404/$                          404.php
+
+#thanks
+RewriteRule ^23/thanks$                            23/thanks.html
+RewriteRule ^23/thanks/$                           23/thanks.html
+
+#thanks
+RewriteRule ^23/awww$                              23/awww.html
+RewriteRule ^23/awww/$                             23/awww.html

@@ -1,0 +1,13 @@
+<div class="right-content">
+    <div class="box green">
+        <a href="/issues/new" class="button green">New Issue</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Following<span class="issue-quantity right"><a title="<?php echo $this->total; ?> Issues" rel="tipsyleft"><?php echo $this->total; ?></a></span></h1>
+    
+    <?php echo $this->ListIssues($this->issues, true); ?>
+    
+    <?php echo $pagination = $this->Pagination('/issues/following/?page=%s', $this->page, $this->limit, $this->total); ?>
+</div>

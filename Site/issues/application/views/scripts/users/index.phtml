@@ -1,0 +1,26 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/users/new">New User</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Users</h1>
+    
+    <?php if (is_array($this->users) && count($this->users) > 0): ?>
+    <table class="user-list">
+        <?php foreach ($this->users as $key => $val): ?>
+        <tr>
+            <td class="column-quantity">
+                <div class="issue-quantity"><?php echo $val['issue_count']; ?></div>
+            </td>
+            <td class="column-gravatar"><?php echo $this->Gravatar($val['name'], $val['email']); ?></td>
+            <td>
+                <a href="/users/<?php echo $val['username']; ?>/edit"><?php echo $val['name']; ?></a>
+                <div class="meta"><?php echo sprintf('Added <a title="%s" rel="tipsydown">%s</a>', $val['created'], $this->RelativeDate($val['created'])); ?>.  <?php echo sprintf('Email <a href="mailto:%s">%s</a>', $val['email'], $val['email']); ?></div>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+</div>

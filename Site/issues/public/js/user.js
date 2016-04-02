@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".generate-api-key-button").bind("click",function(){jQuery.facebox({div:"#generate-api-key-box"});return false})});

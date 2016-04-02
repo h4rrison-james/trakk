@@ -1,0 +1,1 @@
+function moveBox(a,b){$(a).css("left",b+"px")}function shake(b,f,h){var i=f.shift();moveBox(b,i);if(f.length>0){setTimeout(function(){shake(b,f,h)},h)}else{try{$(b).css("position","static")}catch(g){}}}function shakeLoginBox(){var b=new Array(5,10,5,0,-5,-10,-5,0);b=b.concat(b.concat(b));var a=$(".login-box");a.css("position","relative");shake(".login-box",b,20)};

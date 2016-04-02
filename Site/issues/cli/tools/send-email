@@ -1,0 +1,62 @@
+#!/usr/bin/php
+<?php
+/**
+ * Send a test email (useful to verify the smtp settings)
+ * ./send-email -e emailaddress
+ */
+
+//Load the bootstrapper in cli mode
+require_once realpath(dirname(__FILE__).'/../../library/Bootstrap.php');
+Bootstrap::start(true);
+
+try {
+    //Define the cli options
+    $opts = new Zend_Console_Getopt(
+       array(
+          'help|h'    => 'Displays this help information.',
+          'email|e=s' => 'Email address to send to.',
+       )
+    );
+    
+    $opts->parse();
+} catch (Zend_Console_Getopt_Exception $e) {
+    echo $e->getUsageMessage();
+    exit(1);
+}
+
+//Check if the "help" option was specified
+if (isset($opts->help)) {
+    echo $opts->getUsageMessage();
+    exit(1);
+}
+
+try {
+    //Make sure the user that is running this script is correct
+    $config = Zend_Registry::get('config');
+    
+    $cli = new Ui_Cli();
+    $cli->setExpectedUser($config->web_user)
+        ->dropPrivileges();
+    
+    //Make sure the email has been set
+    if (isset($opts->email)) {
+        //Send the email
+        $m = new Bugify_Mail();
+        $mailer = $m->getMailer();
+        $mailer->addTo($opts->email)
+               ->setSubject('Test from Bugify')
+               ->setBodyText('Your email settings are working.');
+        
+        $mailer->send();
+        
+        exit(0);
+    } else {
+        echo $opts->getUsageMessage();
+        exit(1);
+    }
+} catch (Exception $e) {
+    echo $e->getMessage()."\n";
+    //echo $e->getTraceAsString()."\n";
+    
+    exit(1);
+}

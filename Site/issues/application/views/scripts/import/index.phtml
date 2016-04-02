@@ -1,0 +1,29 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green confirm-button" href="#add-project">Begin Import</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Import Data</h1>
+    
+    <div class="info-box">
+        <h1>Import Info</h1>
+        <p>It's not possible to keep the same issue id numbers when importing because the issue id might have been taken already - so all imported issues are re-numbered in sequence.  We will do our best to avoid duplicates if you import more than once (by matching on the issue subject and created date), but we recommend importing only once.</p>
+        <p>Please note that it is not always possible to import all data.  Some services support more import/export features than others.</p>
+    </div>
+    
+</div>
+
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Import Data</h2>
+        <p>You should only import data once or you may get duplicates.</p>
+        
+        <div class="form-buttons">
+            <input type="submit" value="Import Data" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+        </div>
+    </div>
+</div>
+

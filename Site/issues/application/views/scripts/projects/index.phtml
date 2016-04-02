@@ -1,0 +1,45 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green confirm-button" href="#add-project">Add Project</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Projects</h1>
+    
+    <?php if (count($this->projects) > 0): ?>
+    <table class="project-list">
+        <?php foreach($this->projects as $key => $val): ?>
+        <tr>
+            <td class="column-quantity">
+                <div class="issue-quantity"><?php echo $val['issue_count']; ?></div>
+            </td>
+            <td>
+                <?php echo sprintf('<a href="/projects/%s">%s</a>', $val['slug'], $val['name']); ?>
+                <div class="meta"><?php echo sprintf('Created <a title="%s" rel="tipsydown">%s</a>', $val['created'], $this->RelativeDate($val['created'])); ?>.</div>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php else: ?>
+    <p class="no-items-message">No Projects Found</p>
+    <?php endif; ?>
+</div>
+
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Add Project</h2>
+        <p>Fill in the project name below.</p>
+        
+        <form id="add-project" method="post" action="">
+            
+            <input type="text" name="project[name]" placeholder="Project name" />
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+

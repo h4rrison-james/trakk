@@ -1,0 +1,27 @@
+<div class="right-content">
+    <div class="box green">
+        <a class="button green" href="/search/re-index" onclick="reIndexIssues();">Re-Index Issues</a>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>Search Settings</h1>
+    
+    <div class="info-box">
+        <h1>What is re-indexing?</h1>
+        <p>This feature is generally used just for debugging.  It will clear the previous search index and go through all issues, adding them to the search index one-by-one.</p>
+        <p>Click the green button on the right to begin re-indexing.</p>
+    </div>
+    
+    <table>
+        <tr>
+            <td>Number of indexed documents</td>
+            <td><?php echo $this->stats['docs']; ?></td>
+        </tr>
+        <tr>
+            <td>Index size on disk</td>
+            <td><?php echo $this->FormatBytes($this->stats['size_on_disk']); ?></td>
+        </tr>
+    </table>
+    
+</div>

@@ -1,0 +1,32 @@
+<div class="messages-holder">
+    <?php
+    
+    //Check if there are any messages waiting to be viewed
+    $messages = Ui_Messages::GetAll();
+    
+    if (is_array($messages) && count($messages) > 0)
+    {
+        $i = 1;
+        
+        foreach ($messages as $key => $message)
+        {
+            echo $this->DisplayMessage($message['type'], $message['message'], false, $i);
+            
+            $i++;
+        }
+    }
+    
+    //Check for updates
+    if (isset($this->upgrade) && is_array($this->upgrade) && count($this->upgrade) > 0 && $this->controller != 'update')
+    {
+        echo $this->DisplayMessage('upgrade', sprintf('Bugify %s (released %s) is available to be installed.  [Find out more](/update).', $this->upgrade['version'], $this->RelativeDate($this->upgrade['released'])));
+    }
+    
+    //Check if the remove install folder message needs displaying
+    if (isset($this->remove_install) && $this->remove_install === true)
+    {
+        echo $this->DisplayMessage('warning', 'Please delete the /public/install directory to prevent re-installation.');
+    }
+    
+    ?>
+</div>

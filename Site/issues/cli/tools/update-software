@@ -1,0 +1,90 @@
+#!/usr/bin/php
+<?php
+/**
+ * Check for updates and/or update the installation.
+ * ./update-software -c
+ */
+
+//Load the bootstrapper in cli mode
+require_once realpath(dirname(__FILE__).'/../../library/Bootstrap.php');
+Bootstrap::start(true);
+
+try {
+    //Define the cli options
+    $opts = new Zend_Console_Getopt(
+       array(
+          'help|h'   => 'Displays this help information.',
+          'check|c'  => 'Check for available updates.',
+          'force|f'  => 'Use force when checking for available updates (use in conjunction with "-c").',
+          'update|u' => 'Update to the latest version.',
+       )
+    );
+    
+    $opts->parse();
+} catch (Zend_Console_Getopt_Exception $e) {
+    echo $e->getUsageMessage();
+    exit(1);
+}
+
+//Check if the "help" option was specified
+if (isset($opts->help)) {
+    echo $opts->getUsageMessage();
+    exit(1);
+}
+
+try {
+    //Make sure the user that is running this script is correct
+    $config = Zend_Registry::get('config');
+    
+    $cli = new Ui_Cli();
+    $cli->setExpectedUser($config->web_user)
+        ->dropPrivileges();
+    
+    //Make sure an option was specified
+    if (isset($opts->check) || isset($opts->update)) {
+        $config = Zend_Registry::get('config');
+        $u = new Bugify_Upgrades($config->upgrades->url, $config->upgrades->channel);
+        
+        if (isset($opts->check)) {
+            //Check for updates
+            if ($opts->force) {
+                $u->checkForUpgrade(true);
+            } else {
+                $u->checkForUpgrade();
+            }
+            
+            if ($u->upgradeExists()) {
+                $upgrade = $u->getUpgradeInfo();
+                
+                echo sprintf('Version %s is available to be installed.', $upgrade['version'])."\n";
+            }
+        }
+        
+        if (isset($opts->update)) {
+            //Run an update
+            $u->checkForUpgrade(true);
+            
+            if ($u->upgradeExists()) {
+                $upgrade = $u->getUpgradeInfo();
+                
+                echo 'Updating...'."\n";
+                
+                $u->doUpgrade();
+                
+                echo sprintf('Bugify has been updated to version %s', $upgrade['version'])."\n";
+            } else {
+                echo 'No updates to install.'."\n";
+            }
+        }
+        
+        exit(0);
+    } else {
+        echo $opts->getUsageMessage();
+        exit(1);
+    }
+} catch (Exception $e) {
+    echo $e->getMessage()."\n";
+    //echo $e->getTraceAsString()."\n";
+    
+    exit(1);
+}

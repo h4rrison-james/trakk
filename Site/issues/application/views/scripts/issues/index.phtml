@@ -1,0 +1,164 @@
+<div class="right-content">
+    <div class="box green">
+        <a href="/issues/new" class="button green">New Issue</a>
+    </div>
+    
+    <div class="box white">
+        <div class="right">
+            <?php if ($this->custom_filter === true): ?>
+            <a href="#save" class="confirm-button">Save Filter</a>
+            <?php endif; ?>
+        </div>
+        
+        <h1>Filter Issues</h1>
+        
+        <form action="" method="get">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <input type="text" name="filter[search]" class="search-box" placeholder="Search Issues" autocapitalize="off" autocorrect="off" value="<?php echo $this->filter['search']; ?>" style="width: 230px;" />
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Project</td>
+                <td class="issue-overview-data">
+                    <?php $projects  = $this->Projects(); ?>
+                    <?php $list_size = (count($projects) < 5) ? count($projects)+2 : 5; ?>
+                    <select multiple="multiple" name="filter[projects][]" size="<?php echo $list_size; ?>" class="filter-select">
+                        <option value="" <?php echo (count($this->filter['projects']) == 0) ? 'selected="selected"' : ''; ?>>Any</option>
+                        <option value="0" <?php echo (in_array(0, $this->filter['projects'])) ? 'selected="selected"' : ''; ?>>None</option>
+                        
+                        <?php foreach ($projects as $key => $val): ?>
+                        <option value="<?php echo $val['id']; ?>" <?php echo (in_array($val['id'], $this->filter['projects'])) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Priority</td>
+                <td class="issue-overview-data">
+                    <?php $priorities = $this->Priorities(); ?>
+                    <?php $list_size  = (count($priorities) < 5) ? count($priorities)+1 : 5; ?>
+                    <select multiple="multiple" name="filter[priorities][]" size="<?php echo $list_size; ?>" class="filter-select">
+                        <option value="" <?php echo (count($this->filter['priorities']) == 0) ? 'selected="selected"' : ''; ?>>Any</option>
+                        
+                        <?php foreach ($priorities as $key => $val): ?>
+                        <option value="<?php echo $key; ?>" <?php echo (in_array($key, $this->filter['priorities'])) ? 'selected="selected"' : ''; ?>><?php echo $val; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Status</td>
+                <td class="issue-overview-data">
+                    <?php $states    = $this->IssueStates(); ?>
+                    <?php $list_size = count($states)+1; ?>
+                    <select multiple="multiple" name="filter[states][]" size="<?php echo $list_size; ?>" class="filter-select">
+                        <option value="" <?php echo (count($this->filter['states']) == 0) ? 'selected="selected"' : ''; ?>>Any</option>
+                        
+                        <?php foreach ($states as $key => $val): ?>
+                        <option value="<?php echo $key; ?>" <?php echo (in_array($key, $this->filter['states'])) ? 'selected="selected"' : ''; ?>><?php echo $val; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Milestone</td>
+                <td class="issue-overview-data">
+                    <?php $milestones = $this->Milestones(); ?>
+                    <?php $list_size  = (count($milestones) < 5) ? count($milestones)+2 : 5; ?>
+                    <select multiple="multiple" name="filter[milestones][]" size="<?php echo $list_size; ?>" class="filter-select">
+                        <option value="" <?php echo (count($this->filter['milestones']) == 0) ? 'selected="selected"' : ''; ?>>Any</option>
+                        <option value="0" <?php echo (in_array(0, $this->filter['milestones'])) ? 'selected="selected"' : ''; ?>>None</option>
+                        
+                        <?php foreach ($milestones as $key => $val): ?>
+                        <option value="<?php echo $val['id']; ?>" <?php echo (in_array($val['id'], $this->filter['milestones'])) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Assigned to</td>
+                <td class="issue-overview-data">
+                    <?php $users     = $this->Users(); ?>
+                    <?php $list_size = (count($users) < 5) ? count($users)+2 : 5; ?>
+                    <select multiple="multiple" name="filter[users][]" size="<?php echo $list_size; ?>" class="filter-select">
+                        <option value="" <?php echo (count($this->filter['users']) == 0) ? 'selected="selected"' : ''; ?>>Any</option>
+                        <option value="0" <?php echo (in_array(0, $this->filter['users'])) ? 'selected="selected"' : ''; ?>>Unassigned</option>
+                        
+                        <?php foreach ($users as $key => $val): ?>
+                        <option value="<?php echo $val['id']; ?>" <?php echo (in_array($val['id'], $this->filter['users'])) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+        <input type="submit" class="button gray" value="Filter Issues" />
+        
+        </form>
+    </div>
+    
+    <?php if (isset($this->saved_filter['id'])): ?>
+    <div class="box red semi">
+        <a class="button red forget-filter-button" href="#delete">Forget Filter</a>
+    </div>
+    <?php endif; ?>
+</div>
+
+<div class="left-column content shadow">
+    <h1>
+        <?php if (isset($this->saved_filter['name']) && strlen($this->saved_filter['name']) > 0): ?>
+        <?php echo $this->saved_filter['name']; ?>
+        <?php else: ?>
+        <?php echo ($this->custom_filter === false) ? 'All Issues' : 'Filtered Issues'; ?>
+        <?php endif; ?>
+        <span class="issue-quantity right"><a title="<?php echo $this->total; ?> Issues" rel="tipsyleft"><?php echo $this->total; ?></a></span>
+    </h1>
+    
+    <?php echo $this->ListIssues($this->issues, true); ?>
+    
+    <?php
+        //Build the URL params for the filter so pagination can work
+        if (isset($this->saved_filter['id']))
+        {
+            $filter_params = 'filter_id='.$this->saved_filter['id'];
+        }
+        else
+        {
+            $filter_params = urldecode(http_build_query(array('filter' => $this->filter)));
+        }
+    ?>
+    <?php echo $pagination = $this->Pagination('/issues/?page=%s&'.$filter_params, $this->page, $this->limit, $this->total); ?>
+</div>
+
+<?php if (isset($this->saved_filter['id'])): ?>
+<div id="forget-filter-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Forget Filter</h2>
+        <p>Are you sure you would like to forget the filter named "<?php echo $this->saved_filter['name']; ?>".</p>
+        
+        <form id="forget-filter" method="post" action="/issues/forget-filter/?filter_id=<?php echo $this->saved_filter['id']; ?>">
+            <div class="form-buttons">
+                <input type="submit" value="Forget Filter" class="button red" onclick="confirmSubmit('forget-filter');" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
+
+<div id="confirm-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Save Filter</h2>
+        <p>Type a name for this search filter below.</p>
+        
+        <form id="save-filter" method="post" action="">
+            
+            <input type="text" name="save_filter[name]" placeholder="Filter name" />
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>

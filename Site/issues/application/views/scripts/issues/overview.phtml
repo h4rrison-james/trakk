@@ -1,0 +1,575 @@
+<div class="right-content no-print">
+    
+    <div class="box blue">
+        <a class="button gray update-status" href="#update-status">Change Status</a>
+    </div>
+    
+    <div class="box white">
+        <?php if (isset($this->issue['assignee'])): ?>
+        <div class="right">
+            <?php echo $this->Gravatar($this->issue['assignee']['name'], $this->issue['assignee']['email']); ?>
+        </div>
+        <?php endif; ?>
+        
+        <h1>Issue Details</h1>
+        
+        <table>
+            <tr>
+                <td class="issue-overview-title">Issue</td>
+                <td class="issue-overview-data"><span class="hash">#</span><?php echo $this->issue['id']; ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Priority</td>
+                <td class="issue-overview-data"><?php echo $this->PriorityName($this->issue['priority']); ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Project</td>
+                <td class="issue-overview-data">
+                    <?php if (isset($this->issue['project'])): ?>
+                    <a href="/projects/<?php echo $this->issue['project']['slug']; ?>" title="<?php echo $this->issue['project']['name']; ?>"><?php echo $this->ShortenString($this->issue['project']['name'], 25); ?></a>
+                    <?php else: ?>
+                    None
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Category</td>
+                <td class="issue-overview-data"><?php echo ($this->issue['category_id'] > 0) ? sprintf('<a href="/projects/%s/categories/%s">%s</a>', $this->issue['project']['slug'], $this->issue['category_id'], $this->CategoryName($this->issue['category_id'])) : $this->CategoryName($this->issue['category_id']); ?></td>
+            </tr>
+            <tr>
+                <td class="issue-overview-title">Status</td>
+                <td class="issue-overview-data"><?php echo $this->StateName($this->issue['state']); ?></td>
+            </tr>
+            
+            <?php if ($this->issue['milestone_id'] > 0): ?>
+            <tr>
+                <td class="issue-overview-title">Milestone</td>
+                <td class="issue-overview-data">
+                    <?php if (isset($this->issue['milestone'])): ?>
+                    <a href="/milestones/<?php echo $this->issue['milestone']['id']; ?>" title="<?php echo $this->issue['milestone']['name']; ?>"><?php echo $this->ShortenString($this->issue['milestone']['name'], 25); ?></a>
+                    <?php else: ?>
+                    None
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+            
+            <tr>
+                <td class="issue-overview-title">Assigned to</td>
+                <td class="issue-overview-data"><?php echo (isset($this->issue['assignee']['name'])) ? sprintf('<a href="/users/%s/issues">%s</a>', $this->issue['assignee']['username'], $this->issue['assignee']['name']) : 'Nobody'; ?></td>
+            </tr>
+            
+            <?php if ($this->issue['percentage'] > 0): ?>
+            <tr>
+                <td class="issue-overview-data" colspan="2">
+                    <?php echo $this->BarGraph($this->issue['percentage']); ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+        </table>
+        
+        <input id="issueId" type="hidden" value="<?php echo $this->issue['id']; ?>" />
+        <a class="button gray update-button" href="#update-issue">Update Details</a>
+    </div>
+    
+    <div class="box white">
+        <?php if (isset($this->issue['attachments']) && count($this->issue['attachments']) > 0): ?>
+        <h1>Attachments</h1>
+        
+        <div class="overview-attachments">
+            <ul>
+            <?php foreach ($this->issue['attachments'] as $key => $val): ?>
+                <li>
+                    <a href="<?php echo sprintf('/assets/attachment/%s/%s', $this->issue['id'], $val['filename']); ?>" title="<?php echo $val['name']; ?>"><?php echo $this->ShortenString($val['name'], 80); ?></a>
+                    <div class="right"><?php echo $this->FormatBytes($val['filesize']); ?></div>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+        
+        <?php if ($this->Mobile() === false): ?>
+        <a class="button gray attach-button" href="#upload-attachment">Upload Attachment</a>
+        <?php endif; ?>
+    </div>
+    
+    <div class="box blue issue-overview-meta">
+        <div class="right"><?php echo $this->Gravatar($this->issue['creator']['name'], $this->issue['creator']['email']); ?></div>
+        
+        <p>Added <a class="date" title="<?php echo $this->issue['created']; ?>" rel="tipsydown"><?php echo $this->RelativeDate($this->issue['created']); ?></a> by <a href="/users/<?php echo $this->issue['creator']['username']; ?>/issues"><?php echo $this->issue['creator']['name']; ?></a>.
+        <?php echo ($this->issue['updated'] != $this->issue['created']) ? sprintf('Last updated <a title="%s" rel="tipsydown">%s</a>.', $this->issue['updated'], $this->RelativeDate($this->issue['updated'])) : ''; ?></p>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="box white issue-overview-related-issues-box" style="display: none;">
+        <h1>Related Issues</h1>
+        
+        <div class="issue-overview-related-issues">
+        </div>
+    </div>
+    
+    <div class="box white semi">
+        <button class="button gray show-history-button" style="width: 100%;" onclick="showHistory('<?php echo $this->issue['id']; ?>'); return false;">Show History</button>
+    </div>
+    
+</div>
+
+<div class="left-column">
+    <div class="content shadow">
+        <h1>
+            <div class="right">
+                <?php echo $this->FollowIssue($this->issue['id'], $this->issue['followers'], $this->user['id']); ?>
+            </div>
+            <?php echo $this->issue['subject']; ?>
+        </h1>
+        
+        <div class="print-only">
+            <table>
+                <tr>
+                    <td class="issue-overview-title">Issue</td>
+                    <td class="issue-overview-data"><span class="hash">#</span><?php echo $this->issue['id']; ?></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title">Priority</td>
+                    <td class="issue-overview-data"><?php echo $this->PriorityName($this->issue['priority']); ?></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title">Project</td>
+                    <td class="issue-overview-data">
+                        <?php if (isset($this->issue['project'])): ?>
+                        <?php echo $this->issue['project']['name']; ?>
+                        <?php else: ?>
+                        None
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title">Category</td>
+                    <td class="issue-overview-data"><?php echo $this->CategoryName($this->issue['category_id']) ; ?></td>
+                </tr>
+                <tr>
+                    <td class="issue-overview-title">Status</td>
+                    <td class="issue-overview-data"><?php echo $this->StateName($this->issue['state']); ?></td>
+                </tr>
+                
+                <?php if ($this->issue['milestone_id'] > 0): ?>
+                <tr>
+                    <td class="issue-overview-title">Milestone</td>
+                    <td class="issue-overview-data">
+                        <?php if (isset($this->issue['milestone'])): ?>
+                        <?php echo $this->issue['milestone']['name']; ?>
+                        <?php else: ?>
+                        None
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+                
+                <tr>
+                    <td class="issue-overview-title">Assigned to</td>
+                    <td class="issue-overview-data"><?php echo (isset($this->issue['assignee']['name'])) ? $this->issue['assignee']['name'] : 'Nobody'; ?></td>
+                </tr>
+                
+                <?php if ($this->issue['percentage'] > 0): ?>
+                <tr>
+                    <td class="issue-overview-data" colspan="2">
+                        <?php echo $this->BarGraph($this->issue['percentage']); ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+        
+        <div class="overview-description">
+            <?php if (strlen($this->issue['description']) > 0): ?>
+                <?php echo $this->Markdown($this->Linkify($this->issue['description'])); ?>
+            <?php else: ?>
+                <p class="no-items-message">No Description</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+    <div class="content add-comment-holder">
+        
+        <?php if (isset($this->issue['comments']) && count($this->issue['comments']) > 0): ?>
+        <h2 class="comments-title">Comments</h2>
+        <table class="comment-list">
+            <?php foreach ($this->issue['comments'] as $key => $val): ?>
+            <tr>
+                <td class="column-gravatar">
+                    <?php echo $this->Gravatar($val['user']['name'], $val['user']['email']); ?>
+                    <div class="edit-comment-holder">
+                        <a href="#edit-comment" class="edit-comment-button" title="Edit comment" onclick="editComment('<?php echo $val['id']; ?>'); return false;"></a>
+                        <a href="#reply-to-comment" class="reply-comment-button" title="Reply to comment" onclick="replyToComment(); return false;"></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="meta">
+                        <span class="writer"><?php echo sprintf('<a href="/users/%s/issues">%s</a>', $val['user']['username'], $val['user']['name']); ?></span>
+                        <span class="date right">
+                        <?php
+                            if ($val['updated'] == 0 || $val['updated'] == $val['created'])
+                            {
+                                echo sprintf('<a class="date" title="%s" rel="tipsydown">%s</a>', $val['created'], $this->RelativeDate($val['created']));
+                            }
+                            else
+                            {
+                                echo sprintf('<a class="date" title="%s" rel="tipsydown">%s</a>, last updated <a class="date" title="%s" rel="tipsydown">%s</a>', $val['created'], $this->RelativeDate($val['created']), $val['updated'], $this->RelativeDate($val['updated']));
+                            }
+                        ?>
+                        </span>
+                    </div>
+                    
+                    <input type="hidden" id="comment-<?php echo $val['id']; ?>" value="<?php echo $val['comment']; ?>" />
+                    
+                    <?php echo $this->Markdown($this->Linkify($val['comment'])); ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+        
+        <h2>Have something to say?</h2>
+        <form method="post" action="">
+            <div class="box">
+                <textarea class="comment-box" id="comment-box" name="comment" placeholder="Add a comment"><?php echo $this->comment; ?></textarea>
+            </div>
+            
+            <div class="comment-box-helper" style="display: none;">
+                <p>Hint: You can use <a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> formatting.  Also, you can link to other tickets by typing #123 (123 being the ticket id).</p>
+                
+                <input type="submit" class="button gray" value="Save Comment" />
+            </div>
+        </form>
+    </div>
+    
+    <div class="content issue-history-holder" style="display: none;">
+        <div class="throbber issue-history-throbber"></div>
+        <div class="issue-history" style="display: none;"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<div id="edit-comment-box" style="display:none;">
+    <div class="confirm-content">
+        <h2>Edit Comment</h2>
+        
+        <form id="edit-comment" method="post" action="">
+            <textarea name="editcomment[comment]" id="edit-comment-content"></textarea>
+            <input type="hidden" name="editcomment[id]" id="edit-comment-id" value="" />
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save Changes" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="attach-box" style="display:none;">
+    <div class="confirm-content" style="width: 500px;">
+        <h2>Upload Attachments</h2>
+        <p>Select the files you would like to upload.  Maximum upload size is <?php echo $this->MaxUploadSize(); ?>.</p>
+        
+        <form id="attach-file" method="post" action="" enctype="multipart/form-data">
+            <div class="upload-holder">
+                <input name="attachment[]" type="file" multiple="multiple" />
+                <input type="hidden" name="attach" />
+            </div>
+            
+            <div class="throbber-holder" style="display: none;"><div class="throbber" style="float: left;"></div><div style="float: left; line-height: 32px; margin-left: 10px;">Uploading...</div><div class="clear"></div></div>
+            
+            <div class="form-buttons">
+                <input type="submit" value="Upload Attachments" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="update-status" style="display:none;">
+    <div class="confirm-content" style="width: 500px;">
+        <h2>Change Status</h2>
+        <p></p>
+        
+        <form id="update-status" method="post" action="">
+            
+            <?php
+            //Get the open states
+            $i = new Bugify_Issues();
+            $open_states = $i->getOpenStates();
+            
+            /**
+             * Figure out the order of the status options, 
+             * dependant on the current status.
+             */
+            switch ($this->issue['state'])
+            {
+                case Bugify_Issue::STATE_OPEN:
+                    $options = array(
+                       array(
+                          'state'   => Bugify_Issue::STATE_OPEN,
+                          'checked' => true,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_IN_PROGRESS,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_RESOLVED,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_CLOSED,
+                       ),
+                    );
+                    
+                    break;
+                case Bugify_Issue::STATE_REOPENED:
+                    $options = array(
+                       array(
+                          'state'   => Bugify_Issue::STATE_REOPENED,
+                          'checked' => true,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_IN_PROGRESS,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_RESOLVED,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_CLOSED,
+                       ),
+                    );
+                    
+                    break;
+                case Bugify_Issue::STATE_IN_PROGRESS:
+                    $options = array(
+                       array(
+                          'state' => Bugify_Issue::STATE_OPEN,
+                       ),
+                       array(
+                          'arrow' => 'left',
+                       ),
+                       array(
+                          'state'   => Bugify_Issue::STATE_IN_PROGRESS,
+                          'checked' => true,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_RESOLVED,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_CLOSED,
+                       ),
+                    );
+                    
+                    break;
+                case Bugify_Issue::STATE_RESOLVED:
+                    $options = array(
+                       array(
+                          'state' => Bugify_Issue::STATE_REOPENED,
+                       ),
+                       array(
+                          'arrow' => 'left',
+                       ),
+                       array(
+                          'state'   => Bugify_Issue::STATE_RESOLVED,
+                          'checked' => true,
+                       ),
+                       array(
+                          'arrow' => 'right',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_CLOSED,
+                       ),
+                    );
+                    
+                    break;
+                case Bugify_Issue::STATE_CLOSED:
+                    $options = array(
+                       array(
+                          'state' => Bugify_Issue::STATE_REOPENED,
+                       ),
+                       array(
+                          'arrow' => 'left',
+                       ),
+                       array(
+                          'state' => Bugify_Issue::STATE_CLOSED,
+                       ),
+                    );
+                    
+                    break;
+            }
+            
+            if (is_array($options) && count($options) > 0)
+            {
+                foreach ($options as $key => $val)
+                {
+                    if (isset($val['state']))
+                    {
+                        $checked = ($this->issue['state'] == $val['state']) ? 'checked="checked"' : '';
+                        
+                        echo '<label>';
+                        echo '<input type="radio" name="status[state]" value="'.$val['state'].'" '.$checked.'> ';
+                        echo $this->StateName($val['state']);;
+                        echo '</label>';
+                    }
+                    elseif (isset($val['arrow']))
+                    {
+                        echo '<span class="arrow-'.$val['arrow'].'"></span>';
+                    }
+                }
+            }
+            ?>
+            <div class="clear"></div>
+            <p>&nbsp;</p>
+            
+            <div class="form-row">
+                <div class="issue-new-column">
+                    <div class="form-label">Assign to</div>
+                    <div class="form-field">
+                        <select name="status[assignee]">
+                            <option value="">Nobody</option>
+                            <?php foreach ($this->users as $key => $val): ?>
+                            <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['assignee_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column">
+                    <div class="form-label">Percent complete</div>
+                    <div class="form-field">
+                        <select name="status[percentage]">
+                            <?php foreach (range(0, 100, 10) as $percent): ?>
+                            <option value="<?php echo $percent; ?>" <?php echo ($this->issue['percentage'] == $percent) ? 'selected="selected"' : '' ?>><?php echo $percent; ?> %</option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear"></div>
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save Changes" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="update-box" style="display:none;">
+    <div class="confirm-content" style="width: 750px;">
+        <h2>Update Issue</h2>
+        <p></p>
+        
+        <form id="update-issue" method="post" action="">
+            
+            <div class="form-row">
+                <div class="form-label">Subject</div>
+                <div class="form-field"><input type="text" name="issue[subject]" value="<?php echo $this->issue['subject']; ?>" placeholder="Quick summary of the issue" /></div>
+            </div>
+            <div class="form-row">
+                <div class="form-label">Description</div>
+                <div class="form-field"><textarea name="issue[description]" placeholder="Describe your issue here" class="tall"><?php echo $this->issue['description']; ?></textarea></div>
+                <div class="form-field hint">You can use <a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> formatting.</div>
+            </div>
+            
+            <div class="form-row">
+                <div class="issue-new-column">
+                    <div class="form-label">Project</div>
+                    <div class="form-field">
+                        <select name="issue[project]" id="project" onchange="updateCategoriesFromFacebox();">
+                            <option value="">None</option>
+                            <?php foreach ($this->projects as $key => $val): ?>
+                            <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['project_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column category-throbber" style="display: none; float: right;">
+                    <div class="throbber"></div>
+                </div>
+                <div class="issue-new-column categories-holder" <?php echo (count($this->categories) > 0) ? '' : 'style="display: none;"'; ?>>
+                    <div class="form-label">Category</div>
+                    <div class="form-field">
+                        <select name="issue[category]" class="categories">
+                            <option value="">None</option>
+                            <?php foreach ($this->categories as $key => $val): ?>
+                            <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['category_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column">
+                    <div class="form-label">Milestone</div>
+                    <div class="form-field">
+                        <select name="issue[milestone]">
+                            <option value="">None</option>
+                            <?php foreach ($this->milestones as $key => $val): ?>
+                            <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['milestone_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $this->ShortenString($val['name'], 20); ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column">
+                    <div class="form-label">Priority</div>
+                    <div class="form-field">
+                        <select name="issue[priority]">
+                            <?php foreach ($this->priorities as $key => $val): ?>
+                            <option value="<?php echo $key; ?>" <?php echo ($this->issue['priority'] == $key) ? 'selected="selected"' : '' ?>><?php echo $val; ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column">
+                    <div class="form-label">Assign to</div>
+                    <div class="form-field">
+                        <select name="issue[assignee]">
+                            <option value="">Nobody</option>
+                            <?php foreach ($this->users as $key => $val): ?>
+                            <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['assignee_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="issue-new-column">
+                    <div class="form-label">Percent complete</div>
+                    <div class="form-field">
+                        <select name="issue[percentage]">
+                            <?php foreach (range(0, 100, 10) as $percent): ?>
+                            <option value="<?php echo $percent; ?>" <?php echo ($this->issue['percentage'] == $percent) ? 'selected="selected"' : '' ?>><?php echo $percent; ?> %</option>
+                            <?php endforeach;  ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            
+            <div class="form-buttons">
+                <input type="submit" value="Save Changes" class="button green" /> <a href="#cancel" onclick="cancelConfirm(); return false;">cancel and go back</a>
+            </div>
+        </form>
+    </div>
+</div>

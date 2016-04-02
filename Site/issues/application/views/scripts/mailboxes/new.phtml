@@ -1,0 +1,68 @@
+<form action="" method="post" autocomplete="off">
+
+<div class="right-content">
+    <div class="box blue">
+        
+        <div class="category-throbber right" style="display: none;">
+            <div class="throbber"></div>
+        </div>
+        
+        <h1>New messages go to:</h1>
+        
+        <table>
+            <tr>
+                <td class="issue-overview-title">Project</td>
+                <td class="issue-overview-data">
+                    <select name="issue[project]" id="project" onchange="updateCategoriesFromNew();">
+                        <option value="">None</option>
+                        <?php foreach ($this->projects as $key => $val): ?>
+                        <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['project_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                        <?php endforeach;  ?>
+                    </select>
+                </td>
+            </tr>
+            <tr class="categories-holder" <?php echo (count($this->categories) == 0) ? 'style="display: none;"' : ''; ?>>
+                <td class="issue-overview-title">Category</td>
+                <td class="issue-overview-data">
+                    <select name="issue[category]" class="categories">
+                        <option value="">None</option>
+                        <?php if (count($this->categories) > 0): ?>
+                        <?php foreach ($this->categories as $key => $val): ?>
+                        <option value="<?php echo $val['id']; ?>" <?php echo ($this->issue['category_id'] == $val['id']) ? 'selected="selected"' : ''; ?>><?php echo $val['name']; ?></option>
+                        <?php endforeach;  ?>
+                        <?php endif; ?>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="left-column content shadow">
+    <h1>New Mailbox</h1>
+    
+    <div>
+        <div class="form-row">
+            <div class="form-label">Name</div>
+            <div class="form-field"><input type="text" name="mailbox[name]" value="<?php echo $this->mailbox['name']; ?>" autofocus="autofocus" placeholder="Mailbox identifier" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Host</div>
+            <div class="form-field"><input type="text" name="mailbox[host]" value="<?php echo $this->mailbox['host']; ?>" placeholder="eg, mail.example.com" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Username</div>
+            <div class="form-field"><input type="text" name="mailbox[username]" value="<?php echo $this->mailbox['username']; ?>" placeholder="eg, me@example.com" /></div>
+        </div>
+        <div class="form-row">
+            <div class="form-label">Password</div>
+            <div class="form-field"><input type="password" name="mailbox[password]" value="<?php echo $this->mailbox['password']; ?>" /></div>
+        </div>
+    </div>
+    
+    <div class="form-buttons">
+        <input type="submit" value="Test Mailbox" class="button green" /> <a href="/mailboxes">cancel and go back</a>
+    </div>
+</div>
+
+</form>
